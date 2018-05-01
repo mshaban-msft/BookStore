@@ -1,4 +1,4 @@
-package sign_in_window;
+package signin_window;
 
 public class action_listeners_generator {
 	

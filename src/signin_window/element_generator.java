@@ -1,4 +1,4 @@
-package sign_in_window;
+package signin_window;
 
 
 import java.io.FileNotFoundException;
@@ -20,8 +20,10 @@ public class element_generator {
 	
 	/* Sign In Fields */
 	/**********************************/
-	private TextField user_name_field;
-	private TextField password_fiels;
+	private Label user_name_label;
+	private TextField user_name_input_area;
+	private Label password_label;
+	private TextField password_input_area;
 	private Button sign_in_btn;
 	private Button sign_up_btn;
 	
@@ -45,8 +47,10 @@ public class element_generator {
 		
 		/* Sign In Fields */
 		/**********************************/
-		user_name_field = new TextField("user name");
-		password_fiels = new TextField("password");
+		user_name_label = new Label("User Name");
+		user_name_input_area = new TextField();
+		password_label = new Label("Password");
+		password_input_area = new TextField();
 		sign_in_btn = new Button("Sign In");
 		sign_up_btn = new Button("Sign Up");
 		
@@ -68,12 +72,23 @@ public class element_generator {
 		return window_label;
 	}
 
-	public TextField getUser_name_field() {
-		return user_name_field;
+	public Label getUser_name_label() {
+		return user_name_label;
 	}
 
-	public TextField getPassword_fiels() {
-		return password_fiels;
+
+	public TextField getUser_name_input_area() {
+		return user_name_input_area;
+	}
+
+
+	public Label getPassword_label() {
+		return password_label;
+	}
+
+
+	public TextField getPassword_input_area() {
+		return password_input_area;
 	}
 
 	public Button getSign_in_btn() {
@@ -83,6 +98,9 @@ public class element_generator {
 	public Button getSign_up_btn() {
 		return sign_up_btn;
 	}
+
+
+
 
 
 	
