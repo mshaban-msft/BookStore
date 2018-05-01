@@ -1,4 +1,4 @@
-package signup_window;
+package gui_controller.signup_window;
 
 
 import java.io.FileNotFoundException;
@@ -59,7 +59,7 @@ public class element_generator {
 		/* Navigation Bar */
 		/**********************************/
 		cancel_btn = new Button("Cancel");
-		window_label = new Label("Create New Account");
+		window_label = new Label("New Account");
 		
 		/* Sign up Fields */
 		/**********************************/

@@ -1,32 +1,32 @@
-package signup_window;
+package gui_controller.signin_window;
 
 
 import java.io.FileNotFoundException;
 
-import javafx.scene.control.Button;
+import gui_controller.window_controller;
 import javafx.scene.layout.Pane;
 
-public class signup_controller {
+public class signin_controller {
 	
 	/************************************************/
 	/* ATTRIBUTES */
 	/************************************************/
 	private element_generator elements;
 	private layout_generator layout;
-	//private action_listeners_generator actionListeners;
-	//private HotKeysInitializer hotKeys;
+	private action_listeners_generator action_listener;
+	//private hotkeys_generator hotKeys;
 	
 	
 	/************************************************/
 	/* CONSTRUCTOR */
 	/************************************************/
 	public
-	signup_controller()
+	signin_controller(window_controller gui_controller)
 	{
 		elements=new element_generator();
 		layout=new layout_generator(elements);
-		//actionListeners=new ActionListenersGenerator(elements);
-		//hotKeys=new HotKeysInitializer(elements);
+		action_listener=new action_listeners_generator(elements, gui_controller);
+		//hotKeys=new hotkeys_generator(elements);
 	}
 	
 	/************************************************/
@@ -37,7 +37,7 @@ public class signup_controller {
 	{
 		elements.generate_elements();
 		layout.build_layout();
-		//actionListeners.initialize();
+		action_listener.setup_actions();
 		//hotKeys.initialize();
 	}
 	
@@ -47,12 +47,6 @@ public class signup_controller {
 		return layout.get_layout();
 	}
 	
-	
-	public Button
-	get_nav_btn()
-	{
-		return elements.getCancel_btn();
-	}
 	
 	
 }

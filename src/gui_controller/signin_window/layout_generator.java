@@ -1,4 +1,4 @@
-package signin_window;
+package gui_controller.signin_window;
 
 import javafx.geometry.Insets;
 import javafx.scene.layout.BorderPane;
@@ -40,8 +40,8 @@ public class layout_generator {
 		gui_elements.getBack_btn().setPrefSize(74, 35);
 		gui_elements.getWindow_label().setFont(Font.font("Verdana", FontWeight.BOLD, 25));
 		nav_bar.getChildren().addAll(gui_elements.getBack_btn(), gui_elements.getWindow_label());
-		nav_bar.setPadding(new Insets(50,0,0,0)); /* up, right, down, left */
-		nav_bar.setSpacing(150);
+		nav_bar.setPadding(new Insets(35,0,0,0)); /* up, right, down, left */
+		nav_bar.setSpacing(165);
 		//nav_bar.setStyle("-fx-background-color: #eae7d7;");
 		
 		/* Sign in Fields */

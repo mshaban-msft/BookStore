@@ -1,4 +1,4 @@
-package signup_window;
+package gui_controller.signup_window;
 
 
 import javafx.geometry.Insets;
@@ -43,8 +43,8 @@ public class layout_generator {
 		gui_elements.getCancel_btn().setPrefSize(btn_width, btn_height);
 		gui_elements.getWindow_label().setFont(Font.font("Verdana", FontWeight.BOLD, 25));
 		nav_bar.getChildren().addAll(gui_elements.getCancel_btn(), gui_elements.getWindow_label());
-		nav_bar.setPadding(new Insets(50,0,0,0)); /* up, right, down, left */
-		nav_bar.setSpacing(100);
+		nav_bar.setPadding(new Insets(35,0,0,0)); /* up, right, down, left */
+		nav_bar.setSpacing(140);
 		//nav_bar.setStyle("-fx-background-color: #eae7d7;");
 		
 		/* Sign in Fields */
@@ -61,7 +61,7 @@ public class layout_generator {
 		gui_elements.getAddress_input_area().setPrefSize(field_width, field_height);
 		
 		/* field labels */
-		Font tmp = Font.font("Verdana", FontWeight.NORMAL, 15);
+		Font tmp = Font.font("Verdana", FontWeight.NORMAL, 13);
 		gui_elements.getUser_name_label().setFont(tmp);
 		gui_elements.getPassword_label().setFont(tmp);
 		gui_elements.getFirst_name_label().setFont(tmp);
@@ -116,7 +116,7 @@ public class layout_generator {
 		VBox sign_in_fields = new VBox();
 		sign_in_fields.getChildren().addAll(tmp1, tmp2, tmp3, tmp4, tmp5, tmp6, tmp7, tmp8);
 		sign_in_fields.setPadding(new Insets(30,0,0,0));
-		sign_in_fields.setSpacing(7);
+		sign_in_fields.setSpacing(10);
 
 		/* Overall window */
 		layout.setTop(nav_bar);

@@ -1,19 +1,18 @@
-package signin_window;
-
+package gui_controller.home_window;
 
 import java.io.FileNotFoundException;
 
-import javafx.scene.control.Button;
+import gui_controller.window_controller;
 import javafx.scene.layout.Pane;
 
-public class signin_controller {
+public class home_controller {
 	
 	/************************************************/
 	/* ATTRIBUTES */
 	/************************************************/
 	private element_generator elements;
 	private layout_generator layout;
-	//private action_listeners_generator actionListeners;
+	private action_listeners_generator action_listener;
 	//private HotKeysInitializer hotKeys;
 	
 	
@@ -21,11 +20,11 @@ public class signin_controller {
 	/* CONSTRUCTOR */
 	/************************************************/
 	public
-	signin_controller()
+	home_controller(window_controller gui_controller)
 	{
 		elements=new element_generator();
 		layout=new layout_generator(elements);
-		//actionListeners=new ActionListenersGenerator(elements);
+		action_listener=new action_listeners_generator(elements, gui_controller);
 		//hotKeys=new HotKeysInitializer(elements);
 	}
 	
@@ -37,7 +36,7 @@ public class signin_controller {
 	{
 		elements.generate_elements();
 		layout.build_layout();
-		//actionListeners.initialize();
+		action_listener.setup_actions();
 		//hotKeys.initialize();
 	}
 	
@@ -45,12 +44,6 @@ public class signin_controller {
 	get_window()
 	{
 		return layout.get_layout();
-	}
-	
-	public Button
-	get_nav_btn()
-	{
-		return elements.getBack_btn();
 	}
 	
 	

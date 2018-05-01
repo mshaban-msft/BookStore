@@ -1,4 +1,4 @@
-package signin_window;
+package gui_controller.signin_window;
 
 
 import java.io.FileNotFoundException;
