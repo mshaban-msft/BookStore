@@ -1,4 +1,4 @@
-package gui_controller.home_window;
+package gui_controller.checkout_window;
 
 import gui_controller.window_controller;
 
@@ -29,28 +29,13 @@ public class action_listeners_generator {
 	setup_actions()
 	{
 		/* sign in up button */
-		gui_elements.getSign_in_out_btn().setOnMouseClicked(e->{
-			gui_controller.update_stage(gui_controller.getSignin_scene());
-		});
-		
-		/* view account button */
-		gui_elements.getView_account_btn().setOnMouseClicked(e->{
-			gui_controller.update_stage(gui_controller.getAccount_scene());
-		});
-		
-		/* view cart button */
-		gui_elements.getView_cart_btn().setOnMouseClicked(e->{
+		gui_elements.getBack_btn().setOnMouseClicked(e->{
 			gui_controller.update_stage(gui_controller.getCart_scene());
 		});
 		
-		/* view orders button */
-		gui_elements.getView_orders_btn().setOnMouseClicked(e->{
-
-		});
-		
-		/* view more table elements button */
-		gui_elements.getView_more_btn().setOnMouseClicked(e->{
-
+		/* view account button */
+		gui_elements.getPlace_order_btn().setOnMouseClicked(e->{
+			gui_controller.update_stage(gui_controller.getHome_scene());
 		});
 
 	}	

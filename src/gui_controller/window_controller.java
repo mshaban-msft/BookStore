@@ -6,6 +6,8 @@ package gui_controller;
 import java.io.FileNotFoundException;
 
 import gui_controller.account_window.account_controller;
+import gui_controller.cart_window.cart_controller;
+import gui_controller.checkout_window.checkout_controller;
 import gui_controller.home_window.home_controller;
 import gui_controller.signin_window.signin_controller;
 import gui_controller.signup_window.signup_controller;
@@ -22,12 +24,16 @@ public class window_controller {
 	private signin_controller signin_window;
 	private signup_controller signup_window;
 	private account_controller account_window;
+	private cart_controller cart_window;
+	private checkout_controller checkout_window;
 	
 	private Stage stage;
 	private Scene home_scene;
 	private Scene signin_scene;
 	private Scene signup_scene;
 	private Scene account_scene;
+	private Scene cart_scene;
+	private Scene checkout_scene;
 	
 	private int win_width = 1000;
 	private int win_height = 660;
@@ -62,6 +68,14 @@ public class window_controller {
 		account_window = new account_controller(this);
 		account_window.initialize_window();
 		account_scene = new Scene(account_window.get_window(), win_width, win_height);
+		
+		cart_window = new cart_controller(this);
+		cart_window.initialize_window();
+		cart_scene = new Scene(cart_window.get_window(), win_width, win_height);
+		
+		checkout_window = new checkout_controller(this);
+		checkout_window.initialize_window();
+		checkout_scene = new Scene(checkout_window.get_window(), win_width, win_height);
 	}
 	
 	public void
@@ -97,6 +111,14 @@ public class window_controller {
 
 	public Scene getAccount_scene() {
 		return account_scene;
+	}
+
+	public Scene getCart_scene() {
+		return cart_scene;
+	}
+
+	public Scene getCheckout_scene() {
+		return checkout_scene;
 	}
 
 
