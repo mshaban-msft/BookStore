@@ -12,7 +12,7 @@
 		
 		.sh-form
 		{
-			width: 600px; padding-top: 40px; padding-bottom: 20px; padding-left: 20px; margin-left: 27%;
+			width: 600px; padding-top: 40px; padding-bottom: 20px; padding-left: 20px;
 		}
 
 		.sh-label
@@ -36,88 +36,92 @@
 
 
 		<!-- signup form -->
-		<form id="form_container" class="sh-form w3-card-2 w3-margin-top" >
+		<div id="form_container" style="padding-left: 27%;">
 
-			<!-- user name -->
-			<div class="w3-row" style="padding: 10px;">
-				<div class="w3-col sh-label">
-					<label class="w3-label" style="text-align: right;" >User Name</label>
+			<form class="sh-form w3-card-2 w3-margin-top" >
+
+				<!-- user name -->
+				<div class="w3-row" style="padding: 10px;">
+					<div class="w3-col sh-label">
+						<label class="w3-label" style="text-align: right;" >User Name</label>
+					</div>
+
+					<div class="w3-col" style="width: 400px;">
+						<input type="text" class="w3-input w3-border" required />
+					</div>
 				</div>
 
-				<div class="w3-col" style="width: 400px;">
-					<input type="text" class="w3-input w3-border" required />
-				</div>
-			</div>
+				<!-- password -->
+				<div class="w3-row" style="padding: 10px;">
+					<div class="w3-col sh-label">
+						<label class="w3-label">Password</label>
+					</div>
 
-			<!-- password -->
-			<div class="w3-row" style="padding: 10px;">
-				<div class="w3-col sh-label">
-					<label class="w3-label">Password</label>
-				</div>
-
-				<div class="w3-col" style="width: 400px;">
-					<input type="password" class="w3-input w3-border" required />
-				</div>
-			</div>
-
-			<!-- first name -->
-			<div class="w3-row" style="padding: 10px;">
-				<div class="w3-col sh-label">
-					<label class="w3-label">First Name</label>
+					<div class="w3-col" style="width: 400px;">
+						<input type="password" class="w3-input w3-border" required />
+					</div>
 				</div>
 
-				<div class="w3-col" style="width: 400px;">
-					<input type="text" class="w3-input w3-border" required />
-				</div>
-			</div>
+				<!-- first name -->
+				<div class="w3-row" style="padding: 10px;">
+					<div class="w3-col sh-label">
+						<label class="w3-label">First Name</label>
+					</div>
 
-			<!-- last name -->
-			<div class="w3-row" style="padding: 10px;">
-				<div class="w3-col sh-label">
-					<label class="w3-label">Last Name</label>
-				</div>
-
-				<div class="w3-col" style="width: 400px;">
-					<input type="text" class="w3-input w3-border" required />
-				</div>
-			</div>
-
-			<!-- user email -->
-			<div class="w3-row" style="padding: 10px;">
-				<div class="w3-col sh-label">
-					<label class="w3-label">Email</label>
+					<div class="w3-col" style="width: 400px;">
+						<input type="text" class="w3-input w3-border" required />
+					</div>
 				</div>
 
-				<div class="w3-col" style="width: 400px;">
-					<input type="text" class="w3-input w3-border" required />
-				</div>
-			</div>
+				<!-- last name -->
+				<div class="w3-row" style="padding: 10px;">
+					<div class="w3-col sh-label">
+						<label class="w3-label">Last Name</label>
+					</div>
 
-			<!-- user phone -->
-			<div class="w3-row" style="padding: 10px;">
-				<div class="w3-col sh-label">
-					<label class="w3-label">Phone</label>
-				</div>
-
-				<div class="w3-col" style="width: 400px;">
-					<input type="text" class="w3-input w3-border" required />
-				</div>
-			</div>
-
-			<!-- shipping address -->
-			<div class="w3-row" style="padding: 10px;">
-				<div class="w3-col sh-label">
-					<label class="w3-label">Address</label>
+					<div class="w3-col" style="width: 400px;">
+						<input type="text" class="w3-input w3-border" required />
+					</div>
 				</div>
 
-				<div class="w3-col" style="width: 400px;">
-					<input type="text" class="w3-input w3-border" required />
+				<!-- user email -->
+				<div class="w3-row" style="padding: 10px;">
+					<div class="w3-col sh-label">
+						<label class="w3-label">Email</label>
+					</div>
+
+					<div class="w3-col" style="width: 400px;">
+						<input type="text" class="w3-input w3-border" required />
+					</div>
 				</div>
-			</div>
 
-			<button class="w3-btn w3-margin-top w3-margin-bottom w3-green" style="margin-left: 425px;">Sign Up</button>
+				<!-- user phone -->
+				<div class="w3-row" style="padding: 10px;">
+					<div class="w3-col sh-label">
+						<label class="w3-label">Phone</label>
+					</div>
 
-		</form>
+					<div class="w3-col" style="width: 400px;">
+						<input type="text" class="w3-input w3-border" required />
+					</div>
+				</div>
+
+				<!-- shipping address -->
+				<div class="w3-row" style="padding: 10px;">
+					<div class="w3-col sh-label">
+						<label class="w3-label">Address</label>
+					</div>
+
+					<div class="w3-col" style="width: 400px;">
+						<input type="text" class="w3-input w3-border" required />
+					</div>
+				</div>
+
+				<button class="w3-btn w3-margin-top w3-margin-bottom w3-green" style="margin-left: 425px;">Sign Up</button>
+
+			</form>
+
+		</div>
 
 
 	</body>
