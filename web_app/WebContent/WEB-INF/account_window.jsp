@@ -7,7 +7,7 @@
 	<head>
 		<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 		<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-	
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<style>
 		
 			.sh-form
@@ -42,11 +42,11 @@
 				<h3>M-Shaban</h3>
 			</div>
 		  
-			<a href="home_window.html">HOME</a>
-			<a href="#" class="w3-green" >ACCOUNT</a>
-			<a href="cart_window.html">SHOPPING CART</a>
-			<a href="#">TRACK ORDERS</a>
-			<a href="signin_window.html">SIGN OUT</a>
+			<a href="#" onclick="$('#home_hidden_form').submit(); return false;">HOME</a>
+			<a href="#" class="w3-green">ACCOUNT</a>
+			<a href="#" onclick="$('#cart_hidden_form').submit(); return false;" >SHOPPING CART</a>
+			<a href="#" onclick="$('#orders_hidden_form').submit(); return false;">TRACK ORDERS</a>
+			<a href="#" onclick="$('#signout_hidden_form').submit(); return false;">SIGN OUT</a>
 		</nav>
 		
 		<!-- page content -->
@@ -149,6 +149,26 @@
 
 
 
+
+		<!-- handling site navigation (hidden forms) -->
+		<form id="home_hidden_form" action="/Library/home" method="get" style="display: none">
+		  <input type="hidden" name="myParameterName" value="myParameterValue">
+		</form>
+
+		<form id="cart_hidden_form" action="/Library/cart" method="post" style="display: none">
+		  <input type="hidden" name="myParameterName" value="myParameterValue">
+		</form>
+
+		<form id="orders_hidden_form" action="/Library/orders" method="post" style="display: none">
+		  <input type="hidden" name="myParameterName" value="myParameterValue">
+		</form>
+
+		<form id="signout_hidden_form" action="/Library/signin" method="post" style="display: none">
+		  <input type="hidden" name="myParameterName" value="myParameterValue">
+		</form>
+
+
+
 		
 	</body>
 	
@@ -190,4 +210,3 @@
 	</script>
 	
 </html>
-
