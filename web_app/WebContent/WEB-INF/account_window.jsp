@@ -163,7 +163,7 @@
 		  <input type="hidden" name="myParameterName" value="myParameterValue">
 		</form>
 
-		<form id="signout_hidden_form" action="/Library/signin" method="post" style="display: none">
+		<form id="signout_hidden_form" action="/Library/signin" method="get" style="display: none">
 		  <input type="hidden" name="myParameterName" value="myParameterValue">
 		</form>
 
