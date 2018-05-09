@@ -7,6 +7,7 @@
 	<head>
 		<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 		<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	</head>
 	
 
@@ -73,7 +74,7 @@
 
 
 		<!-- handling site navigation (hidden forms) -->
-		<form id="home_hidden_form" action="/Library/home" method="post" style="display: none">
+		<form id="home_hidden_form" action="/Library/home" method="get" style="display: none">
 		  <input type="hidden" name="myParameterName" value="myParameterValue">
 		</form>
 
@@ -85,7 +86,7 @@
 		  <input type="hidden" name="myParameterName" value="myParameterValue">
 		</form>
 
-		<form id="publisher_orders_hidden_form" action="/Library/publiser_orders" method="get" style="display: none">
+		<form id="publisher_orders_hidden_form" action="/Library/publiser_orders" method="post" style="display: none">
 		  <input type="hidden" name="myParameterName" value="myParameterValue">
 		</form>
 

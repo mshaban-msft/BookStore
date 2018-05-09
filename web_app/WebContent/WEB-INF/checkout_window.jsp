@@ -7,7 +7,7 @@
 	<head>
 		<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 		<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-	
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<style>
 		
 			.sh-form
@@ -56,7 +56,7 @@
 			</div>
 			
 			<!-- receipient info -->
-			<form action="place_order.php" method="POST">
+			<form action="/Library/checkout/submit" method="POST">
 
 			<div id="recipient_info_container" class="w3-card-2" style="margin-left: 25%; margin-top: 20px; width:500px;">
 
@@ -160,7 +160,7 @@
 		  <input type="hidden" name="myParameterName" value="myParameterValue">
 		</form>
 
-		<form id="publisher_orders_hidden_form" action="/Library/publiser_orders" method="get" style="display: none">
+		<form id="publisher_orders_hidden_form" action="/Library/publiser_orders" method="post" style="display: none">
 		  <input type="hidden" name="myParameterName" value="myParameterValue">
 		</form>
 

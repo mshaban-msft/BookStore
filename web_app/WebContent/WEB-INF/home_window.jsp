@@ -267,7 +267,7 @@
 
 					<div class="w3-container" style="padding-top: 10px; padding-bottom: 10px;">
 						<button class="w3-btn w3-green w3-right" style="margin-right: 60px;" type="submit" >ADD BOOK</button>
-						<button class="w3-btn w3-red w3-right" onclick="hide_new_book_modal()" style="margin-right: 10px;">CANCEL</button>
+						<button class="w3-btn w3-red w3-right" id="cancel_btn" style="margin-right: 10px;">CANCEL</button>
 					</div>
 				</form>
 
@@ -289,7 +289,7 @@
 		  <input type="hidden" name="myParameterName" value="myParameterValue">
 		</form>
 
-		<form id="publisher_orders_hidden_form" action="/Library/publiser_orders" method="get" style="display: none">
+		<form id="publisher_orders_hidden_form" action="/Library/publiser_orders" method="post" style="display: none">
 		  <input type="hidden" name="myParameterName" value="myParameterValue">
 		</form>
 
@@ -307,6 +307,21 @@
 	<!-- *********************************************** -->
 	<script>
 
+		var search_modal = document.getElementById('search_modal');
+	
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+		  if (event.target == search_modal) {
+		    search_modal.style.display = "none";
+		  }
+		}
+	
+	
+		document.getElementById("cancel_btn").addEventListener("click", function(event){
+		    event.preventDefault();
+		    hide_new_book_modal();
+		});
+	
 		/* post-load scripts */
 		document.getElementById('new_book_modal').style.display='none';
 		document.getElementById('search_modal').style.display='none';
@@ -319,7 +334,7 @@
 
 		function hide_new_book_modal()
 		{
-			document.getElementById('new_book_modal').style.display='block';
+			document.getElementById('new_book_modal').style.display='none';
 		}
 
 		function show_search_modal()

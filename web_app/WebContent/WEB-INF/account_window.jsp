@@ -164,7 +164,7 @@
 		  <input type="hidden" name="myParameterName" value="myParameterValue">
 		</form>
 
-		<form id="publisher_orders_hidden_form" action="/Library/publiser_orders" method="get" style="display: none">
+		<form id="publisher_orders_hidden_form" action="/Library/publiser_orders" method="post" style="display: none">
 		  <input type="hidden" name="myParameterName" value="myParameterValue">
 		</form>
 
