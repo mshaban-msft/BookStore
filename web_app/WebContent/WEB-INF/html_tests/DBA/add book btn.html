@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+
+
+	<!-- *********************************************** -->
+	<!-- DEFINE HEADER -->
+	<!-- *********************************************** -->
+	<head>
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
+		<style>
+		
+		.sh-form
+		{
+			width: 600px; padding-top: 15px; padding-bottom: 10px; padding-left: 20px;
+		}
+
+		.sh-label
+		{
+			width: 100px; padding-top: 3px; padding-right: 10px; text-align: right;
+		}
+
+		.sh-input
+		{
+			height: 30px;
+		}
+
+		.sh-book-attr
+		{
+			padding: 5px;
+		}
+
+	</style>
+
+
+	</head>
+
+
+	<!-- *********************************************** -->
+	<!-- DEFINE BODY -->
+	<!-- *********************************************** -->
+	<body>
+
+		<div id="new_book_modal" class="w3-modal">
+
+			<div class="w3-modal-content w3-card-12" style="width:580px; overflow:hidden;">
+			
+				<header class="w3-container w3-teal w3-tiny">
+					<h2 class="w3-large">
+						<i class="fa fa-plus w3-margin-left w3-medium" style="margin-right: 10px;"></i>
+						New Book
+					</h2>
+				</header>
+				 
+
+				<form class="sh-form" action="home_window.html" method="POST">
+
+					<!-- user name -->
+					<div class="w3-row sh-book-attr">
+						<div class="w3-col sh-label">
+							<label class="w3-label" style="text-align: right;" >ISBN</label>
+						</div>
+
+						<div class="w3-col" style="width: 400px;">
+							<input type="text" class="w3-input w3-border sh-input"  />
+						</div>
+					</div>
+
+					<!-- password -->
+					<div class="w3-row sh-book-attr">
+						<div class="w3-col sh-label">
+							<label class="w3-label">Title</label>
+						</div>
+
+						<div class="w3-col" style="width: 400px;">
+							<input type="password" class="w3-input w3-border sh-input"  />
+						</div>
+					</div>
+
+					<!-- first name -->
+					<div class="w3-row sh-book-attr">
+						<div class="w3-col sh-label">
+							<label class="w3-label">Author</label>
+						</div>
+
+						<div class="w3-col" style="width: 400px;">
+							<input type="text" class="w3-input w3-border sh-input"  />
+						</div>
+					</div>
+
+					<!-- last name -->
+					<div class="w3-row sh-book-attr">
+						<div class="w3-col sh-label">
+							<label class="w3-label">Publisher</label>
+						</div>
+
+						<div class="w3-col" style="width: 400px;">
+							<input type="text" class="w3-input w3-border sh-input"  />
+						</div>
+					</div>
+
+					<!-- user email -->
+					<div class="w3-row sh-book-attr">
+						<div class="w3-col sh-label">
+							<label class="w3-label">Category</label>
+						</div>
+
+						<div class="w3-col" style="width: 400px;">
+							<input type="text" class="w3-input w3-border sh-input"  />
+						</div>
+					</div>
+
+					<!-- user phone -->
+					<div class="w3-row sh-book-attr">
+						<div class="w3-col sh-label">
+							<label class="w3-label">Price</label>
+						</div>
+
+						<div class="w3-col" style="width: 400px;">
+							<input type="text" class="w3-input w3-border sh-input"  />
+						</div>
+					</div>
+
+					<!-- shipping address -->
+					<div class="w3-row sh-book-attr">
+						<div class="w3-col sh-label">
+							<label class="w3-label">Year</label>
+						</div>
+
+						<div class="w3-col" style="width: 400px;">
+							<input type="text" class="w3-input w3-border sh-input"  />
+						</div>
+					</div>
+
+					<!-- shipping address -->
+					<div class="w3-row sh-book-attr">
+						<div class="w3-col sh-label">
+							<label class="w3-label">Quantity</label>
+						</div>
+
+						<div class="w3-col" style="width: 400px;">
+							<input type="text" class="w3-input w3-border sh-input"  />
+						</div>
+					</div>
+
+					<!-- shipping address -->
+					<div class="w3-row sh-book-attr">
+						<div class="w3-col sh-label">
+							<label class="w3-label">Threshold</label>
+						</div>
+
+						<div class="w3-col" style="width: 400px;">
+							<input type="text" class="w3-input w3-border sh-input"  />
+						</div>
+					</div>
+
+					<div class="w3-container" style="padding-top: 10px; padding-bottom: 10px;">
+						<button class="w3-btn w3-green w3-right" style="margin-right: 60px;" type="submit" >ADD BOOK</button>
+						<button class="w3-btn w3-red w3-right" onclick="toggle_modal()" style="margin-right: 10px;">CANCEL</button>
+					</div>
+				</form>
+
+
+			</div>
+		</div>
+
+
+	</body>
+	<!-- *********************************************** -->
+	<!-- POST-LOADING SCRIPTS -->
+	<!-- *********************************************** -->
+	<script>
+
+		/* post-load scripts */
+		var modal_shown = true;
+		document.getElementById('new_book_modal').style.display='block';
+
+		/* DOM manipulation functions */
+		function toggle_modal()
+		{
+			if(modal_shown == true)
+			{document.getElementById('new_book_modal').style.display='none';}
+			else
+			{document.getElementById('new_book_modal').style.display='block';}
+		}
+
+	</script>
+
+
+
+</html> 

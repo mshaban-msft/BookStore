@@ -7,7 +7,6 @@
 	<head>
 		<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 		<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	</head>
 	
 
@@ -19,7 +18,7 @@
 		<div class="w3-top" id="bar_toggle">
 			<ul class="w3-navbar w3-teal w3-card-2" style="min-width:1100px">
 				<li><a href="#" class="w3-hover-teal" style="padding-top:15px; padding-bottom:15px" onclick="handleSideNav()"><i class="fa fa-bars w3-xlarge"></i></a></li>
-				<li><a href="#" class="w3-padding-16 w3-hover-teal">Shopping Cart</a></li>
+				<li><a href="#" class="w3-padding-16 w3-hover-teal">My Orders</a></li>
 			</ul>
 		</div>
 		
@@ -29,25 +28,18 @@
 				<h3>M-Shaban</h3>
 			</div>
 		  
-			<a href="#" onclick="$('#home_hidden_form').submit(); return false;">HOME</a>
+			<a href="#" onclick="$('#home_hidden_form').submit(); return false;" >HOME</a>
 			<a href="#" onclick="$('#account_hidden_form').submit(); return false;" >ACCOUNT</a>
-			<a href="#" class="w3-green" >SHOPPING CART</a>
-			<a href="#" onclick="$('#orders_hidden_form').submit(); return false;">MY ORDERS</a>
+			<a href="#" onclick="$('#cart_hidden_form').submit(); return false;" >SHOPPING CART</a>
+			<a href="#" class="w3-green">MY ORDERS</a>
 			<a href="#" onclick="$('#publisher_orders_hidden_form').submit(); return false;">PUBLISHER ORDERS</a>
 			<a href="#" onclick="$('#signout_hidden_form').submit(); return false;">SIGN OUT</a>
 		</nav>
 		
 		<!-- page content -->
 		<div class="w3-container">
-			<div style="height:55px;">
-			</div>
-			
 
-			<div class="w3-container w3-card-2 w3-margin w3-padding-8">
-				<button class="w3-btn w3-teal" onclick="$('#checkout_hidden_form').submit(); return false;">Checkout</button>
-			</div>
-
-			<div class="w3-container">
+			<div class="w3-container" style="margin-top: 70px;">
 			  <table class="w3-table-all w3-hoverable w3-card-2">
 			  	<!-- header -->
 			    <thead>
@@ -80,31 +72,27 @@
 		</div>
 
 
-	<!-- handling site navigation (hidden forms) -->
-	<form id="account_hidden_form" action="/Library/account" method="post" style="display: none">
-	  <input type="hidden" name="myParameterName" value="myParameterValue">
-	</form>
-
-	<form id="home_hidden_form" action="/Library/home" method="get" style="display: none">
-	  <input type="hidden" name="myParameterName" value="myParameterValue">
-	</form>
-
-	<form id="orders_hidden_form" action="/Library/orders" method="post" style="display: none">
-	  <input type="hidden" name="myParameterName" value="myParameterValue">
-	</form>
-
-	<form id="publisher_orders_hidden_form" action="/Library/publiser_orders" method="get" style="display: none">
+		<!-- handling site navigation (hidden forms) -->
+		<form id="home_hidden_form" action="/Library/home" method="post" style="display: none">
 		  <input type="hidden" name="myParameterName" value="myParameterValue">
 		</form>
 
-	<form id="signout_hidden_form" action="/Library/signin" method="get" style="display: none">
-	  <input type="hidden" name="myParameterName" value="myParameterValue">
-	</form>
+		<form id="account_hidden_form" action="/Library/account" method="post" style="display: none">
+		  <input type="hidden" name="myParameterName" value="myParameterValue">
+		</form>
 
-	<form id="checkout_hidden_form" action="/Library/checkout" method="get" style="display: none">
-	  <input type="hidden" name="myParameterName" value="myParameterValue">
-	</form>
-	
+		<form id="cart_hidden_form" action="/Library/cart" method="post" style="display: none">
+		  <input type="hidden" name="myParameterName" value="myParameterValue">
+		</form>
+
+		<form id="publisher_orders_hidden_form" action="/Library/publiser_orders" method="get" style="display: none">
+		  <input type="hidden" name="myParameterName" value="myParameterValue">
+		</form>
+
+		<form id="signout_hidden_form" action="/Library/signin" method="get" style="display: none">
+		  <input type="hidden" name="myParameterName" value="myParameterValue">
+		</form>
+
 
 
 		
