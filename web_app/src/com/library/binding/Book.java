@@ -74,6 +74,7 @@ public class Book {
 		System.out.println(date) ;
 		System.out.println(price) ;
 		System.out.println(quantity) ;
+		System.out.println(category);
 	}
 	
 	

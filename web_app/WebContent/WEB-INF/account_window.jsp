@@ -56,17 +56,17 @@
 			</div>
 			
 			<!-- account info -->
-			<div id="form_container" style="padding-left: 25%;">
+			<form id="form_container" style="padding-left: 25%;" action = "/Library/account/edit" method ="post">
 			<div class="sh-form w3-card-2 w3-margin-top" >
 
-				<!-- user name -->
+				<!-- account info -->
 				<div class="w3-row" style="padding: 10px;">
 					<div class="w3-col sh-label">
 						<label class="w3-label" style="text-align: right;" >User Name</label>
 					</div>
 
 					<div class="w3-col" style="width: 400px;">
-						<input type="text" class="w3-input w3-border sh-input" required />
+						<input type="text" class="w3-input w3-border sh-input" name ="userName" />
 					</div>
 				</div>
 
@@ -77,7 +77,7 @@
 					</div>
 
 					<div class="w3-col" style="width: 400px;">
-						<input type="password" class="w3-input w3-border sh-input" required />
+						<input type="password" class="w3-input w3-border sh-input" required name = "password" />
 					</div>
 				</div>
 
@@ -88,7 +88,7 @@
 					</div>
 
 					<div class="w3-col" style="width: 400px;">
-						<input type="text" class="w3-input w3-border sh-input" required />
+						<input type="text" class="w3-input w3-border sh-input" required name = "firstName" />
 					</div>
 				</div>
 
@@ -99,7 +99,7 @@
 					</div>
 
 					<div class="w3-col" style="width: 400px;">
-						<input type="text" class="w3-input w3-border sh-input" required />
+						<input type="text" class="w3-input w3-border sh-input" required name = "lastName" />
 					</div>
 				</div>
 
@@ -110,7 +110,7 @@
 					</div>
 
 					<div class="w3-col" style="width: 400px;">
-						<input type="text" class="w3-input w3-border sh-input" required />
+						<input type="text" class="w3-input w3-border sh-input" required name = "email" />
 					</div>
 				</div>
 
@@ -121,7 +121,7 @@
 					</div>
 
 					<div class="w3-col" style="width: 400px;">
-						<input type="text" class="w3-input w3-border sh-input" required />
+						<input type="text" class="w3-input w3-border sh-input" required name = "phone" />
 					</div>
 				</div>
 
@@ -132,17 +132,18 @@
 					</div>
 
 					<div class="w3-col" style="width: 400px;">
-						<input type="text" class="w3-input w3-border sh-input" required />
+						<input type="text" class="w3-input w3-border sh-input" required name ="address" />
 					</div>
 				</div>
 
-				<div class="w3-container" style="padding-left: 450px; margin-top:10px; margin-bottom: 10px;" >
-					<button class="w3-btn w3-green" onclick="toggle_disabled()">Edit</button>
+				<div class="w3-container" style="margin-top:10px; margin-bottom: 10px; padding-right: 70px;" >
+					<button id="edit_data_btn" class="w3-btn w3-green w3-right" style="width: 80px;" >Edit</button>
+					<button id="update_info_btn" class="w3-btn w3-blue w3-right w3-margin-right" style="width: 80px;" >Update</button>
 				</div>
 
 			</div>
 
-			</div>
+			</form>
 
 
 			
@@ -164,7 +165,7 @@
 		  <input type="hidden" name="myParameterName" value="myParameterValue">
 		</form>
 
-		<form id="publisher_orders_hidden_form" action="/Library/publiser_orders" method="post" style="display: none">
+		<form id="publisher_orders_hidden_form" action="/Library/publiser_orders" method="get" style="display: none">
 		  <input type="hidden" name="myParameterName" value="myParameterValue">
 		</form>
 
@@ -182,6 +183,12 @@
 	<!-- *********************************************** -->
 	<script>
 
+		document.getElementById("edit_data_btn").addEventListener("click", function(event){
+		    event.preventDefault();
+		    toggle_disabled();
+		});
+
+
 		/* post-load script */
 		var disabled_flag = true;
 		var x = document.getElementsByClassName("sh-input");
@@ -189,6 +196,8 @@
 		for (i = 0; i < x.length; i++) {
 			x[i].disabled = true;
 		}	
+
+		document.getElementById('update_info_btn').style.display='none';
 
 		/* DOM manipulation functions */
 		function handleSideNav(){
@@ -202,8 +211,16 @@
 
 		function toggle_disabled()
 		{
-			if(disabled_flag == true){disabled_flag = false;}
-			else{disabled_flag = true;}
+			if(disabled_flag == true){
+				disabled_flag = false;
+				document.getElementById("edit_data_btn").innerHTML = "Cancel";
+				document.getElementById('update_info_btn').style.display='block';
+			}
+			else{
+				disabled_flag = true;
+				document.getElementById("edit_data_btn").innerHTML = "Edit";
+				document.getElementById('update_info_btn').style.display='none';
+			}
 			
 			for (i = 0; i < x.length; i++) {
 			    x[i].disabled = disabled_flag;

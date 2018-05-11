@@ -18,12 +18,12 @@
 
 		.sh-label
 		{
-			width: 100px; padding-top: 3px; padding-right: 10px; text-align: right;
+			width: 100px; padding-top: 8px; padding-right: 10px; text-align: right;
 		}
 
 		.sh-input
 		{
-			height: 30px;
+			
 		}
 
 		.sh-book-attr
@@ -70,7 +70,7 @@
 
 			<div class="w3-container w3-card-2 w3-margin w3-padding-8">
 				<button class="w3-btn w3-teal" onclick="toggle_add_order_modal()">New Order</button>
-				<button class="w3-btn w3-teal" onclick="toggle_edit_order_modal()">View Order</button>
+				<button class="w3-btn w3-teal" onclick="toggle_view_order_modal()">View Order</button>
 			</div>
 
 			<div class="w3-container">
@@ -119,7 +119,7 @@
 				</header>
 				 
 
-				<form class="sh-form" action="home_window.html" method="POST">
+				<form class="sh-form" action="/Library/publiser_orders/add_order" method="POST">
 
 					<!-- user name -->
 					<div class="w3-row sh-book-attr">
@@ -128,7 +128,7 @@
 						</div>
 
 						<div class="w3-col" style="width: 400px;">
-							<input type="text" class="w3-input w3-border sh-input"  />
+							<input type="text" name="isbn" class="w3-input w3-border sh-input"  />
 						</div>
 					</div>
 
@@ -139,7 +139,7 @@
 						</div>
 
 						<div class="w3-col" style="width: 400px;">
-							<input type="password" class="w3-input w3-border sh-input"  />
+							<input type="text" name="quantity" class="w3-input w3-border sh-input"  />
 						</div>
 					</div>
 
@@ -150,13 +150,13 @@
 						</div>
 
 						<div class="w3-col" style="width: 400px;">
-							<input type="password" class="w3-input w3-border sh-input"  />
+							<input type="date" name="date" class="w3-input w3-border sh-input"  />
 						</div>
 					</div>
 
 					<div class="w3-container" style="padding-top: 10px; padding-bottom: 10px;">
 						<button class="w3-btn w3-green w3-right" style="margin-right: 60px;" type="submit" >Place Order</button>
-						<button class="w3-btn w3-red w3-right" onclick="toggle_add_order_modal()" style="margin-right: 10px;" type="button">CANCEL</button>
+						<button id="cancel_order_btn" class="w3-btn w3-red w3-right" style="margin-right: 10px;" >CANCEL</button>
 					</div>
 				</form>
 
@@ -166,9 +166,9 @@
 
 
 		<!-- edit order modal -->
-		<div id="edit_order_modal" class="w3-modal">
+		<div id="view_order_modal" class="w3-modal">
 
-			<div class="w3-modal-content w3-card-12" style="width:580px; overflow:hidden;">
+			<div class="w3-modal-content w3-card-12" style="width:580px; overflow:hidden; padding-bottom: 15px;">
 				 
 
 				<header class="w3-container w3-teal">
@@ -178,7 +178,7 @@
 					</h2>
 				</header>
 
-				<form class="sh-form" action="home_window.html" method="POST">
+				<div class="sh-form">
 
 					<!-- user name -->
 					<div class="w3-row sh-book-attr">
@@ -212,13 +212,7 @@
 							<input type="password" class="w3-input w3-border sh-input sh-disable"  />
 						</div>
 					</div>
-
-					<div class="w3-container" style="padding-top: 10px; padding-bottom: 10px;">
-						<button class="w3-btn w3-green w3-right" style="margin-right: 60px;" onclick="toggle_disabled()" type="button">
-						Edit Order</button>
-						<button class="w3-btn w3-red w3-right" onclick="toggle_edit_order_modal()" style="margin-right: 10px;" type="button">CANCEL</button>
-					</div>
-				</form>
+				</div>
 
 
 			</div>
@@ -256,12 +250,24 @@
 	<!-- *********************************************** -->
 	<script>
 
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+		  if (event.target == view_order_modal) {
+		    view_order_modal.style.display = "none";
+		  }
+		}
+
+		document.getElementById("cancel_order_btn").addEventListener("click", function(event){
+		    event.preventDefault();
+		    toggle_add_order_modal();
+		});
+
 		/* post-load scripts */
 		var add_order_modal_shown = false;
 		document.getElementById('new_order_modal').style.display='none';
 
-		var edit_order_modal_shown = false;
-		document.getElementById('edit_order_modal').style.display='none';
+		var view_order_modal_shown = false;
+		document.getElementById('view_order_modal').style.display='none';
 
 		var disabled_flag = true;
 		var x = document.getElementsByClassName("sh-disable");
@@ -293,26 +299,16 @@
 			}
 		}
 
-		function toggle_edit_order_modal()
+		function toggle_view_order_modal()
 		{
-			if(edit_order_modal_shown == true)
+			if(view_order_modal_shown == true)
 			{
-				document.getElementById('edit_order_modal').style.display='none';
-				edit_order_modal_shown = false;
+				document.getElementById('view_order_modal').style.display='none';
+				view_order_modal_shown = false;
 			}else{
-				document.getElementById('edit_order_modal').style.display='block';
-				edit_order_modal_shown = true;
+				document.getElementById('view_order_modal').style.display='block';
+				view_order_modal_shown = true;
 			}
-		}
-
-		function toggle_disabled()
-		{
-			if(disabled_flag == true){disabled_flag = false;}
-			else{disabled_flag = true;}
-			
-			for (i = 0; i < x.length; i++) {
-			    x[i].disabled = disabled_flag;
-			}	
 		}
 
 	</script>

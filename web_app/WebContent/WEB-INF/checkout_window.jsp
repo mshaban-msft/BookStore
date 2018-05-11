@@ -52,13 +52,13 @@
 		
 		<!-- page content -->
 		<div class="w3-container">
-			<div style="height:55px;">
+			<div style="height:70px;">
 			</div>
 			
 			<!-- receipient info -->
-			<form action="/Library/checkout/submit" method="POST">
+			<form action="/Library/checkout/submit" method="POST" class="w3-card-2" style="margin-left: 25%; padding-top: 7px; padding-bottom: 20px; width: 600px; padding-left: 45px;">
 
-			<div id="recipient_info_container" class="w3-card-2" style="margin-left: 25%; margin-top: 20px; width:500px;">
+			<div id="recipient_info_container" class="w3-border" style="margin-top: 20px; width:500px;">
 
 				<div class="w3-container w3-blue">
 					<p>Recipient Info</p>
@@ -103,7 +103,7 @@
 
 
 			<!-- card info container -->
-			<div id="card_info_container" class="w3-card-2" style="margin-left: 25%; margin-top: 20px; width:500px;">
+			<div id="card_info_container" class="w3-border" style="margin-top: 20px; width:500px;">
 
 				<div class="w3-container w3-blue">
 					<p>Card Info</p>
@@ -117,7 +117,7 @@
 						</div>
 
 						<div class="w3-col w3-grey" style="width: 300px;">
-							<input type="text" class="w3-input sh-input w3-border" name="card_no" />
+							<input type="text" class="w3-input sh-input w3-border" name="cardNo" />
 						</div>
 					</div>
 
@@ -128,7 +128,7 @@
 						</div>
 
 						<div class="w3-col" style="width: 300px;">
-							<input type="text" class="w3-input sh-input w3-border" name="card_expiry_date" />
+							<input type="date" class="w3-input w3-border sh-input"  name="expiryDate" />
 						</div>
 					</div>
 
@@ -136,7 +136,7 @@
 			</div>
 
 			<!-- place order -->
-			<div id="verifiy_btn_container" style="margin-left: 25%; margin-top: 20px; width:500px;">
+			<div id="verifiy_btn_container" style="margin-top: 20px; width:500px;">
 				<button class="w3-btn w3-teal" type="submit" >Place Order</button>
 			</div>
 
@@ -160,7 +160,7 @@
 		  <input type="hidden" name="myParameterName" value="myParameterValue">
 		</form>
 
-		<form id="publisher_orders_hidden_form" action="/Library/publiser_orders" method="post" style="display: none">
+		<form id="publisher_orders_hidden_form" action="/Library/publiser_orders" method="get" style="display: none">
 		  <input type="hidden" name="myParameterName" value="myParameterValue">
 		</form>
 

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.library.binding.Book;
+import com.library.binding.Search;
 
 @Controller
 public class HomeController {
@@ -31,11 +32,20 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/home/addBook" , method = RequestMethod.POST)
-	public ModelAndView addBook (@ModelAttribute("new_book") Book book , BindingResult result) {
+	public ModelAndView addBook (@ModelAttribute("new_book") Book book) {
 		book.print();
 		ModelAndView home_view = new ModelAndView("home_window") ;
 		return home_view ;
 	}
+	
+	@RequestMapping(value = "/home/search" , method = RequestMethod.POST)
+	public ModelAndView addBook (@ModelAttribute("search") Search search) {
+		search.print();
+		ModelAndView home_view = new ModelAndView("home_window") ;
+		return home_view ;
+	}
+	
+	
 	
 	
 }

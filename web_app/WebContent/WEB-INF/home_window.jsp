@@ -71,7 +71,6 @@
 			<div class="w3-container w3-card-2 w3-margin w3-padding-8">
 
 				<button class="w3-btn w3-teal" onclick="show_search_modal()">Search</button>
-				<button class="w3-btn w3-teal" onclick="">Browse</button>
 				<button class="w3-btn w3-teal" onclick="show_new_book_modal()">Add New Book</button>
 
 			</div>
@@ -112,7 +111,7 @@
 		<!-- search modal -->
 		<div id="search_modal" class="w3-modal">
 
-			<div class="w3-modal-content w3-animate-zoom w3-card-12" style="width:400px;">
+			<form class="w3-modal-content w3-animate-zoom w3-card-12" style="width:400px;" action = "/Library/home/search"  method = "post">
 
 				<header class="w3-container w3-teal">
 					<h2 class="w3-xlarge">
@@ -122,7 +121,7 @@
 				</header>
 
 				<div class="w3-container w3-margin-top" style="height: 50px;">
-					<input type="text" class="w3-input w3-border" required />
+					<input name="searchTerm" type="text" class="w3-input w3-border" required />
 				</div>
 
 				<div class="w3-container w3-padding-8">
@@ -132,20 +131,20 @@
 				<div class="w3-row w3-container" style="padding-bottom: 40px;">
 
 					<div class="w3-col" style="width: 200px; height: 40px;">
-						<select class="w3-select w3-border w3-small" name="option">
-							<option value="1" selected >Book Name</option>
-							<option value="2">Author</option>
-							<option value="3">Publisher</option>
+						<select class="w3-select w3-border w3-small" name="searchCriteria" required>
+							<option value="Title" selected >Title</option>
+							<option value="Author">Author</option>
+							<option value="Publisher">Publisher</option>
 						</select>
 					</div>
 
 					<div class="w3-col w3-right" style="width: 85px;">
-						<button class="w3-btn w3-teal w3-ripple" onclick="close_search_modal()">Search</button>
+						<button class="w3-btn w3-teal w3-ripple">Search</button>
 					</div>
 
 				</div>
 
-			</div>
+			</form>
 		
 		</div>
 
@@ -210,6 +209,7 @@
 						</div>
 					</div>
 
+
 					<!-- user email -->
 					<div class="w3-row sh-book-attr">
 						<div class="w3-col sh-label">
@@ -217,7 +217,13 @@
 						</div>
 
 						<div class="w3-col" style="width: 400px;">
-							<input type="text" class="w3-input w3-border sh-input"  name = "category" />
+							<select class="w3-select w3-border sh-input w3-tiny" name="category" required>
+								<option value="Science" selected >Science</option>
+								<option value="Art">Art</option>
+								<option value="Religion">Religion</option>
+								<option value="History">History</option>
+								<option value="Geography">Geography</option>
+							</select>
 						</div>
 					</div>
 
@@ -289,7 +295,7 @@
 		  <input type="hidden" name="myParameterName" value="myParameterValue">
 		</form>
 
-		<form id="publisher_orders_hidden_form" action="/Library/publiser_orders" method="post" style="display: none">
+		<form id="publisher_orders_hidden_form" action="/Library/publiser_orders" method="get" style="display: none">
 		  <input type="hidden" name="myParameterName" value="myParameterValue">
 		</form>
 
