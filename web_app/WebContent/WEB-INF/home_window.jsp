@@ -164,7 +164,7 @@
 				</header>
 				 
 
-				<form class="sh-form" action="home_window.html" method="POST">
+				<form class="sh-form" action="/Library/home/addBook" method="POST">
 
 					<!-- user name -->
 					<div class="w3-row sh-book-attr">
@@ -173,7 +173,7 @@
 						</div>
 
 						<div class="w3-col" style="width: 400px;">
-							<input type="text" class="w3-input w3-border sh-input"  />
+							<input type="text" class="w3-input w3-border sh-input"  name = "isbn"/>
 						</div>
 					</div>
 
@@ -184,7 +184,7 @@
 						</div>
 
 						<div class="w3-col" style="width: 400px;">
-							<input type="password" class="w3-input w3-border sh-input"  />
+							<input type="text" class="w3-input w3-border sh-input"  name = "title"/>
 						</div>
 					</div>
 
@@ -195,7 +195,7 @@
 						</div>
 
 						<div class="w3-col" style="width: 400px;">
-							<input type="text" class="w3-input w3-border sh-input"  />
+							<input type="text" class="w3-input w3-border sh-input"  name = "author"/>
 						</div>
 					</div>
 
@@ -206,7 +206,7 @@
 						</div>
 
 						<div class="w3-col" style="width: 400px;">
-							<input type="text" class="w3-input w3-border sh-input"  />
+							<input type="text" class="w3-input w3-border sh-input"  name = "publisher"/>
 						</div>
 					</div>
 
@@ -217,7 +217,7 @@
 						</div>
 
 						<div class="w3-col" style="width: 400px;">
-							<input type="text" class="w3-input w3-border sh-input"  />
+							<input type="text" class="w3-input w3-border sh-input"  name = "category" />
 						</div>
 					</div>
 
@@ -228,7 +228,7 @@
 						</div>
 
 						<div class="w3-col" style="width: 400px;">
-							<input type="text" class="w3-input w3-border sh-input"  />
+							<input type="text" class="w3-input w3-border sh-input"  name = "price" />
 						</div>
 					</div>
 
@@ -239,7 +239,7 @@
 						</div>
 
 						<div class="w3-col" style="width: 400px;">
-							<input type="text" class="w3-input w3-border sh-input"  />
+							<input type="date" class="w3-input w3-border sh-input"  name="date" />
 						</div>
 					</div>
 
@@ -250,7 +250,7 @@
 						</div>
 
 						<div class="w3-col" style="width: 400px;">
-							<input type="text" class="w3-input w3-border sh-input"  />
+							<input type="text" class="w3-input w3-border sh-input"  name = "quantity" />
 						</div>
 					</div>
 
@@ -261,7 +261,7 @@
 						</div>
 
 						<div class="w3-col" style="width: 400px;">
-							<input type="text" class="w3-input w3-border sh-input"  />
+							<input type="text" class="w3-input w3-border sh-input"  name = "thershold" />
 						</div>
 					</div>
 

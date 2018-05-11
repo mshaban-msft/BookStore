@@ -40,11 +40,11 @@
 				<div class="w3-container" style="margin-left:15px; margin-right:15px;">
 					<div style="padding-top: 10px;">
 						<label class="w3-text-grey"><b>Email</b></label>
-						<input type="email" class="w3-input w3-border" placeholder="userID@provider.domain" name="user_email" />
+						<input type="email" class="w3-input w3-border" placeholder="userID@provider.domain" name="email" />
 					</div>
 					<div style="padding-top: 10px;">
 						<label class="w3-text-grey"><b>Password</b></label>
-						<input type="password" class="w3-input w3-border" placeholder="1234567890" name="user_password" />
+						<input type="password" class="w3-input w3-border" placeholder="1234567890" name="password" />
 					</div>
 
 					<div class="w3-center" style="padding-top: 15px;">
@@ -63,15 +63,12 @@
 	<!-- POST-LOADING SCRIPTS -->
 	<!-- *********************************************** -->
 	<script>
-			//window.alert('success');
-			document.getElementById('signin_modal').style.display='block';
-			document.getElementById('error_msg').style.display='none';
-			if(${error} == true)
-			{
-				document.getElementById('error_msg').style.display='block';
-				
-			}
-			//window.alert("hamada");
+		document.getElementById('signin_modal').style.display='block';
+		document.getElementById('error_msg').style.display='none';
+		if('${error}' != '#')
+		{
+			document.getElementById('error_msg').style.display='block';
+		}
 	</script>
 
 </html>

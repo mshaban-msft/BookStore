@@ -41,7 +41,7 @@
 			<form action="/Library/signup/submit" method="POST" class="sh-form w3-card-2 w3-margin-top">
 			
 				<div class="w3-container w3-red" id="error_msg">
-					User Already Exists
+						${error}
 				</div>
 
 				<!-- user name -->
@@ -51,7 +51,7 @@
 					</div>
 
 					<div class="w3-col" style="width: 400px;">
-						<input type="text" class="w3-input w3-border" pattern="/^[a-zA-Z0-9]+([a-zA-Z0-9](_|-| )[a-zA-Z0-9])*[a-zA-Z0-9]+$/" />
+						<input type="text" class="w3-input w3-border" name ="userName"/>
 					</div>
 				</div>
 
@@ -62,7 +62,7 @@
 					</div>
 
 					<div class="w3-col" style="width: 400px;">
-						<input type="password" class="w3-input w3-border"  />
+						<input type="password" class="w3-input w3-border"  name = "password" />
 					</div>
 				</div>
 
@@ -73,7 +73,7 @@
 					</div>
 
 					<div class="w3-col" style="width: 400px;">
-						<input type="text" class="w3-input w3-border"  pattern="[a-zA-Z0-9]+" />
+						<input type="text" class="w3-input w3-border" name = "firstName" />
 					</div>
 				</div>
 
@@ -84,7 +84,7 @@
 					</div>
 
 					<div class="w3-col" style="width: 400px;">
-						<input type="text" class="w3-input w3-border" pattern="[a-zA-Z0-9]+" />
+						<input type="text" class="w3-input w3-border" name = "lastName" />
 					</div>
 				</div>
 
@@ -95,7 +95,7 @@
 					</div>
 
 					<div class="w3-col" style="width: 400px;">
-						<input type="email" class="w3-input w3-border"  />
+						<input type="email" class="w3-input w3-border"  name = "email" />
 					</div>
 				</div>
 
@@ -106,7 +106,7 @@
 					</div>
 
 					<div class="w3-col" style="width: 400px;">
-						<input type="text" class="w3-input w3-border"  />
+						<input type="text" class="w3-input w3-border"  name = "phone"/>
 					</div>
 				</div>
 
@@ -117,7 +117,7 @@
 					</div>
 
 					<div class="w3-col" style="width: 400px;">
-						<input type="text" class="w3-input w3-border"  />
+						<input type="text" class="w3-input w3-border"  name ="address" />
 					</div>
 				</div>
 
@@ -136,10 +136,9 @@
 	<script>
 	
 		document.getElementById('error_msg').style.display='none';
-		if(${error} == true)
+		if('${error}' != '#')
 		{
 			document.getElementById('error_msg').style.display='block';
-			
 		}
 		
 	</script>
