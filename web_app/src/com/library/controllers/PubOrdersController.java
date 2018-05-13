@@ -33,7 +33,7 @@ public class PubOrdersController {
 	}
 	
 	@RequestMapping(value = "/publiser_orders/add_order" , method = RequestMethod.POST)
-	public ModelAndView submit(@ModelAttribute("order") Order order) {
+	public ModelAndView add_order(@ModelAttribute("order") Order order) {
 		// TODO call database 
 		order.print() ;
 		ModelAndView view = new ModelAndView(new RedirectView("/Library/publiser_orders")) ;

@@ -1,8 +1,13 @@
 package com.library.controllers;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,12 +17,15 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.library.binding.SignUpUser;
 import com.library.checkers.EmailChecker;
+import com.library.mysql.DbController;
 
 @Controller
 public class SignUpController {
 
-	/* global attributes */
-	
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		binder.setDisallowedFields(new String[] {"userAdmin"});
+	}
 
 	@RequestMapping(value = "/signup" , method = RequestMethod.POST)
 	public ModelAndView signUp () {
@@ -29,11 +37,15 @@ public class SignUpController {
 	@RequestMapping(value = "/signup/submit" , method = RequestMethod.POST)
 	public ModelAndView signUp_submit (@ModelAttribute("signUpUser") SignUpUser user) {
 		
-		user.print();
+		DbController db = new DbController() ;
+		String user_exits_error = db.add_user(user);
 		
 		EmailChecker checker = new EmailChecker() ;
 		
 		String error = checker.check_signUp_valid(user) ; 
+		
+		if(error.isEmpty())
+			error = user_exits_error  ;
 		
 		/* validate user account */
 		if(!error.isEmpty()) {

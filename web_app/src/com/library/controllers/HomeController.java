@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.library.binding.Book;
 import com.library.binding.Search;
+import com.library.mysql.DbController;
 
 @Controller
 public class HomeController {
@@ -32,8 +33,10 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/home/addBook" , method = RequestMethod.POST)
-	public ModelAndView addBook (@ModelAttribute("new_book") Book book) {
-		book.print();
+	public ModelAndView addBook (@ModelAttribute("new_book") Book book , BindingResult result) {
+	    DbController controller = new DbController();
+		controller.insert_book(book);
+
 		ModelAndView home_view = new ModelAndView("home_window") ;
 		return home_view ;
 	}

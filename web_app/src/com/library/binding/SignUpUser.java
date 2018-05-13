@@ -1,5 +1,7 @@
 package com.library.binding;
 
+import com.library.credentials.UserAdmin;
+
 public class SignUpUser {
 	
 	private String userName ;
@@ -9,7 +11,16 @@ public class SignUpUser {
 	private String email ;
 	private String phone ;
 	private String address ;
+	private UserAdmin userAdmin ;
 	
+	
+	
+	public UserAdmin getUserAdmin() {
+		return userAdmin;
+	}
+	public void setUserAdmin(UserAdmin userAdmin) {
+		this.userAdmin = userAdmin;
+	}
 	public String getUserName() {
 		return userName;
 	}

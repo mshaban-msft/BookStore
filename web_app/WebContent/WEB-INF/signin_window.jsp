@@ -34,7 +34,7 @@
 				</header>
 
 				<div class="w3-container w3-red" id="error_msg">
-					Incorrect UserName or Password
+					${error}
 				</div>
 				 
 				<div class="w3-container" style="margin-left:15px; margin-right:15px;">

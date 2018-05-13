@@ -11,6 +11,7 @@ public class EmailChecker {
 	}
 	
 	public String check_signUp_valid (SignUpUser user) {
+		
 		if(user.getUserName() == null || user.getUserName().trim() == "")
 			return "UserName is missing" ;
 		else if(user.getPassword() == null || user.getPassword().trim() == "")
