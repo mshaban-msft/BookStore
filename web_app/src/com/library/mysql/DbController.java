@@ -9,6 +9,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.library.binding.Book;
+import com.library.binding.Order;
+import com.library.binding.PubOrder;
 import com.library.binding.SignInUser;
 import com.library.binding.SignUpUser;
 import com.library.credentials.UserAdmin;
@@ -47,8 +49,6 @@ public class DbController {
 		
     	int error = this.jdbcTemplateObject.update(sql , isbn , title , date , price 
     			, category , quantity , threshold , publisher)  ;
-    	
-    	System.out.println("insertion_book is good if 1 is " + error);
     }
     
     public String add_user(SignUpUser user) {
@@ -77,9 +77,7 @@ public class DbController {
     			+ "values ( ? , ? , ? , ? , ?  )" ;
     	int error = this.jdbcTemplateObject.update(sql  , firstName , lastName 
     			, email , phone , address)  ;
-    	
-    	System.out.println("insertion_user is good if 1 is " + error);
-    	
+
     	return "" ;
     }
     
@@ -105,6 +103,17 @@ public class DbController {
     public SignUpUser get_user_data(SignInUser user) {
     	String sql = "select * from Customer NATURAL JOIN Credentials where Email = \'" + user.getEmail() + "\'" ;
     	return this.jdbcTemplateObject.queryForObject(sql, new UserMapper());
+    }
+    
+    public List<PubOrder> get_publish_order () {
+    	String sql = "select * from Publisher_Orders " ;
+    	return this.jdbcTemplateObject.query(sql, new PubOrderMapper()) ;
+    }
+    
+    public void add_publish_order (PubOrder order) {
+    	String sql = "insert into Publisher_Orders (ISBN , Publisher_Name , Quantity ) "
+    			+ "values ( ? , ? , ? ) " ;
+    	this.jdbcTemplateObject.update(sql,  order.getIsbn() , order.getPublisherName() , order.getQuantity() ) ;
     }
      
     /*

@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.library.binding.SignInUser;
 import com.library.binding.SignUpUser;
 import com.library.checkers.EmailChecker;
 import com.library.mysql.DbController;
@@ -35,7 +38,7 @@ public class SignUpController {
 	}
 	
 	@RequestMapping(value = "/signup/submit" , method = RequestMethod.POST)
-	public ModelAndView signUp_submit (@ModelAttribute("signUpUser") SignUpUser user) {
+	public ModelAndView signUp_submit (@ModelAttribute("signUpUser") SignUpUser user , HttpSession session) {
 		
 		DbController db = new DbController() ;
 		String user_exits_error = db.add_user(user);
@@ -54,6 +57,7 @@ public class SignUpController {
 			return sign_up_view;			
 		}
 		else {
+			session.setAttribute("signed_user", db.get_user_data(new SignInUser(user.getEmail(), user.getPassword())));
 			return new ModelAndView(new RedirectView("/Library/home"));			
 		}
 		

@@ -18,9 +18,11 @@ public class SignUpUser {
 	public UserAdmin getUserAdmin() {
 		return userAdmin;
 	}
+	
 	public void setUserAdmin(UserAdmin userAdmin) {
 		this.userAdmin = userAdmin;
 	}
+	
 	public String getUserName() {
 		return userName;
 	}

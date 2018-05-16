@@ -2,6 +2,7 @@ package com.library.controllers;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -16,7 +17,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.library.binding.Order;
+import com.library.binding.PubOrder;
 import com.library.binding.SignUpUser;
+import com.library.mysql.DbController;
 
 @Controller
 public class PubOrdersController {
@@ -38,14 +41,22 @@ public class PubOrdersController {
 			return sign_view ;
 		}
 		
-		ModelAndView pub_orders_view = new ModelAndView("pub_orders_window");
+		DbController db = new DbController() ;
+		List<PubOrder> orders = db.get_publish_order() ;
+		
+		ModelAndView pub_orders_view = new ModelAndView("pub_orders_window") ;
+		pub_orders_view.addObject("orders", orders) ;
+		
 		return pub_orders_view;
 	}
 	
 	@RequestMapping(value = "/publiser_orders/add_order" , method = RequestMethod.POST)
-	public ModelAndView add_order(@ModelAttribute("order") Order order) {
+	public ModelAndView add_order(@ModelAttribute("order") PubOrder order) {
 		// TODO call database 
-		order.print() ;
+		
+		DbController db = new DbController() ;
+		db.add_publish_order(order);
+		
 		ModelAndView view = new ModelAndView(new RedirectView("/Library/publiser_orders")) ;
 		return view ;
 	}

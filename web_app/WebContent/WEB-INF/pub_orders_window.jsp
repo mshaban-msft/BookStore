@@ -1,3 +1,4 @@
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 	
@@ -78,27 +79,19 @@
 			  	<!-- header -->
 			    <thead>
 			      <tr class="w3-blue">
-			        <th>First Name</th>
-			        <th>Last Name</th>
-			        <th>Points</th>
+			        <th>ISBN</th>
+			        <th>Publisher name</th>
+			        <th>Quantity</th>
 			      </tr>
 			    </thead>
 			    <!-- create rows -->
-			    <tr>
-			      <td>Jill</td>
-			      <td>Smith</td>
-			      <td>50</td>
-			    </tr>
-			    <tr>
-			      <td>Eve</td>
-			      <td>Jackson</td>
-			      <td>94</td>
-			    </tr>
-			    <tr>
-			      <td>Adam</td>
-			      <td>Johnson</td>
-			      <td>67</td>
-			    </tr>
+			    <c:forEach items="${orders}" var="order">
+				    <tr>
+				        <td><c:out value="${order.isbn}"/></td>
+				        <td><c:out value="${order.publisherName}"/></td>
+				        <td><c:out value="${order.quantity}"/></td>
+				    </tr>
+				</c:forEach>
 			  </table>
 			</div>
 
@@ -146,11 +139,11 @@
 					<!-- first name -->
 					<div class="w3-row sh-book-attr">
 						<div class="w3-col sh-label">
-							<label class="w3-label">Date</label>
+							<label class="w3-label">Publisher Name</label>
 						</div>
 
 						<div class="w3-col" style="width: 400px;">
-							<input type="date" name="date" class="w3-input w3-border sh-input"  />
+							<input type="text" name="publisherName" class="w3-input w3-border sh-input"  />
 						</div>
 					</div>
 

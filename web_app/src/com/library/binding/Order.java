@@ -12,24 +12,31 @@ public class Order {
 	public Float getTotalPrice() {
 		return totalPrice;
 	}
+	
 	public void setTotalPrice(Float totalPrice) {
 		this.totalPrice = totalPrice;
 	}
+	
 	public Integer getIsbn() {
 		return isbn;
 	}
+	
 	public void setIsbn(Integer isbn) {
 		this.isbn = isbn;
 	}
+	
 	public Integer getQuantity() {
 		return quantity;
 	}
+	
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
+	
 	public Date getDate() {
 		return date;
 	}
+	
 	public void setDate(Date date) {
 		this.date = date;
 	}

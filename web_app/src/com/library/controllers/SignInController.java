@@ -21,7 +21,10 @@ public class SignInController {
 	
 
 	@RequestMapping(value = "/signin" , method = RequestMethod.GET)
-	public ModelAndView signIn () {	
+	public ModelAndView signIn (HttpSession session) {
+		
+		session.removeAttribute("signed_user");
+		
 		ModelAndView sign_view = new ModelAndView("signin_window") ;
 		sign_view.addObject("error", "#");
 		return sign_view ;
