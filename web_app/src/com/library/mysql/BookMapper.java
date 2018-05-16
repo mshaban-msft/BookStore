@@ -13,9 +13,8 @@ public class BookMapper implements RowMapper<Book>{
 	public Book mapRow(ResultSet rs , int rowNum) throws SQLException {
 		// TODO Auto-generated method stub
 		Book book = new Book() ;
-		book.setAuthor(rs.getString("Name"));
 		book.setIsbn(rs.getInt("ISBN"));
-		book.setCategory(rs.getNString("Category"));
+		book.setCategory(rs.getString("Category"));
 		book.setdate(rs.getDate("Publication_Year"));
 		book.setPrice(rs.getInt("Price"));
 		book.setPublisher(rs.getString("Publisher"));

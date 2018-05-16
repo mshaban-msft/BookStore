@@ -66,7 +66,7 @@
 					</div>
 
 					<div class="w3-col" style="width: 400px;">
-						<input type="text" class="w3-input w3-border sh-input" name ="userName" />
+						<input type="text" class="w3-input w3-border sh-input" name ="userName" id="userName" >
 					</div>
 				</div>
 
@@ -77,7 +77,7 @@
 					</div>
 
 					<div class="w3-col" style="width: 400px;">
-						<input type="password" class="w3-input w3-border sh-input" required name = "password" />
+						<input type="password" class="w3-input w3-border sh-input" required name = "password" id = "password" >
 					</div>
 				</div>
 
@@ -88,7 +88,7 @@
 					</div>
 
 					<div class="w3-col" style="width: 400px;">
-						<input type="text" class="w3-input w3-border sh-input" required name = "firstName" />
+						<input type="text" class="w3-input w3-border sh-input" required name = "firstName" id = "firstName">
 					</div>
 				</div>
 
@@ -99,7 +99,7 @@
 					</div>
 
 					<div class="w3-col" style="width: 400px;">
-						<input type="text" class="w3-input w3-border sh-input" required name = "lastName" />
+						<input type="text" class="w3-input w3-border sh-input" required name = "lastName" id = "lastName" >
 					</div>
 				</div>
 
@@ -110,7 +110,7 @@
 					</div>
 
 					<div class="w3-col" style="width: 400px;">
-						<input type="text" class="w3-input w3-border sh-input" required name = "email" />
+						<input type="text" class="w3-input w3-border sh-input" required name = "email" id = "email" >
 					</div>
 				</div>
 
@@ -121,7 +121,7 @@
 					</div>
 
 					<div class="w3-col" style="width: 400px;">
-						<input type="text" class="w3-input w3-border sh-input" required name = "phone" />
+						<input type="text" class="w3-input w3-border sh-input" required name = "phone" id = "phone" >
 					</div>
 				</div>
 
@@ -132,7 +132,7 @@
 					</div>
 
 					<div class="w3-col" style="width: 400px;">
-						<input type="text" class="w3-input w3-border sh-input" required name ="address" />
+						<input type="text" class="w3-input w3-border sh-input" required name ="address" id = "address">
 					</div>
 				</div>
 
@@ -187,7 +187,14 @@
 		    event.preventDefault();
 		    toggle_disabled();
 		});
-
+		
+		document.getElementById("userName").value = "${signed_user.userName}";
+		document.getElementById("address").value = "${signed_user.address}";
+		document.getElementById("email").value = "${signed_user.email}";
+		document.getElementById("phone").value = "${signed_user.phone}";
+		document.getElementById("lastName").value = "${signed_user.lastName}";
+		document.getElementById("firstName").value = "${signed_user.firstName}";
+		document.getElementById("password").value = "${signed_user.password}";
 
 		/* post-load script */
 		var disabled_flag = true;

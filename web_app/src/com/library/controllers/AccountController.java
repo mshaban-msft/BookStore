@@ -1,5 +1,7 @@
 package com.library.controllers;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,17 +15,16 @@ import com.library.binding.SignUpUser;
 public class AccountController {
 	
 	@RequestMapping(value = "/account" , method = RequestMethod.POST)
-	public ModelAndView account() {
+	public ModelAndView account(HttpSession session) {
 		// TODO get user data from db 
+		SignUpUser signed_user = (SignUpUser)session.getAttribute("signed_user") ;
 		ModelAndView view = new ModelAndView("account_window") ;
+		view.addObject("signed_user", signed_user) ;
 		return view ;
 	}
 	
 	@RequestMapping(value = "/account/edit" , method = RequestMethod.POST)
 	public ModelAndView edit(@ModelAttribute("edit_user") SignUpUser user , BindingResult result) {
-		user.print();
-		
-		System.out.println(result);
 		
 		ModelAndView view = new ModelAndView("account_window") ;
 		// TODO edit in user data in db 

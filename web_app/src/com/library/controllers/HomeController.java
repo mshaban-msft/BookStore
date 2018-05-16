@@ -2,6 +2,9 @@ package com.library.controllers;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -15,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.library.binding.Book;
 import com.library.binding.Search;
+import com.library.binding.SignUpUser;
 import com.library.mysql.DbController;
 
 @Controller
@@ -27,8 +31,20 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/home" , method = RequestMethod.GET)
-	public ModelAndView signUp () {
+	public ModelAndView signUp (HttpSession session) {
+		
+		SignUpUser signed = (SignUpUser)session.getAttribute("signed_user") ;
+		if(signed == null) {
+			ModelAndView sign_view = new ModelAndView("signin_window") ;
+			return sign_view ;
+		}
+			
+		
 		ModelAndView home_view = new ModelAndView("home_window") ;
+		DbController db = new DbController() ;
+		List<Book> books = db.get_books() ;
+		home_view.addObject("bookList", books) ;
+		
 		return home_view ;
 	}
 	
@@ -38,6 +54,11 @@ public class HomeController {
 		controller.insert_book(book);
 
 		ModelAndView home_view = new ModelAndView("home_window") ;
+		DbController db = new DbController() ;
+		List<Book> books = db.get_books() ;
+		home_view.addObject("bookList", books) ;
+
+		
 		return home_view ;
 	}
 	

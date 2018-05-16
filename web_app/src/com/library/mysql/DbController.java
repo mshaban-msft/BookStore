@@ -1,5 +1,7 @@
 package com.library.mysql;
 
+import java.util.List;
+
 import javax.sql.DataSource;
 
 import org.springframework.context.ApplicationContext;
@@ -95,13 +97,23 @@ public class DbController {
     	return "" ;
     }
     
+    public List<Book> get_books() {
+    	String sql = "select * from Book" ;
+    	return  this.jdbcTemplateObject.query(sql, new BookMapper());
+    }
+    
+    public SignUpUser get_user_data(SignInUser user) {
+    	String sql = "select * from Customer NATURAL JOIN Credentials where Email = \'" + user.getEmail() + "\'" ;
+    	return this.jdbcTemplateObject.queryForObject(sql, new UserMapper());
+    }
+     
     /*
      * return string error if not exist or 
      * exist and password is incorrect 
      * 
      * **/
     public boolean check_user_exist (String email) {
-    	String sql = "select count(*) from Customer "
+    	String sql = "select count(*) from Customer " 
     			+ " where Email = ? " ;
     	Integer coun = jdbcTemplateObject.queryForObject(sql, new String[]{email} , Integer.class);
     	return coun >= 1  ;

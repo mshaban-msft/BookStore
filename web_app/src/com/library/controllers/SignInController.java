@@ -21,14 +21,14 @@ public class SignInController {
 	
 
 	@RequestMapping(value = "/signin" , method = RequestMethod.GET)
-	public ModelAndView signIn (HttpSession session) {	
+	public ModelAndView signIn () {	
 		ModelAndView sign_view = new ModelAndView("signin_window") ;
 		sign_view.addObject("error", "#");
 		return sign_view ;
 	}
 
 	@RequestMapping(value = "/signin/submit" , method = RequestMethod.POST)
-	public ModelAndView signIn_submit (@ModelAttribute("signInUser") SignInUser user) {
+	public ModelAndView signIn_submit (@ModelAttribute("signInUser") SignInUser user , HttpSession session) {
 		
 		DbController db = new DbController();
 		String user_exist_password_error = db.sign_in(user) ;
@@ -46,6 +46,7 @@ public class SignInController {
 			return sign_view;			
 		}
 		else {
+			session.setAttribute("signed_user", db.get_user_data(user));
 			return new ModelAndView(new RedirectView("/Library/home"));			
 		}
 	}

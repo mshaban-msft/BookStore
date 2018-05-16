@@ -1,3 +1,4 @@
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 	
@@ -80,27 +81,26 @@
 			  	<!-- header -->
 			    <thead>
 			      <tr class="w3-blue">
-			        <th>First Name</th>
-			        <th>Last Name</th>
-			        <th>Points</th>
+			        <th>Isbn</th>
+			        <th>Title</th>
+			        <th>Publication Year</th>
+			        <th>Price</th>
+			        <th>Category</th>
+			        <th>Quantity</th>
+			        <th>Threshold</th>
 			      </tr>
 			    </thead>
-			    <!-- create rows -->
-			    <tr>
-			      <td>Jill</td>
-			      <td>Smith</td>
-			      <td>50</td>
-			    </tr>
-			    <tr>
-			      <td>Eve</td>
-			      <td>Jackson</td>
-			      <td>94</td>
-			    </tr>
-			    <tr>
-			      <td>Adam</td>
-			      <td>Johnson</td>
-			      <td>67</td>
-			    </tr>
+			    <c:forEach items="${bookList}" var="book">
+				    <tr>
+				        <td><c:out value="${book.isbn}"/></td>
+				        <td><c:out value="${book.title}"/></td>
+				        <td><c:out value="${book.date}"/></td>
+				        <td><c:out value="${book.price}"/></td>
+				        <td><c:out value="${book.category}"/></td>
+				        <td><c:out value="${book.quantity}"/></td>
+				        <td><c:out value="${book.thershold}"/></td>
+				    </tr>
+				</c:forEach>
 			  </table>
 			</div>
 
