@@ -2,11 +2,20 @@ package com.library.binding;
 
 import java.util.Date;
 
+
 public class Book {
 
 	Integer isbn , price  , quantity , thershold ;
-	String title , author , publisher , category ;
+	String title , publisher , category ;
 	Date date ;
+	
+	 
+	
+	public Book() {
+		super();
+	}
+
+	String author ; 
 	
 	public Integer getIsbn() {
 		return isbn;
@@ -50,15 +59,12 @@ public class Book {
 	public void setdate(Date date) {
 		this.date = date;
 	}
-	
 	public String getPublisher() {
 		return publisher;
 	}
-	
 	public void setPublisher(String publisher) {
 		this.publisher = publisher;
-	}
-		
+	}	
 	public Integer getThershold() {
 		return thershold;
 	}
@@ -69,7 +75,7 @@ public class Book {
 	public void print() {
 		System.out.println(isbn) ;
 		System.out.println(title) ;
-		System.out.println(author) ;
+//		System.out.println(authors.size()) ;
 		System.out.println(publisher) ;
 		System.out.println(date) ;
 		System.out.println(price) ;

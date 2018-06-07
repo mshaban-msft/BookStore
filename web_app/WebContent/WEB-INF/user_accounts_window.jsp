@@ -1,4 +1,3 @@
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 	
@@ -20,19 +19,19 @@
 		<div class="w3-top" id="bar_toggle">
 			<ul class="w3-navbar w3-blue-grey w3-card-2" style="min-width:1100px; padding-left:10px;">
 				<li><a href="#" class="w3-blue-grey" style="padding-top:18px; padding-bottom:15px" onclick="handle_side_nav()"><i class="fa fa-bars w3-large"></i></a></li>
-				<li><a href="#" class="w3-padding-16 w3-blue-grey" style="padding-left:3px;" >Shopping Cart</a></li>
+				<li><a href="#" class="w3-padding-16 w3-blue-grey" style="padding-left:3px;" >User Accounts</a></li>
 			</ul>
 		</div>
 		
 		<!-- side tabs -->
-		<nav class="w3-sidenav w3-white w3-card-2 w3-light-grey w3-animate-left" style="width:250px; margin-top:57px; display:none" id="SideNav01">
+		<nav class="w3-sidenav w3-white w3-card-2 w3-light-grey w3-animate-left" style="width:250px; margin-top:55px; display:none" id="SideNav01">
 			<div class="w3-container">
 				<h3>M-Shaban</h3>
 			</div>
 		  
 			<a href="#" onclick="$('#home_hidden_form').submit(); return false;">HOME</a>
 			<a href="#" onclick="$('#account_hidden_form').submit(); return false;" >ACCOUNT</a>
-			<a href="#" class="w3-blue-grey" >SHOPPING CART</a>
+			<a href="#" onclick="$('#shopping_cart_hidden_form').submit(); return false;" >SHOPPING CART</a>
 			<a href="#" onclick="$('#orders_hidden_form').submit(); return false;">MY ORDERS</a>
 			<a href="#" onclick="$('#signout_hidden_form').submit(); return false;">SIGN OUT</a>
 
@@ -40,7 +39,7 @@
 			<a href="#" onclick="$('#manage_books_hidden_form').submit(); return false;">Manage Inventory</a>
 			<a href="#" onclick="$('#manage_publishers_hidden_form').submit(); return false;">Manage Publishers</a>
 			<a href="#" onclick="$('#publisher_orders_hidden_form').submit(); return false;">Publisher Orders</a>
-			<a href="#" onclick="$('#user_accounts_hidden_form').submit(); return false;">User Accounts</a>
+			<a href="#" class="w3-blue-grey">User Accounts</a>
 		</nav>
 		
 		<!-- page content -->
@@ -50,8 +49,7 @@
 			
 
 			<div class="w3-container w3-margin" style="padding-right:0px; padding-left: 0px;">
-				<span class="w3-text-blue-grey" style="font-size:25px; font-weight:bold; font-family: arial;">My Shopping Cart</span>
-				<button class="w3-btn w3-teal w3-right" onclick="update_qnt_values(); $('#checkout_hidden_form').submit(); return false;">Checkout</button>
+				<span class="w3-text-blue-grey" style="font-size:28px; font-weight:bold; font-family: arial;">Manage User Accounts</span>
 			</div>
 
 			<div class="w3-container">
@@ -59,26 +57,29 @@
 			  	<!-- header -->
 			    <thead>
 			      <tr class="w3-dark-grey">
-			        <th>ISBN</th>
-			        <th>Title</th>
-			        <th>Unit Price</th>
-			        <th>Qnt</th>
+			        <th>Email</th>
+			        <th>Account Type</th>
 			        <th></th>
 			      </tr>
 			    </thead>
 			    <!-- create rows -->
-			    <c:forEach items = "${cart.books}" var = "book" varStatus = "status">
-			    	<tr>
-			    	 <td><input name="books[${status.index}].isbn" value="${book.isbn}"/></td>
-			    	 <td><input name="books[${status.index}].title" value="${book.title}"/></td>
-					 <td><input name="books[${status.index}].price" value="${book.price}"/></td>
-					 <td><input name="books[${status.index}].quantity" id="qnt_book_${status.index}" type="numeric" style="width:35px;" value="1"/> </td>
-				       <td> <button class="w3-right"
-					       onclick="select_book(${status.index}); $('#delete_hidden_form').submit(); return false;">
-					       - del</button>
-					   </td>
-				     </tr>	
-			    </c:forEach>
+			    <tr>
+			      <td>mohamed_shaapan@gmail.com</td>
+			      <td>admin</td>
+			      <th> <button class="w3-right" disabled 
+				      onclick="select_account(0); $('#promote_hidden_form').submit(); return false;">
+				      promote</button>
+				  </th>
+			    </tr>
+			    <tr>
+			      <td>santa_clause@northpole.com</td>
+			      <td>customer</td>
+			      <th> <button class="w3-right"
+				      onclick="select_account(1); $('#promote_hidden_form').submit(); return false;">
+				      promote</button>
+				  </th>
+			    </tr>
+
 			  </table>
 			</div>
 
@@ -112,8 +113,8 @@
 	</form>
 
 
-	<form id="delete_hidden_form" action="/Library/home" method="get" style="display: none">
-		  <input id="book_remove_index" type="hidden" name="selected_index" value="0">
+	<form id="promote_hidden_form" action="/Library/home" method="get" style="display: none">
+		  <input id="promote_account_index" type="hidden" name="selected_index" value="0">
 	</form>
 	
 
@@ -126,21 +127,9 @@
 	<!-- *********************************************** -->
 	<script>
 
-		function select_book(book_index)
+		function select_account(account_index)
 		{
-			document.getElementById('book_remove_index').value = book_index;
-		}
-
-		function update_qnt_values()
-		{
-			var index;
-			for(index = 1; index <= 1; index++)
-			{
-				var to = "submit_qnt_book_" + index;
-				var from = "qnt_book_" + index;
-				document.getElementById(to).value = document.getElementById(from).value;
-			}			
-
+			document.getElementById('promote_account_index').value = account_index;
 		}
 
 		function handle_side_nav(){

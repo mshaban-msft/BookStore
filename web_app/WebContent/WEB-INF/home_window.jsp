@@ -14,22 +14,22 @@
 		
 			.sh-form
 			{
-				width: 600px; padding-top: 15px; padding-bottom: 10px; padding-left: 20px;
+				width: 540px; padding-top: 20px; padding-bottom: 10px; padding-left: 20px;
 			}
 
 			.sh-label
 			{
-				width: 100px; padding-top: 3px; padding-right: 10px; text-align: right;
+				width: 100px; padding-top: 6px; padding-right: 10px; text-align: right;
 			}
 
 			.sh-input
 			{
-				height: 30px;
+				height: 35px;
 			}
 
 			.sh-book-attr
 			{
-				padding: 5px;
+				padding: 2px;
 			}
 
 		</style>
@@ -40,68 +40,59 @@
 	<!-- *********************************************** -->
 	<!-- DEFINE BODY -->
 	<!-- *********************************************** -->
-	<body>
+	<body style="background-color: #FFFFF0;">
 		<!--top nav bar-->
-		<div class="w3-top" id="bar_toggle">
-			<ul class="w3-navbar w3-teal w3-card-2" style="min-width:1100px">
-				<li><a href="#" class="w3-hover-teal" style="padding-top:15px; padding-bottom:15px" onclick="handleSideNav()"><i class="fa fa-bars w3-xlarge"></i></a></li>
-				<li><a href="#" class="w3-padding-16 w3-hover-teal">BookStore</a></li>
+		<div class="w3-top"">
+			<ul class="w3-navbar w3-blue-grey w3-card-2" style="min-width:1100px; padding-left:10px;">
+				<li><a href="#" class="w3-blue-grey" onclick="handle_side_nav()" style="padding-top:18px; padding-bottom:15px"><i class="fa fa-bars w3-large"></i></a></li>
+				<li><a href="#" class="w3-padding-16 w3-blue-grey" style="padding-left:3px;" >BookStore</a></li>
 			</ul>
 		</div>
 		
 		<!-- side tabs -->
-		<nav class="w3-sidenav w3-white w3-card-2 w3-light-grey w3-animate-left" style="width:250px; margin-top:57px; display:none" id="SideNav01">
+		<nav class="w3-sidenav w3-white w3-card-2 w3-light-grey w3-animate-left" style="width:250px; margin-top:33px; display:none" id="SideNav01">
 			<div class="w3-container">
 				<h3>M-Shaban</h3>
 			</div>
 		  
-			<a href="#" class="w3-green">HOME</a>
+			<a href="#" class="w3-blue-grey">HOME</a>
 			<a href="#" onclick="$('#account_hidden_form').submit(); return false;" >ACCOUNT</a>
 			<a href="#" onclick="$('#cart_hidden_form').submit(); return false;" >SHOPPING CART</a>
 			<a href="#" onclick="$('#orders_hidden_form').submit(); return false;">MY ORDERS</a>
-			<a href="#" onclick="$('#publisher_orders_hidden_form').submit(); return false;">PUBLISHER ORDERS</a>
 			<a href="#" onclick="$('#signout_hidden_form').submit(); return false;">SIGN OUT</a>
+
+			<div class="w3-container" style="padding-top: 20px; font-weight: bold; padding-bottom: 5px;"> Admin Controls </div>
+			<a href="#" onclick="$('#manage_books_hidden_form').submit(); return false;">Manage Inventory</a>
+			<a href="#" onclick="$('#manage_publishers_hidden_form').submit(); return false;">Manage Publishers</a>
+			<a href="#" onclick="$('#publisher_orders_hidden_form').submit(); return false;">Publisher Orders</a>
+			<a href="#" onclick="$('#user_accounts_hidden_form').submit(); return false;">User Accounts</a>
 		</nav>
 		
 		<!-- page content -->
-		<div class="w3-container">
-			<div style="height:55px;">
+		<div class="w3-container" id="page_content">
+			<div style="height:50px;">
 			</div>
 			
-
-			<div class="w3-container w3-card-2 w3-margin w3-padding-8">
-
-				<button class="w3-btn w3-teal" onclick="show_search_modal()">Search</button>
-				<button class="w3-btn w3-teal" onclick="show_new_book_modal()">Add New Book</button>
-
+			<!--search and title-->
+			<div class="w3-container" style="margin-bottom:10px;">
+				<span class="w3-text-blue-grey" style="font-size:27px; font-weight:bold; font-family: arial;">Best Sellers!</span>
+				<button class="w3-btn w3-teal w3-right" style="margin-top:5px;" onclick="show_search_modal()">Search</button>
 			</div>
 
+			<!--book table-->
 			<div class="w3-container">
-			  <table class="w3-table-all w3-hoverable w3-card-2">
-			  	<!-- header -->
-			    <thead>
-			      <tr class="w3-blue">
-			        <th>Isbn</th>
-			        <th>Title</th>
-			        <th>Publication Year</th>
-			        <th>Price</th>
-			        <th>Category</th>
-			        <th>Quantity</th>
-			        <th>Threshold</th>
-			      </tr>
-			    </thead>
-			    <c:forEach items="${bookList}" var="book">
-				    <tr>
-				        <td><c:out value="${book.isbn}"/></td>
-				        <td><c:out value="${book.title}"/></td>
-				        <td><c:out value="${book.date}"/></td>
-				        <td><c:out value="${book.price}"/></td>
-				        <td><c:out value="${book.category}"/></td>
-				        <td><c:out value="${book.quantity}"/></td>
-				        <td><c:out value="${book.thershold}"/></td>
-				    </tr>
-				</c:forEach>
-			  </table>
+
+				<table class="w3-table-all" id = "book_table">
+
+				    <thead>
+				      <tr class="w3-dark-grey">
+				        <th>Title</th>
+				        <th>Price</th>
+				        <th></th>
+				      </tr>
+				    </thead>
+				    
+				  </table>
 			</div>
 
 			
@@ -113,7 +104,7 @@
 
 			<form class="w3-modal-content w3-animate-zoom w3-card-12" style="width:400px;" action = "/Library/home/search"  method = "post">
 
-				<header class="w3-container w3-teal">
+				<header class="w3-container w3-blue-grey">
 					<h2 class="w3-xlarge">
 						<i class="fa fa-search w3-margin-right w3-margin-left w3-xlarge"></i>
 						Search Books
@@ -139,7 +130,7 @@
 					</div>
 
 					<div class="w3-col w3-right" style="width: 85px;">
-						<button class="w3-btn w3-teal w3-ripple">Search</button>
+						<button class="w3-btn w3-teal w3-ripple" >Search</button>
 					</div>
 
 				</div>
@@ -150,18 +141,14 @@
 
 
 
-		<!-- adding new book -->
-		<div id="new_book_modal" class="w3-modal">
+		<!-- view new book -->
+		<div id="view_book_modal" class="w3-modal">
 
-			<div class="w3-modal-content w3-animate-zoom w3-card-12" style="width:580px; overflow:hidden;">
-			
-				<header class="w3-container w3-teal w3-tiny">
-					<h2 class="w3-large">
-						<i class="fa fa-plus w3-margin-left w3-medium" style="margin-right: 10px;"></i>
-						New Book
-					</h2>
+			<div class="w3-modal-content w3-animate-zoom w3-card-12" style="width:580px; overflow:hidden;">	 
+
+				<header class="w3-container w3-blue-grey w3-tiny">
+					<h2 class="w3-large w3-center">book view</h2>
 				</header>
-				 
 
 				<form class="sh-form" action="/Library/home/addBook" method="POST">
 
@@ -172,7 +159,7 @@
 						</div>
 
 						<div class="w3-col" style="width: 400px;">
-							<input type="text" class="w3-input w3-border sh-input"  name = "isbn"/>
+							<input id="book_isbn" type="text" class="w3-input w3-border sh-input" readonly="readonly" name = "isbn"/>
 						</div>
 					</div>
 
@@ -183,7 +170,7 @@
 						</div>
 
 						<div class="w3-col" style="width: 400px;">
-							<input type="text" class="w3-input w3-border sh-input"  name = "title"/>
+							<input id="book_title" type="text" class="w3-input w3-border sh-input" readonly="readonly" name = "title"/>
 						</div>
 					</div>
 
@@ -194,7 +181,7 @@
 						</div>
 
 						<div class="w3-col" style="width: 400px;">
-							<input type="text" class="w3-input w3-border sh-input"  name = "author"/>
+							<input id="book_author" type="text" class="w3-input w3-border sh-input" readonly="readonly" name = "author"/>
 						</div>
 					</div>
 
@@ -205,7 +192,7 @@
 						</div>
 
 						<div class="w3-col" style="width: 400px;">
-							<input type="text" class="w3-input w3-border sh-input"  name = "publisher"/>
+							<input id="book_publisher" type="text" class="w3-input w3-border sh-input" readonly="readonly" name = "publisher"/>
 						</div>
 					</div>
 
@@ -217,13 +204,7 @@
 						</div>
 
 						<div class="w3-col" style="width: 400px;">
-							<select class="w3-select w3-border sh-input w3-tiny" name="category" required>
-								<option value="Science" selected >Science</option>
-								<option value="Art">Art</option>
-								<option value="Religion">Religion</option>
-								<option value="History">History</option>
-								<option value="Geography">Geography</option>
-							</select>
+							<input id="book_category" type="text" class="w3-input w3-border sh-input" readonly="readonly" name = "category" />
 						</div>
 					</div>
 
@@ -234,7 +215,7 @@
 						</div>
 
 						<div class="w3-col" style="width: 400px;">
-							<input type="text" class="w3-input w3-border sh-input"  name = "price" />
+							<input id="book_price" type="text" class="w3-input sh-input w3-border" readonly="readonly" name = "price" />
 						</div>
 					</div>
 
@@ -245,35 +226,13 @@
 						</div>
 
 						<div class="w3-col" style="width: 400px;">
-							<input type="date" class="w3-input w3-border sh-input"  name="date" />
+							<input id="book_year" type="text" class="w3-input sh-input w3-border"  readonly="readonly" name="date" />
 						</div>
 					</div>
 
-					<!-- shipping address -->
-					<div class="w3-row sh-book-attr">
-						<div class="w3-col sh-label">
-							<label class="w3-label">Quantity</label>
-						</div>
 
-						<div class="w3-col" style="width: 400px;">
-							<input type="text" class="w3-input w3-border sh-input"  name = "quantity" />
-						</div>
-					</div>
-
-					<!-- shipping address -->
-					<div class="w3-row sh-book-attr">
-						<div class="w3-col sh-label">
-							<label class="w3-label">Threshold</label>
-						</div>
-
-						<div class="w3-col" style="width: 400px;">
-							<input type="text" class="w3-input w3-border sh-input"  name = "thershold" />
-						</div>
-					</div>
-
-					<div class="w3-container" style="padding-top: 10px; padding-bottom: 10px;">
-						<button class="w3-btn w3-green w3-right" style="margin-right: 60px;" type="submit" >ADD BOOK</button>
-						<button class="w3-btn w3-red w3-right" id="cancel_btn" style="margin-right: 10px;">CANCEL</button>
+					<div class="w3-container" style="padding-top: 15px;">
+						<button class="w3-btn w3-green w3-right" style="margin-right: 2px;" type="submit" >ADD TO CART</button>
 					</div>
 				</form>
 
@@ -312,53 +271,75 @@
 	<!-- POST-LOADING SCRIPTS -->
 	<!-- *********************************************** -->
 	<script>
+		
+		var list = ${bookList};
 
+		$(document).ready(function() {
+			$.each(list, function( index, value ) {
+				var table = document.getElementById("book_table") ;
+				var row = table.insertRow(index+1) ;
+				var cell1 = row.insertCell(0);
+			    var cell2 = row.insertCell(1);
+			    var cell3 = row.insertCell(2);
+			    cell1.innerHTML = value["title"];
+			    cell2.innerHTML = value["price"];
+			    newElem = document.createElement( 'input' );		
+			    newElem.setAttribute("type", 'button'); 
+			    newElem.setAttribute("class", 'w3-right');
+			    newElem.setAttribute("value", 'View');
+			    newElem.setAttribute("onclick", 'show_view_book_modal('+index+');' ) ;
+				cell3.appendChild(newElem) ;
+			});	
+		});
+	
+	
 		var search_modal = document.getElementById('search_modal');
+		var view_book_modal = document.getElementById('view_book_modal');
+		var side_nav = document.getElementById('SideNav01');
+		var page_content = document.getElementById('page_content');
 	
 		// When the user clicks anywhere outside of the modal, close it
 		window.onclick = function(event) {
 		  if (event.target == search_modal) {
 		    search_modal.style.display = "none";
+		    return;
 		  }
+		  if (event.target == view_book_modal) {
+		    view_book_modal.style.display = "none";
+		    return;
+		  }
+
 		}
 	
-	
-		document.getElementById("cancel_btn").addEventListener("click", function(event){
-		    event.preventDefault();
-		    hide_new_book_modal();
-		});
-	
 		/* post-load scripts */
-		document.getElementById('new_book_modal').style.display='none';
+		document.getElementById('view_book_modal').style.display='none';
 		document.getElementById('search_modal').style.display='none';
 
 		/* DOM manipulation functions */
-		function show_new_book_modal()
+		function show_view_book_modal(book_index)
 		{
-			document.getElementById('new_book_modal').style.display='block';
+			document.getElementById('book_isbn').value = list[book_index]["isbn"];
+			document.getElementById('book_title').value = list[book_index]["title"];
+			document.getElementById('book_author').value = list[book_index]["author"];
+			document.getElementById('book_publisher').value = list[book_index]["publisher"];
+			document.getElementById('book_category').value = list[book_index]["category"];
+			document.getElementById('book_price').value = list[book_index]["price"];
+			document.getElementById('book_year').value = list[book_index]["year"];
+			document.getElementById('view_book_modal').style.display='block';
 		}
 
-		function hide_new_book_modal()
-		{
-			document.getElementById('new_book_modal').style.display='none';
-		}
 
 		function show_search_modal()
 		{
 			document.getElementById('search_modal').style.display='block';
 		}
 
-		function close_search_modal()
+		function handle_side_nav()
 		{
-			document.getElementById('search_modal').style.display='none';
-		}
-
-		function handleSideNav(){
-			var x=document.getElementById("SideNav01");
-			if (x.className.indexOf("w3-show") == -1) {
-				x.className += " w3-show";
+			if (side_nav.className.indexOf("w3-show") == -1) {
+				side_nav.className += " w3-show";
 			} else {
-				x.className = x.className.replace(" w3-show", "");
+				side_nav.className = side_nav.className.replace(" w3-show", "");
 			}
 		}
 

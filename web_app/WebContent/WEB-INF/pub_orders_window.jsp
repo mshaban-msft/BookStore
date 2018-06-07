@@ -1,5 +1,3 @@
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
 <html>
 	
 	<!-- *********************************************** -->
@@ -40,17 +38,17 @@
 	<!-- *********************************************** -->
 	<!-- DEFINE BODY -->
 	<!-- *********************************************** -->
-	<body>
+	<body style="background-color: #FFFFF0;">
 		<!--top nav bar-->
-		<div class="w3-top" id="bar_toggle">
-			<ul class="w3-navbar w3-teal w3-card-2" style="min-width:1100px">
-				<li><a href="#" class="w3-hover-teal" style="padding-top:15px; padding-bottom:15px" onclick="handleSideNav()"><i class="fa fa-bars w3-xlarge"></i></a></li>
-				<li><a href="#" class="w3-padding-16 w3-hover-teal">Publisher Orders</a></li>
+		<div class="w3-top"">
+			<ul class="w3-navbar w3-blue-grey w3-card-2" style="min-width:1100px; padding-left:10px;">
+				<li><a href="#" class="w3-blue-grey" onclick="handle_side_nav()" style="padding-top:18px; padding-bottom:15px"><i class="fa fa-bars w3-large"></i></a></li>
+				<li><a href="#" class="w3-padding-16 w3-blue-grey" style="padding-left:3px;" >Publisher Orders</a></li>
 			</ul>
 		</div>
 		
 		<!-- side tabs -->
-		<nav class="w3-sidenav w3-white w3-card-2 w3-light-grey w3-animate-left" style="width:250px; margin-top:57px; display:none" id="SideNav01">
+		<nav class="w3-sidenav w3-white w3-card-2 w3-light-grey w3-animate-left" style="width:250px; margin-top:54px; display:none" id="SideNav01">
 			<div class="w3-container">
 				<h3>M-Shaban</h3>
 			</div>
@@ -59,8 +57,13 @@
 			<a href="#" onclick="$('#account_hidden_form').submit(); return false;" >ACCOUNT</a>
 			<a href="#" onclick="$('#cart_hidden_form').submit(); return false;" >SHOPPING CART</a>
 			<a href="#" onclick="$('#orders_hidden_form').submit(); return false;">MY ORDERS</a>
-			<a href="#" class="w3-green">PUBLISHER ORDERS</a>
 			<a href="#" onclick="$('#signout_hidden_form').submit(); return false;">SIGN OUT</a>
+
+			<div class="w3-container" style="padding-top: 20px; font-weight: bold; padding-bottom: 5px;"> Admin Controls </div>
+			<a href="#" onclick="$('#manage_books_hidden_form').submit(); return false;">Manage Inventory</a>
+			<a href="#" onclick="$('#manage_publishers_hidden_form').submit(); return false;">Manage Publishers</a>
+			<a href="#" class="w3-blue-grey" >Publisher Orders</a>
+			<a href="#" onclick="$('#user_accounts_hidden_form').submit(); return false;">User Accounts</a>
 		</nav>
 		
 		<!-- page content -->
@@ -69,27 +72,43 @@
 			</div>
 			
 
-			<div class="w3-container w3-card-2 w3-margin w3-padding-8">
-				<button class="w3-btn w3-teal" onclick="toggle_add_order_modal()">New Order</button>
-				<button class="w3-btn w3-teal" onclick="toggle_view_order_modal()">View Order</button>
+			<div class="w3-container w3-margin" style="padding-right: 0px; padding-left:0px;">
+			<span class="w3-text-blue-grey" style="font-size:28px; font-weight:bold; font-family: arial;">Manage Publisher Orders</span>
+				<button class="w3-btn w3-right w3-blue-grey" onclick="toggle_new_order_modal()">New Order</button>
 			</div>
 
 			<div class="w3-container">
-			  <table class="w3-table-all w3-hoverable w3-card-2">
+			  <table class="w3-table-all">
 			  	<!-- header -->
 			    <thead>
-			      <tr class="w3-blue">
+			      <tr class="w3-dark-grey">
 			        <th>ISBN</th>
 			        <th>Publisher name</th>
 			        <th>Quantity</th>
+			        <th></th>
 			      </tr>
 			    </thead>
+
+
+			    <tr>
+			        <td>12345678</td>
+			        <td>Pearson</td>
+			        <td>50,000</td>
+			        <td> <button class="w3-right"
+				      onclick="select_order(0); $('#confirm_order_hidden_form').submit(); return false;">
+				      confirm</button>
+				  	</td>
+			    </tr>
 			    <!-- create rows -->
 			    <c:forEach items="${orders}" var="order">
 				    <tr>
 				        <td><c:out value="${order.isbn}"/></td>
 				        <td><c:out value="${order.publisherName}"/></td>
 				        <td><c:out value="${order.quantity}"/></td>
+				        <td> <button class="w3-right"
+					      onclick="select_order(1); $('#confirm_order_hidden_form').submit(); return false;">
+					      confirm</button>
+					  	</td>
 				    </tr>
 				</c:forEach>
 			  </table>
@@ -102,9 +121,9 @@
 		<!-- new order modal -->
 		<div id="new_order_modal" class="w3-modal">
 
-			<div class="w3-modal-content w3-card-12" style="width:580px; overflow:hidden;">
+			<div class="w3-modal-content w3-card-12 w3-animate-zoom" style="width:580px; overflow:hidden;">
 			
-				<header class="w3-container w3-teal">
+				<header class="w3-container w3-blue-grey">
 					<h2 class="w3-xlarge">
 						<i class="fa fa-plus w3-margin-left w3-large" style="margin-right: 10px;"></i>
 						New Order
@@ -139,7 +158,7 @@
 					<!-- first name -->
 					<div class="w3-row sh-book-attr">
 						<div class="w3-col sh-label">
-							<label class="w3-label">Publisher Name</label>
+							<label class="w3-label">Publisher</label>
 						</div>
 
 						<div class="w3-col" style="width: 400px;">
@@ -149,63 +168,9 @@
 
 					<div class="w3-container" style="padding-top: 10px; padding-bottom: 10px;">
 						<button class="w3-btn w3-green w3-right" style="margin-right: 60px;" type="submit" >Place Order</button>
-						<button id="cancel_order_btn" class="w3-btn w3-red w3-right" style="margin-right: 10px;" >CANCEL</button>
+						<button id="cancel_order_btn" class="w3-btn w3-teal w3-right" style="margin-right: 10px;" >CANCEL</button>
 					</div>
 				</form>
-
-
-			</div>
-		</div>
-
-
-		<!-- edit order modal -->
-		<div id="view_order_modal" class="w3-modal">
-
-			<div class="w3-modal-content w3-card-12" style="width:580px; overflow:hidden; padding-bottom: 15px;">
-				 
-
-				<header class="w3-container w3-teal">
-					<h2 class="w3-xlarge">
-						<i class="fa fa-barcode w3-margin-left w3-large" style="margin-right: 10px;"></i>
-						View Order
-					</h2>
-				</header>
-
-				<div class="sh-form">
-
-					<!-- user name -->
-					<div class="w3-row sh-book-attr">
-						<div class="w3-col sh-label">
-							<label class="w3-label" style="text-align: right;" >ISBN</label>
-						</div>
-
-						<div class="w3-col" style="width: 400px;">
-							<input type="text" class="w3-input w3-border sh-input sh-disable"  />
-						</div>
-					</div>
-
-					<!-- password -->
-					<div class="w3-row sh-book-attr">
-						<div class="w3-col sh-label">
-							<label class="w3-label">Quantity</label>
-						</div>
-
-						<div class="w3-col" style="width: 400px;">
-							<input type="password" class="w3-input w3-border sh-input sh-disable"  />
-						</div>
-					</div>
-
-					<!-- first name -->
-					<div class="w3-row sh-book-attr">
-						<div class="w3-col sh-label">
-							<label class="w3-label">Date</label>
-						</div>
-
-						<div class="w3-col" style="width: 400px;">
-							<input type="password" class="w3-input w3-border sh-input sh-disable"  />
-						</div>
-					</div>
-				</div>
 
 
 			</div>
@@ -234,6 +199,11 @@
 		</form>
 
 
+		<form id="confirm_order_hidden_form" action="/Library/signin" method="get" style="display: none">
+		  <input id="selected_order_index" type="hidden" name="selected_order_index" value="myParameterValue">
+		</form>
+
+
 
 		
 	</body>
@@ -243,64 +213,51 @@
 	<!-- *********************************************** -->
 	<script>
 
+		/* confirm order */
+		function select_order(selected_index)
+		{
+			document.getElementById('selected_order_index').value = selected_index;
+		}
+
+		/* new order modal */
+		/************************************************/
+		var new_order_modal = document.getElementById("new_order_modal");
+		var cancel_order_btn = document.getElementById("cancel_order_btn");
+		new_order_modal.style.display = 'none';
+		var new_order_modal_shown = false;
+
 		// When the user clicks anywhere outside of the modal, close it
 		window.onclick = function(event) {
-		  if (event.target == view_order_modal) {
-		    view_order_modal.style.display = "none";
+		  if (event.target == new_order_modal) {
+		    new_order_modal.style.display = "none";
 		  }
 		}
 
-		document.getElementById("cancel_order_btn").addEventListener("click", function(event){
+		cancel_order_btn.addEventListener("click", function(event){
 		    event.preventDefault();
-		    toggle_add_order_modal();
+		    toggle_new_order_modal();
 		});
 
-		/* post-load scripts */
-		var add_order_modal_shown = false;
-		document.getElementById('new_order_modal').style.display='none';
-
-		var view_order_modal_shown = false;
-		document.getElementById('view_order_modal').style.display='none';
-
-		var disabled_flag = true;
-		var x = document.getElementsByClassName("sh-disable");
-		var i;
-		for (i = 0; i < x.length; i++) {
-			x[i].disabled = true;
+		function toggle_new_order_modal()
+		{
+			if(new_order_modal_shown == true)
+			{
+				new_order_modal.style.display='none';
+				new_order_modal_shown = false;
+			}else{
+				new_order_modal.style.display='block';
+				new_order_modal_shown = true;
+			}
 		}
 
 		/* DOM manipulation functions */
-		function handleSideNav(){
+		/************************************************/
+		function handle_side_nav(){
 			var y=document.getElementById("SideNav01");
 			if (y.className.indexOf("w3-show") == -1) {
 				y.className += " w3-show";
 			} else {
 				y.className = y.className.replace(" w3-show", "");
-			}
-		}
-
-
-		function toggle_add_order_modal()
-		{
-			if(add_order_modal_shown == true)
-			{
-				document.getElementById('new_order_modal').style.display='none';
-				add_order_modal_shown = false;
-			}else{
-				document.getElementById('new_order_modal').style.display='block';
-				add_order_modal_shown = true;
-			}
-		}
-
-		function toggle_view_order_modal()
-		{
-			if(view_order_modal_shown == true)
-			{
-				document.getElementById('view_order_modal').style.display='none';
-				view_order_modal_shown = false;
-			}else{
-				document.getElementById('view_order_modal').style.display='block';
-				view_order_modal_shown = true;
 			}
 		}
 

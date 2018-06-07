@@ -27,40 +27,22 @@
 	<!-- *********************************************** -->
 	<!-- DEFINE BODY -->
 	<!-- *********************************************** -->
-	<body>
+	<body style="background-color: #FFFFF0;">
 		<!--top nav bar-->
-		<div class="w3-top" id="bar_toggle">
-			<ul class="w3-navbar w3-teal w3-card-2" style="min-width:1100px">
-				<li><a href="#" class="w3-hover-teal" style="padding-top:15px; padding-bottom:15px" onclick="handleSideNav()"><i class="fa fa-bars w3-xlarge"></i></a></li>
-				<li><a href="#" class="w3-padding-16 w3-hover-teal">Cart Checkout</a></li>
-			</ul>
-		</div>
+		<ul class="w3-navbar w3-blue-grey w3-card-2">
+			<p style="text-align: center;">Order Checkout</p>
+		</ul>
 		
-		<!-- side tabs -->
-		<nav class="w3-sidenav w3-white w3-card-2 w3-light-grey w3-animate-left" style="width:250px; margin-top:57px; display:none" id="SideNav01">
-			<div class="w3-container">
-				<h3>M-Shaban</h3>
-			</div>
-		  
-			<a href="#" onclick="$('#home_hidden_form').submit(); return false;">HOME</a>
-			<a href="#" onclick="$('#account_hidden_form').submit(); return false;" >ACCOUNT</a>
-			<a href="#" class="w3-green" >SHOPPING CART</a>
-			<a href="#" onclick="$('#orders_hidden_form').submit(); return false;">MY ORDERS</a>
-			<a href="#" onclick="$('#publisher_orders_hidden_form').submit(); return false;">PUBLISHER ORDERS</a>
-			<a href="#" onclick="$('#signout_hidden_form').submit(); return false;">SIGN OUT</a>
-		</nav>
 		
 		<!-- page content -->
 		<div class="w3-container">
-			<div style="height:70px;">
-			</div>
-			
+
 			<!-- receipient info -->
-			<form action="/Library/checkout/submit" method="POST" class="w3-card-2" style="margin-left: 25%; padding-top: 7px; padding-bottom: 20px; width: 600px; padding-left: 45px;">
+			<form action="/Library/checkout/submit" method="POST" style="display: table; margin: 0 auto; padding-top: 7px; padding-bottom: 20px; width: 600px; padding-left: 45px; margin-top:10px;">
 
-			<div id="recipient_info_container" class="w3-border" style="margin-top: 20px; width:500px;">
+			<div id="recipient_info_container" style="margin-top: 0px; width:500px;">
 
-				<div class="w3-container w3-blue">
+				<div class="w3-container w3-dark-grey">
 					<p>Recipient Info</p>
 				</div>
 
@@ -103,9 +85,9 @@
 
 
 			<!-- card info container -->
-			<div id="card_info_container" class="w3-border" style="margin-top: 20px; width:500px;">
+			<div id="card_info_container" class="" style="margin-top: 20px; width:500px;">
 
-				<div class="w3-container w3-blue">
+				<div class="w3-container w3-dark-grey">
 					<p>Card Info</p>
 				</div>
 
@@ -177,15 +159,6 @@
 	<!-- POST-LOADING SCRIPTS -->
 	<!-- *********************************************** -->
 	<script>
-		/* DOM manipulation functions */
-		function handleSideNav(){
-			var x=document.getElementById("SideNav01");
-			if (x.className.indexOf("w3-show") == -1) {
-				x.className += " w3-show";
-			} else {
-				x.className = x.className.replace(" w3-show", "");
-			}
-		}
 
 	</script>
 	
