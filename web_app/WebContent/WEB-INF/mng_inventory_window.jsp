@@ -49,18 +49,20 @@
 				<a href="#" class="w3-hover-blue-grey w3-xlarge" onclick="$('#home_hidden_form').submit(); return false;" >Amazon.com</a>
 			</div>
 		  
-		  	<div class="w3-container" style="padding-top: 20px; font-weight: bold; padding-bottom: 10px;"> M-Shaban </div>
+		  	<div id="display_user_name" class="w3-container" style="padding-top: 20px; font-weight: bold; padding-bottom: 10px;"> User_Name </div>
 			<a href="#" onclick="$('#home_hidden_form').submit(); return false;">HOME</a>
 			<a href="#" onclick="$('#account_hidden_form').submit(); return false;" >ACCOUNT</a>
 			<a href="#" onclick="$('#cart_hidden_form').submit(); return false;" >SHOPPING CART</a>
 			<a href="#" onclick="$('#orders_hidden_form').submit(); return false;">MY ORDERS</a>
 			<a href="#" onclick="$('#signout_hidden_form').submit(); return false;">SIGN OUT</a>
 
-			<div class="w3-container" style="padding-top: 20px; font-weight: bold; padding-bottom: 5px;"> Admin Controls </div>
-			<a href="#" class="w3-blue-grey">Manage Inventory</a>
-			<a href="#" onclick="$('#manage_publishers_hidden_form').submit(); return false;">Manage Publishers</a>
-			<a href="#" onclick="$('#publisher_orders_hidden_form').submit(); return false;">Publisher Orders</a>
-			<a href="#" onclick="$('#user_accounts_hidden_form').submit(); return false;">User Accounts</a>
+			<div id="admin_rights">
+				<div class="w3-container" style="padding-top: 20px; font-weight: bold; padding-bottom: 5px;"> Admin Controls </div>
+				<a href="#" class="w3-blue-grey">Manage Inventory</a>
+				<a href="#" onclick="$('#manage_publishers_hidden_form').submit(); return false;">Manage Publishers</a>
+				<a href="#" onclick="$('#publisher_orders_hidden_form').submit(); return false;">Publisher Orders</a>
+				<a href="#" onclick="$('#user_accounts_hidden_form').submit(); return false;">User Accounts</a>
+			</div>
 		</nav>
 		
 		<!-- page content -->
@@ -435,6 +437,18 @@
 	<!-- *********************************************** -->
 
 	<script>
+
+		/* show/hide admin controls */
+		/******************************************/
+		var display_user_name = '<c:out value="${user_name}"/>' ;
+		var view_admin_rights = <c:out value="${admin_rights}"/> ;
+
+		if(view_admin_rights == false){
+			$("#admin_rights").remove();
+		}
+
+		$("#display_user_name").text(display_user_name);
+	
 
 		var book_list = ${bookList};
 	

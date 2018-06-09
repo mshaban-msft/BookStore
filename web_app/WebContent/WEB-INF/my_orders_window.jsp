@@ -25,7 +25,7 @@
 				<a href="#" class="w3-hover-blue-grey w3-xlarge" onclick="$('#home_hidden_form').submit(); return false;" >Amazon.com</a>
 			</div>
 		  
-		  	<div class="w3-container" style="padding-top: 20px; font-weight: bold; padding-bottom: 10px;"> M-Shaban </div>
+		  	<div id="display_user_name" class="w3-container" style="padding-top: 20px; font-weight: bold; padding-bottom: 10px;"> User_Name </div>
 			<a href="#" onclick="$('#home_hidden_form').submit(); return false;" >HOME</a>
 			<a href="#" onclick="$('#account_hidden_form').submit(); return false;" >ACCOUNT</a>
 			<a href="#" onclick="$('#cart_hidden_form').submit(); return false;" >SHOPPING CART</a>
@@ -124,12 +124,14 @@
 
 		/* show/hide admin controls */
 		/******************************************/
-		var user_name;
-		var admin_rights = false;
+		var display_user_name = '<c:out value="${user_name}"/>' ;
+		var view_admin_rights = <c:out value="${admin_rights}"/> ;
 
-		if(admin_rights == false){
+		if(view_admin_rights == false){
 			$("#admin_rights").remove();
 		}
+
+		$("#display_user_name").text(display_user_name);
 
 		function handle_side_nav(){
 			var x=document.getElementById("SideNav01");
