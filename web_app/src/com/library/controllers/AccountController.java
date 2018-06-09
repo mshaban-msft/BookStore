@@ -16,7 +16,7 @@ import com.library.mysql.DbController;
 @Controller
 public class AccountController {
 	
-	@RequestMapping(value = "/account" , method = RequestMethod.POST)
+	@RequestMapping(value = "/account" , method = {RequestMethod.POST , RequestMethod.GET})
 	public ModelAndView account(HttpSession session) {
 		
 		// already signed user info
@@ -30,12 +30,8 @@ public class AccountController {
 		return view ;
 	}
 	
-	@RequestMapping(value = "/account/edit" , method = RequestMethod.POST)
-<<<<<<< HEAD
+	@RequestMapping(value = "/account/edit" , method = {RequestMethod.POST , RequestMethod.GET})
 	public ModelAndView edit(@ModelAttribute("edit_user") SignUpUser user , BindingResult result , HttpSession session) throws DataAccessException, Exception {
-=======
-	public ModelAndView edit(@ModelAttribute("edit_user") SignUpUser user , BindingResult result , HttpSession session) {
->>>>>>> 37c6f3bd08258e3d59490ef974580c2f065e31df
 		
 		ModelAndView view = new ModelAndView("account_window") ;
 		

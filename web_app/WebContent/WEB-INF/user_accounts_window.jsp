@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-=======
->>>>>>> 37c6f3bd08258e3d59490ef974580c2f065e31df
 <!DOCTYPE html>
 <html>
 	
@@ -19,7 +16,6 @@
 	<!-- DEFINE BODY -->
 	<!-- *********************************************** -->
 	<body style="background-color: #FFFFF0;">
-<<<<<<< HEAD
 		
 		<!-- side tabs -->
 		<nav class="w3-sidenav w3-card-2 w3-light-grey" style="width:250px">
@@ -28,22 +24,6 @@
 			</div>
 		  
 		  	<div class="w3-container" style="padding-top: 20px; font-weight: bold; padding-bottom: 10px;"> M-Shaban </div>
-=======
-		<!--top nav bar-->
-		<div class="w3-top" id="bar_toggle">
-			<ul class="w3-navbar w3-blue-grey w3-card-2" style="min-width:1100px; padding-left:10px;">
-				<li><a href="#" class="w3-blue-grey" style="padding-top:18px; padding-bottom:15px" onclick="handle_side_nav()"><i class="fa fa-bars w3-large"></i></a></li>
-				<li><a href="#" class="w3-padding-16 w3-blue-grey" style="padding-left:3px;" >User Accounts</a></li>
-			</ul>
-		</div>
-		
-		<!-- side tabs -->
-		<nav class="w3-sidenav w3-white w3-card-2 w3-light-grey w3-animate-left" style="width:250px; margin-top:55px; display:none" id="SideNav01">
-			<div class="w3-container">
-				<h3>M-Shaban</h3>
-			</div>
-		  
->>>>>>> 37c6f3bd08258e3d59490ef974580c2f065e31df
 			<a href="#" onclick="$('#home_hidden_form').submit(); return false;">HOME</a>
 			<a href="#" onclick="$('#account_hidden_form').submit(); return false;" >ACCOUNT</a>
 			<a href="#" onclick="$('#shopping_cart_hidden_form').submit(); return false;" >SHOPPING CART</a>
@@ -58,13 +38,8 @@
 		</nav>
 		
 		<!-- page content -->
-<<<<<<< HEAD
 		<div class="w3-container" style="margin-left: 250px;">
 			<div style="height:5px;">
-=======
-		<div class="w3-container">
-			<div style="height:55px;">
->>>>>>> 37c6f3bd08258e3d59490ef974580c2f065e31df
 			</div>
 			
 
@@ -82,7 +57,6 @@
 			        <th></th>
 			      </tr>
 			    </thead>
-<<<<<<< HEAD
 
 			    
 			    <c:forEach items="${users}" var="user" >
@@ -96,25 +70,6 @@
 				    </tr>
 				</c:forEach>
 			    
-=======
-			    <!-- create rows -->
-			    <tr>
-			      <td>mohamed_shaapan@gmail.com</td>
-			      <td>admin</td>
-			      <th> <button class="w3-right" disabled 
-				      onclick="select_account(0); $('#promote_hidden_form').submit(); return false;">
-				      promote</button>
-				  </th>
-			    </tr>
-			    <tr>
-			      <td>santa_clause@northpole.com</td>
-			      <td>customer</td>
-			      <th> <button class="w3-right"
-				      onclick="select_account(1); $('#promote_hidden_form').submit(); return false;">
-				      promote</button>
-				  </th>
-			    </tr>
->>>>>>> 37c6f3bd08258e3d59490ef974580c2f065e31df
 
 			  </table>
 			</div>
@@ -136,13 +91,6 @@
 	  <input type="hidden" name="myParameterName" value="myParameterValue">
 	</form>
 
-<<<<<<< HEAD
-=======
-	<form id="publisher_orders_hidden_form" action="/Library/publiser_orders" method="post" style="display: none">
-		  <input type="hidden" name="myParameterName" value="myParameterValue">
-		</form>
-
->>>>>>> 37c6f3bd08258e3d59490ef974580c2f065e31df
 	<form id="signout_hidden_form" action="/Library/signin" method="get" style="display: none">
 	  <input type="hidden" name="myParameterName" value="myParameterValue">
 	</form>
@@ -152,7 +100,6 @@
 	</form>
 
 
-<<<<<<< HEAD
 	<form id="promote_hidden_form" action="/Library/manage_user_accounts/promote" method="post" style="display: none">
 		  <input id="promote_account_index" type="hidden" name="email" value="0">
 	</form>
@@ -173,12 +120,6 @@
 	<form id="user_accounts_hidden_form" action="/Library/manage_user_accounts" method="get" style="display: none">
 	  <input type="hidden" name="x" value="">
 	</form>
-=======
-	<form id="promote_hidden_form" action="/Library/home" method="get" style="display: none">
-		  <input id="promote_account_index" type="hidden" name="selected_index" value="0">
-	</form>
-	
->>>>>>> 37c6f3bd08258e3d59490ef974580c2f065e31df
 
 
 		
@@ -189,15 +130,9 @@
 	<!-- *********************************************** -->
 	<script>
 
-<<<<<<< HEAD
 		function select_account(user_mail)
 		{
 			document.getElementById('promote_account_index').value = user_mail;
-=======
-		function select_account(account_index)
-		{
-			document.getElementById('promote_account_index').value = account_index;
->>>>>>> 37c6f3bd08258e3d59490ef974580c2f065e31df
 		}
 
 		function handle_side_nav(){

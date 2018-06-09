@@ -16,15 +16,20 @@ import com.library.mysql.DbController;
 @Controller
 public class MyOrdersController {
 
-	@RequestMapping(value = "/orders" , method = RequestMethod.POST)
+	@RequestMapping(value = "/orders" , method = {RequestMethod.POST , RequestMethod.GET})
 	public ModelAndView orders(HttpSession session) {
+		
 		
 		
 		ModelAndView orders_view = new ModelAndView("my_orders_window");
 		
 		
 		SignUpUser signed = (SignUpUser) session.getAttribute("signed_user");
-		
+		// check user info for security
+		if(signed == null) {
+			ModelAndView sign_view = new ModelAndView("signin_window") ;
+			return sign_view ;
+		}
 		DbController db = new DbController() ;
 		
 		// get orders from database 

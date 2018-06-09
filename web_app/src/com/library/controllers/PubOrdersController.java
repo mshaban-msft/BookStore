@@ -33,7 +33,7 @@ public class PubOrdersController {
 		binder.registerCustomEditor(Date.class, "date", new CustomDateEditor(dateFormat, false));
 	}
 	
-	@RequestMapping(value = "/publiser_orders" , method = {  RequestMethod.GET} )
+	@RequestMapping(value = "/publiser_orders" , method = {RequestMethod.POST , RequestMethod.GET} )
 	public ModelAndView orders(HttpSession session) {
 		
 		SignUpUser signed = (SignUpUser)session.getAttribute("signed_user") ;
@@ -51,9 +51,15 @@ public class PubOrdersController {
 		return pub_orders_view;
 	}
 	
-	@RequestMapping(value = "/publiser_orders/add_order" , method = RequestMethod.POST)
-	public ModelAndView add_order(@ModelAttribute("order") PubOrder order) {
-		// TODO call database 
+	@RequestMapping(value = "/publiser_orders/add_order" , method = {RequestMethod.POST , RequestMethod.GET})
+	public ModelAndView add_order(@ModelAttribute("order") PubOrder order , HttpSession session) {
+		
+		SignUpUser signed = (SignUpUser)session.getAttribute("signed_user") ;
+		// check user info for security
+		if(signed == null) {
+			ModelAndView sign_view = new ModelAndView("signin_window") ;
+			return sign_view ;
+		}
 		
 		DbController db = new DbController() ;
 		db.add_publish_order(order);
@@ -64,9 +70,15 @@ public class PubOrdersController {
 	
 	
 	
-	@RequestMapping(value = "/publiser_orders/delete_order" , method = RequestMethod.POST)
-	public ModelAndView add_order(@RequestParam("order") Integer order) {
-		// TODO call database 
+	@RequestMapping(value = "/publiser_orders/delete_order" , method = {RequestMethod.POST , RequestMethod.GET})
+	public ModelAndView add_order(@RequestParam("order") Integer order , HttpSession session) {
+		
+		SignUpUser signed = (SignUpUser)session.getAttribute("signed_user") ;
+		// check user info for security
+		if(signed == null) {
+			ModelAndView sign_view = new ModelAndView("signin_window") ;
+			return sign_view ;
+		}
 		
 		DbController db = new DbController() ;
 		db.delete_publish_order(order);

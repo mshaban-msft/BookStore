@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.library.binding.SignInUser;
+import com.library.binding.SignUpUser;
 import com.library.checkers.EmailChecker;
 import com.library.mysql.DbController;
 
@@ -20,9 +21,8 @@ public class SignInController {
 	/* global attributes */
 	
 
-	@RequestMapping(value = "/signin" , method = RequestMethod.GET)
-	public ModelAndView signIn (HttpSession session) {
-		
+	@RequestMapping(value = "/signin" , method = {RequestMethod.POST , RequestMethod.GET} )
+	public ModelAndView signIn (HttpSession session) {		
 		session.removeAttribute("signed_user");
 		
 		ModelAndView sign_view = new ModelAndView("signin_window") ;

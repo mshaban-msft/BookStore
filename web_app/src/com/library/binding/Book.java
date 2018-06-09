@@ -5,23 +5,9 @@ import java.util.Date;
 
 public class Book {
 
-<<<<<<< HEAD
 	private Integer isbn , price  , quantity , thershold ;
 	private String title , publisher , category ;
 	private String date  ;
-	
-	 
-	
-	public Book() {
-		super();
-	}
-
-	String author ; 
-=======
-	Integer isbn , price  , quantity , thershold ;
-	String title , publisher , category ;
-	Date date ;
->>>>>>> 37c6f3bd08258e3d59490ef974580c2f065e31df
 	
 	 
 	

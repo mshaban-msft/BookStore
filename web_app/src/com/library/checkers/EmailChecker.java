@@ -42,5 +42,4 @@ public class EmailChecker {
 		return "" ;
 	}
 	
-	
 }

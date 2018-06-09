@@ -1,19 +1,13 @@
 package com.library.controllers;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Map;
-
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -30,14 +24,14 @@ public class SignUpController {
 		binder.setDisallowedFields(new String[] {"userAdmin"});
 	}
 
-	@RequestMapping(value = "/signup" , method = RequestMethod.POST)
-	public ModelAndView signUp () {
+	@RequestMapping(value = "/signup" , method = {RequestMethod.POST , RequestMethod.GET} )
+	public ModelAndView signUp (HttpSession session) {	
 		ModelAndView sign_view = new ModelAndView("signup_window") ;
 		sign_view.addObject("error", "#");
 		return sign_view ;
 	}
 	
-	@RequestMapping(value = "/signup/submit" , method = RequestMethod.POST)
+	@RequestMapping(value = "/signup/submit" , method = {RequestMethod.POST , RequestMethod.GET} )
 	public ModelAndView signUp_submit (@ModelAttribute("signUpUser") SignUpUser user , HttpSession session) throws Exception {
 		
 		DbController db = new DbController() ;

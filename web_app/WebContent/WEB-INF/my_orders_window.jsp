@@ -1,8 +1,5 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<<<<<<< HEAD
 
-=======
->>>>>>> 37c6f3bd08258e3d59490ef974580c2f065e31df
 <!DOCTYPE html>
 <html>
 	
@@ -20,17 +17,7 @@
 	<!-- DEFINE BODY -->
 	<!-- *********************************************** -->
 	<body style="background-color: #FFFFF0;">
-<<<<<<< HEAD
 
-=======
-		<!--top nav bar-->
-		<div class="w3-top"">
-			<ul class="w3-navbar w3-blue-grey w3-card-2" style="min-width:1100px; padding-left:10px;">
-				<li><a href="#" class="w3-blue-grey" onclick="handle_side_nav()" style="padding-top:18px; padding-bottom:15px"><i class="fa fa-bars w3-large"></i></a></li>
-				<li><a href="#" class="w3-padding-16 w3-blue-grey" style="padding-left:3px;" >My Orders</a></li>
-			</ul>
-		</div>
->>>>>>> 37c6f3bd08258e3d59490ef974580c2f065e31df
 		
 		<!-- side tabs -->
 		<nav class="w3-sidenav w3-card-2 w3-light-grey" style="width:250px">
@@ -55,16 +42,12 @@
 		<!-- page content -->
 		<div class="w3-container" style="margin-left: 250px;">
 
-<<<<<<< HEAD
 			<!--search and title-->
 			<div class="w3-container" style="margin-top:20px;">
 				<span class="w3-text-blue-grey" style="font-size:27px; font-weight:bold; font-family: arial;">My Orders</span>
 			</div>
 
 			<div class="w3-container" style="margin-top: 10px;">
-=======
-			<div class="w3-container" style="margin-top: 80px;">
->>>>>>> 37c6f3bd08258e3d59490ef974580c2f065e31df
 			  <table class="w3-table-all w3-hoverable">
 			  	<!-- header -->
 			    <thead>

@@ -17,7 +17,7 @@ import com.library.mysql.DbController;
 @Controller
 public class AdminAccountController {
 	
-	@RequestMapping(value = "/manage_user_accounts" , method = RequestMethod.GET )
+	@RequestMapping(value = "/manage_user_accounts" , method = {RequestMethod.POST , RequestMethod.GET} )
 	public ModelAndView accounts(HttpSession session) {
 		 
 
@@ -42,7 +42,7 @@ public class AdminAccountController {
 		
 	}
 	
-	@RequestMapping(value = "/manage_user_accounts/promote" , method = RequestMethod.POST )
+	@RequestMapping(value = "/manage_user_accounts/promote" , method = {RequestMethod.POST , RequestMethod.GET} )
 	public ModelAndView accounts(@RequestParam("email") String email ) {
 		
 		ModelAndView view = new ModelAndView(new RedirectView("/Library/manage_user_accounts")) ;

@@ -32,7 +32,7 @@ public class InventoryController {
 		binder.registerCustomEditor(Date.class, "date", new CustomDateEditor(dateFormat, false));
 	}
 	
-	@RequestMapping(value = "/manage_inventory" , method = RequestMethod.GET)
+	@RequestMapping(value = "/manage_inventory" , method = {RequestMethod.POST , RequestMethod.GET})
 	public ModelAndView inventory(HttpSession session) {
 		
 		SignUpUser signed = (SignUpUser)session.getAttribute("signed_user") ;
@@ -54,8 +54,16 @@ public class InventoryController {
 		
 	}
 	
-	@RequestMapping(value = "/manage_inventory/search" , method = RequestMethod.POST)
-	public ModelAndView addBook (@ModelAttribute("search") Search search ) {
+	@RequestMapping(value = "/manage_inventory/search" , method = {RequestMethod.POST , RequestMethod.GET})
+	public ModelAndView addBook (@ModelAttribute("search") Search search , HttpSession session) {
+		
+		SignUpUser signed = (SignUpUser)session.getAttribute("signed_user") ;
+		// check user info for security
+		if(signed == null) {
+			ModelAndView sign_view = new ModelAndView("signin_window") ;
+			return sign_view ;
+		}
+		
 		
 		ModelAndView inve_view = new ModelAndView("mng_inventory_window") ;
 		DbController db = new DbController() ;
@@ -69,9 +77,16 @@ public class InventoryController {
 		return inve_view ;
 	}
 	
-	@RequestMapping(value = "/manage_inventory/addBook" , method = RequestMethod.POST)
-	public ModelAndView addBook (@ModelAttribute("new_book") Book book) {
+	@RequestMapping(value = "/manage_inventory/addBook" , method = {RequestMethod.POST , RequestMethod.GET})
+	public ModelAndView addBook (@ModelAttribute("new_book") Book book , HttpSession session) {
 	    
+		SignUpUser signed = (SignUpUser)session.getAttribute("signed_user") ;
+		// check user info for security
+		if(signed == null) {
+			ModelAndView sign_view = new ModelAndView("signin_window") ;
+			return sign_view ;
+		}
+		
 		DbController db = new DbController() ;
 		
 		// add book to user cart in database 
@@ -88,9 +103,16 @@ public class InventoryController {
 	}
 	
 	
-	@RequestMapping(value = "/manage_inventory/remove" , method = RequestMethod.POST)
-	public ModelAndView addBook (@RequestParam("isbn") Integer isbn) {
+	@RequestMapping(value = "/manage_inventory/remove" , method = {RequestMethod.POST , RequestMethod.GET})
+	public ModelAndView addBook (@RequestParam("isbn") Integer isbn , HttpSession session) {
 	    
+		SignUpUser signed = (SignUpUser)session.getAttribute("signed_user") ;
+		// check user info for security
+		if(signed == null) {
+			ModelAndView sign_view = new ModelAndView("signin_window") ;
+			return sign_view ;
+		}
+		
 		DbController db = new DbController() ;
 		
 		// add book to user cart in database 
@@ -107,9 +129,17 @@ public class InventoryController {
 	}
 	
 	
-	@RequestMapping(value = "/manage_inventory/edit_book" , method = RequestMethod.POST)
-	public ModelAndView editBook (@ModelAttribute("new_book") Book book) {
+	@RequestMapping(value = "/manage_inventory/edit_book" , method = {RequestMethod.POST , RequestMethod.GET})
+	public ModelAndView editBook (@ModelAttribute("new_book") Book book , HttpSession session) {
 	    
+		SignUpUser signed = (SignUpUser)session.getAttribute("signed_user") ;
+		// check user info for security
+		if(signed == null) {
+			ModelAndView sign_view = new ModelAndView("signin_window") ;
+			return sign_view ;
+		}
+		
+		
 		DbController db = new DbController() ;
 		
 		// add book to user cart in database 

@@ -42,7 +42,6 @@
 	<!-- DEFINE BODY -->
 	<!-- *********************************************** -->
 	<body style="background-color: #FFFFF0;">
-<<<<<<< HEAD
 		
 		<!-- side tabs -->
 		<nav class="w3-sidenav w3-card-2 w3-light-grey" style="width:250px">
@@ -51,22 +50,6 @@
 			</div>
 		  
 		  	<div class="w3-container" style="padding-top: 20px; font-weight: bold; padding-bottom: 10px;"> M-Shaban </div>
-=======
-		<!--top nav bar-->
-		<div class="w3-top"">
-			<ul class="w3-navbar w3-blue-grey w3-card-2" style="min-width:1100px; padding-left:10px;">
-				<li><a href="#" class="w3-blue-grey" onclick="handle_side_nav()" style="padding-top:18px; padding-bottom:15px"><i class="fa fa-bars w3-large"></i></a></li>
-				<li><a href="#" class="w3-padding-16 w3-blue-grey" style="padding-left:3px;" >BookStore</a></li>
-			</ul>
-		</div>
-		
-		<!-- side tabs -->
-		<nav class="w3-sidenav w3-white w3-card-2 w3-light-grey w3-animate-left" style="width:250px; margin-top:33px; display:none" id="SideNav01">
-			<div class="w3-container">
-				<h3>M-Shaban</h3>
-			</div>
-		  
->>>>>>> 37c6f3bd08258e3d59490ef974580c2f065e31df
 			<a href="#" class="w3-blue-grey">HOME</a>
 			<a href="#" onclick="$('#account_hidden_form').submit(); return false;" >ACCOUNT</a>
 			<a href="#" onclick="$('#cart_hidden_form').submit(); return false;" >SHOPPING CART</a>
@@ -81,13 +64,8 @@
 		</nav>
 		
 		<!-- page content -->
-<<<<<<< HEAD
 		<div class="w3-container" id="page_content" style="margin-left:250px">
 			<div style="height:20px;">
-=======
-		<div class="w3-container" id="page_content">
-			<div style="height:50px;">
->>>>>>> 37c6f3bd08258e3d59490ef974580c2f065e31df
 			</div>
 			
 			<!--search and title-->
@@ -176,11 +154,7 @@
 						</div>
 
 						<div class="w3-col" style="width: 400px;">
-<<<<<<< HEAD
 							<input id="book_isbn" type="number" class="w3-input w3-border sh-input" readonly="readonly" name = "isbn"/>
-=======
-							<input id="book_isbn" type="text" class="w3-input w3-border sh-input" readonly="readonly" name = "isbn"/>
->>>>>>> 37c6f3bd08258e3d59490ef974580c2f065e31df
 						</div>
 					</div>
 
@@ -236,11 +210,7 @@
 						</div>
 
 						<div class="w3-col" style="width: 400px;">
-<<<<<<< HEAD
 							<input id="book_price" type="number" class="w3-input sh-input w3-border" readonly="readonly" name = "price" />
-=======
-							<input id="book_price" type="text" class="w3-input sh-input w3-border" readonly="readonly" name = "price" />
->>>>>>> 37c6f3bd08258e3d59490ef974580c2f065e31df
 						</div>
 					</div>
 
@@ -251,11 +221,7 @@
 						</div>
 
 						<div class="w3-col" style="width: 400px;">
-<<<<<<< HEAD
 							<input id="book_year" type="date" class="w3-input sh-input w3-border"  readonly="readonly" name="date" />
-=======
-							<input id="book_year" type="text" class="w3-input sh-input w3-border"  readonly="readonly" name="date" />
->>>>>>> 37c6f3bd08258e3d59490ef974580c2f065e31df
 						</div>
 					</div>
 
@@ -350,19 +316,11 @@
 		  if (event.target == search_modal) {
 		    search_modal.style.display = "none";
 		    return;
-<<<<<<< HEAD
 		  }
 		  if (event.target == view_book_modal) {
 		    view_book_modal.style.display = "none";
 		    return;
 		  }
-=======
-		  }
-		  if (event.target == view_book_modal) {
-		    view_book_modal.style.display = "none";
-		    return;
-		  }
->>>>>>> 37c6f3bd08258e3d59490ef974580c2f065e31df
 
 		}
 	
@@ -379,11 +337,7 @@
 			document.getElementById('book_publisher').value = list[book_index]["publisher"];
 			document.getElementById('book_category').value = list[book_index]["category"];
 			document.getElementById('book_price').value = list[book_index]["price"];
-<<<<<<< HEAD
 			document.getElementById('book_year').value = list[book_index]["date"];
-=======
-			document.getElementById('book_year').value = list[book_index]["year"];
->>>>>>> 37c6f3bd08258e3d59490ef974580c2f065e31df
 			document.getElementById('view_book_modal').style.display='block';
 		}
 

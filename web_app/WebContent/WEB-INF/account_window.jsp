@@ -29,26 +29,11 @@
 	<!-- DEFINE BODY -->
 	<!-- *********************************************** -->
 	<body style="background-color: #FFFFF0;">
-<<<<<<< HEAD
 		
 		<!-- side tabs -->
 		<nav class="w3-sidenav w3-card-2 w3-light-grey" style="width:250px">
 			<div class="w3-blue-grey w3-padding-16" style="padding-left: 37px;">
 				<a href="#" class="w3-hover-blue-grey w3-xlarge" onclick="$('#home_hidden_form').submit(); return false;" >Amazon.com</a>
-=======
-		<!--top nav bar-->
-		<div class="w3-top" id="bar_toggle">
-			<ul class="w3-navbar w3-blue-grey w3-card-2" style="min-width:1100px; padding-left:10px;">
-				<li><a href="#" class="w3-blue-grey" style="padding-top:18px; padding-bottom:15px" onclick="handle_side_nav()"><i class="fa fa-bars w3-large"></i></a></li>
-				<li><a href="#" class="w3-padding-16 w3-blue-grey" style="padding-left:3px;" >My Account</a></li>
-			</ul>
-		</div>
-		
-		<!-- side tabs -->
-		<nav class="w3-sidenav w3-white w3-card-2 w3-light-grey w3-animate-left" style="width:250px; margin-top:55px; display:none" id="SideNav01">
-			<div class="w3-container">
-				<h3>M-Shaban</h3>
->>>>>>> 37c6f3bd08258e3d59490ef974580c2f065e31df
 			</div>
 		  
 		  	<div class="w3-container" style="padding-top: 20px; font-weight: bold; padding-bottom: 10px;"> M-Shaban </div>
@@ -66,7 +51,6 @@
 		</nav>
 		
 		<!-- page content -->
-<<<<<<< HEAD
 		<div class="w3-container" style="margin-left: 250px; padding-left: 0px;">
 			<div style="height:20px;">
 			</div>
@@ -74,19 +58,11 @@
 			<!--search and title-->
 			<div class="w3-container w3-center" style="margin-bottom:10px;">
 				<span class="w3-text-blue-grey" style="font-size:27px; font-weight:bold; font-family: arial;">Account Info</span>
-=======
-		<div class="w3-container">
-			<div style="height:30px;">
->>>>>>> 37c6f3bd08258e3d59490ef974580c2f065e31df
 			</div>
 			
 			<!-- account info -->
 			<form id="form_container" style="display: table; margin: 0 auto;" action = "/Library/account/edit" method ="post">
-<<<<<<< HEAD
 			<div class="sh-form">
-=======
-			<div class="sh-form w3-margin-top" >
->>>>>>> 37c6f3bd08258e3d59490ef974580c2f065e31df
 
 				<!-- account info -->
 				<div class="w3-row" style="padding: 10px;">
@@ -95,7 +71,7 @@
 					</div>
 
 					<div class="w3-col" style="width: 400px;">
-						<input type="text" class="w3-input w3-border sh-input" name ="userName" id="userName" />
+						<input type="text" class="w3-input w3-border sh-input" required name ="userName" id="userName" />
 					</div>
 				</div>
 
