@@ -56,11 +56,14 @@
 			<a href="#" onclick="$('#orders_hidden_form').submit(); return false;">MY ORDERS</a>
 			<a href="#" onclick="$('#signout_hidden_form').submit(); return false;">SIGN OUT</a>
 
-			<div class="w3-container" style="padding-top: 20px; font-weight: bold; padding-bottom: 5px;"> Admin Controls </div>
-			<a href="#" onclick="$('#manage_books_hidden_form').submit(); return false;">Manage Inventory</a>
-			<a href="#" onclick="$('#manage_publishers_hidden_form').submit(); return false;">Manage Publishers</a>
-			<a href="#" onclick="$('#publisher_orders_hidden_form').submit(); return false;">Publisher Orders</a>
-			<a href="#" onclick="$('#user_accounts_hidden_form').submit(); return false;">User Accounts</a>
+			<div id="admin_rights">
+				<div class="w3-container" style="padding-top: 20px; font-weight: bold; padding-bottom: 5px;"> Admin Controls </div>
+				<a href="#" onclick="$('#manage_books_hidden_form').submit(); return false;">Manage Inventory</a>
+				<a href="#" onclick="$('#manage_publishers_hidden_form').submit(); return false;">Manage Publishers</a>
+				<a href="#" onclick="$('#publisher_orders_hidden_form').submit(); return false;">Publisher Orders</a>
+				<a href="#" onclick="$('#user_accounts_hidden_form').submit(); return false;">User Accounts</a>
+			</div>
+
 		</nav>
 		
 		<!-- page content -->
@@ -284,6 +287,16 @@
 	<!-- POST-LOADING SCRIPTS -->
 	<!-- *********************************************** -->
 	<script>
+
+		/* show/hide admin controls */
+		/******************************************/
+		var user_name;
+		var admin_rights = false;
+
+		if(admin_rights == false){
+			$("#admin_rights").remove();
+		}
+
 		
 		var list = ${bookList};
 
@@ -303,6 +316,9 @@
 			    newElem.setAttribute("onclick", 'show_view_book_modal('+index+');' ) ;
 				cell3.appendChild(newElem) ;
 			});	
+
+
+
 		});
 	
 	

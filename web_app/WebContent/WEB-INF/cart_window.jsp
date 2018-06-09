@@ -32,11 +32,13 @@
 			<a href="#" onclick="$('#orders_hidden_form').submit(); return false;">MY ORDERS</a>
 			<a href="#" onclick="$('#signout_hidden_form').submit(); return false;">SIGN OUT</a>
 
-			<div class="w3-container" style="padding-top: 20px; font-weight: bold; padding-bottom: 5px;"> Admin Controls </div>
-			<a href="#" onclick="$('#manage_books_hidden_form').submit(); return false;">MANAGE INVENTORY</a>
-			<a href="#" onclick="$('#manage_publishers_hidden_form').submit(); return false;">MANAGE PUBLISHERS</a>
-			<a href="#" onclick="$('#publisher_orders_hidden_form').submit(); return false;">PUBLISHER ORDERS</a>
-			<a href="#" onclick="$('#user_accounts_hidden_form').submit(); return false;">USER ACCOUNTS</a>
+			<div id="admin_rights">
+				<div class="w3-container" style="padding-top: 20px; font-weight: bold; padding-bottom: 5px;"> Admin Controls </div>
+				<a href="#" onclick="$('#manage_books_hidden_form').submit(); return false;">MANAGE INVENTORY</a>
+				<a href="#" onclick="$('#manage_publishers_hidden_form').submit(); return false;">MANAGE PUBLISHERS</a>
+				<a href="#" onclick="$('#publisher_orders_hidden_form').submit(); return false;">PUBLISHER ORDERS</a>
+				<a href="#" onclick="$('#user_accounts_hidden_form').submit(); return false;">USER ACCOUNTS</a>
+			</div>
 		</nav>
 		
 		<!-- page content -->
@@ -126,6 +128,17 @@
 	<!-- POST-LOADING SCRIPTS -->
 	<!-- *********************************************** -->
 	<script>
+
+		/* show/hide admin controls */
+		/******************************************/
+		var user_name;
+		var admin_rights = false;
+
+		if(admin_rights == false){
+			$("#admin_rights").remove();
+		}
+
+
 		var x = document.getElementsByClassName("sh_del_btn");
 		var i;
 		for (i = 0; i < x.length; i++) {
