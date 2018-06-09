@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
+=======
+>>>>>>> 37c6f3bd08258e3d59490ef974580c2f065e31df
 <html>
 	
 	<!-- *********************************************** -->
@@ -41,11 +44,26 @@
 	<!-- DEFINE BODY -->
 	<!-- *********************************************** -->
 	<body style="background-color: #FFFFF0;">
+<<<<<<< HEAD
 		
 		<!-- side tabs -->
 		<nav class="w3-sidenav w3-card-2 w3-light-grey" style="width:250px">
 			<div class="w3-blue-grey w3-padding-16" style="padding-left: 37px;">
 				<a href="#" class="w3-hover-blue-grey w3-xlarge" onclick="$('#home_hidden_form').submit(); return false;" >Amazon.com</a>
+=======
+		<!--top nav bar-->
+		<div class="w3-top"">
+			<ul class="w3-navbar w3-blue-grey w3-card-2" style="min-width:1100px; padding-left:10px;">
+				<li><a href="#" class="w3-blue-grey" onclick="handle_side_nav()" style="padding-top:18px; padding-bottom:15px"><i class="fa fa-bars w3-large"></i></a></li>
+				<li><a href="#" class="w3-padding-16 w3-blue-grey" style="padding-left:3px;" >Publisher Orders</a></li>
+			</ul>
+		</div>
+		
+		<!-- side tabs -->
+		<nav class="w3-sidenav w3-white w3-card-2 w3-light-grey w3-animate-left" style="width:250px; margin-top:54px; display:none" id="SideNav01">
+			<div class="w3-container">
+				<h3>M-Shaban</h3>
+>>>>>>> 37c6f3bd08258e3d59490ef974580c2f065e31df
 			</div>
 		  
 		  	<div class="w3-container" style="padding-top: 20px; font-weight: bold; padding-bottom: 10px;"> M-Shaban </div>
@@ -84,6 +102,17 @@
 			        <th></th>
 			      </tr>
 			    </thead>
+
+
+			    <tr>
+			        <td>12345678</td>
+			        <td>Pearson</td>
+			        <td>50,000</td>
+			        <td> <button class="w3-right"
+				      onclick="select_order(0); $('#confirm_order_hidden_form').submit(); return false;">
+				      confirm</button>
+				  	</td>
+			    </tr>
 			    <!-- create rows -->
 			    <c:forEach items="${orders}" var="order">
 				    <tr>
@@ -91,7 +120,11 @@
 				        <td><c:out value="${order.publisherName}"/></td>
 				        <td><c:out value="${order.quantity}"/></td>
 				        <td> <button class="w3-right"
+<<<<<<< HEAD
 					      onclick="select_order(${order.isbn}); $('#confirm_order_hidden_form').submit(); return false;">
+=======
+					      onclick="select_order(1); $('#confirm_order_hidden_form').submit(); return false;">
+>>>>>>> 37c6f3bd08258e3d59490ef974580c2f065e31df
 					      confirm</button>
 					  	</td>
 				    </tr>
@@ -184,6 +217,7 @@
 		</form>
 
 
+<<<<<<< HEAD
 		<form id="confirm_order_hidden_form" action="/Library/publiser_orders/delete_order" method="post" style="display: none">
 		  <input id="selected_order_index" type="hidden" name="order" value="0">
 		</form>
@@ -202,6 +236,10 @@
 
 		<form id="user_accounts_hidden_form" action="/Library/manage_user_accounts" method="get" style="display: none">
 		  <input type="hidden" name="x" value="">
+=======
+		<form id="confirm_order_hidden_form" action="/Library/signin" method="get" style="display: none">
+		  <input id="selected_order_index" type="hidden" name="selected_order_index" value="myParameterValue">
+>>>>>>> 37c6f3bd08258e3d59490ef974580c2f065e31df
 		</form>
 
 

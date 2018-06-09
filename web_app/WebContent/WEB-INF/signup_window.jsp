@@ -48,7 +48,11 @@
 					${error}
 			</div>
 
+<<<<<<< HEAD
 			<form action="/Library/signup/submit" method="POST" style="padding-left:5px; padding-top:25px;">
+=======
+			<form action="/Library/signup/submit" method="POST" style="padding-left:25px; padding-top:25px;">
+>>>>>>> 37c6f3bd08258e3d59490ef974580c2f065e31df
 			
 
 				<!-- user name -->
@@ -129,7 +133,11 @@
 				</div>
 
 				<div class="w3-container" style="margin-top:5px;">
+<<<<<<< HEAD
 					<button class="w3-btn w3-right w3-green" style="margin-right: 69px;" name="signup_btn" type="submit" value = "signup" >Sign Up</button>
+=======
+					<button class="w3-btn w3-right w3-green" style="margin-right: 50px;" name="signup_btn" type="submit" value = "signup" >Sign Up</button>
+>>>>>>> 37c6f3bd08258e3d59490ef974580c2f065e31df
 				</div>
 
 

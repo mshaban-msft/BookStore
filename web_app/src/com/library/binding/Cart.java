@@ -4,7 +4,11 @@ import java.util.List;
 
 public class Cart {
 	
+<<<<<<< HEAD
 	private List<Book> books ;
+=======
+	List<Book> books ;
+>>>>>>> 37c6f3bd08258e3d59490ef974580c2f065e31df
 
 	public Cart() {
 		super();

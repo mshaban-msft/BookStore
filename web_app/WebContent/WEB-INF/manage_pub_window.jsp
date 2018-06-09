@@ -121,7 +121,7 @@
 						</div>
 
 						<div class="w3-col" style="width: 400px;">
-							<input type="text" name="name" class="w3-input w3-border sh-input"  />
+							<input type="text" name="name" required class="w3-input w3-border sh-input"  />
 						</div>
 					</div>
 
@@ -132,7 +132,7 @@
 						</div>
 
 						<div class="w3-col" style="width: 400px;">
-							<input type="text" name="phone" class="w3-input w3-border sh-input"  />
+							<input type="text" name="phone" required class="w3-input w3-border sh-input"  />
 						</div>
 					</div>
 
@@ -142,7 +142,7 @@
 						</div>
 
 						<div class="w3-col" style="width: 400px;">
-							<input type="text" name="address" class="w3-input w3-border sh-input"  />
+							<input type="text" name="address" required class="w3-input w3-border sh-input"  />
 						</div>
 					</div>
 
