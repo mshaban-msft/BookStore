@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -62,5 +63,16 @@ public class PubOrdersController {
 	}
 	
 	
+	
+	@RequestMapping(value = "/publiser_orders/delete_order" , method = RequestMethod.POST)
+	public ModelAndView add_order(@RequestParam("order") Integer order) {
+		// TODO call database 
+		
+		DbController db = new DbController() ;
+		db.delete_publish_order(order);
+		
+		ModelAndView view = new ModelAndView(new RedirectView("/Library/publiser_orders")) ;
+		return view ;
+	}
 	
 }

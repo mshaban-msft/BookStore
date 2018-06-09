@@ -31,7 +31,7 @@ public class SignInController {
 	}
 
 	@RequestMapping(value = "/signin/submit" , method = RequestMethod.POST)
-	public ModelAndView signIn_submit (@ModelAttribute("signInUser") SignInUser user , HttpSession session) {
+	public ModelAndView signIn_submit (@ModelAttribute("signInUser") SignInUser user , HttpSession session) throws Exception {
 		
 		DbController db = new DbController();
 		String user_exist_password_error = db.sign_in(user) ;

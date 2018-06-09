@@ -38,7 +38,7 @@ public class SignUpController {
 	}
 	
 	@RequestMapping(value = "/signup/submit" , method = RequestMethod.POST)
-	public ModelAndView signUp_submit (@ModelAttribute("signUpUser") SignUpUser user , HttpSession session) {
+	public ModelAndView signUp_submit (@ModelAttribute("signUpUser") SignUpUser user , HttpSession session) throws Exception {
 		
 		DbController db = new DbController() ;
 		String user_exits_error = db.add_user(user);

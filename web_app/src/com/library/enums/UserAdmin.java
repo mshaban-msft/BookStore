@@ -1,4 +1,4 @@
-package com.library.credentials;
+package com.library.enums;
 
 public enum UserAdmin {
 	USER , ADMIN 

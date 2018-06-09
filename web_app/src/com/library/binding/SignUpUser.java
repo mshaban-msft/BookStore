@@ -1,6 +1,6 @@
 package com.library.binding;
 
-import com.library.credentials.UserAdmin;
+import com.library.enums.UserAdmin;
 
 public class SignUpUser {
 	

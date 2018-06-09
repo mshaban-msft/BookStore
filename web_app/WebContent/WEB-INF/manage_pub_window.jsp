@@ -44,8 +44,8 @@
 		
 		<!-- side tabs -->
 		<nav class="w3-sidenav w3-card-2 w3-light-grey" style="width:250px">
-			<div class="w3-blue-grey w3-padding-16" style="padding-left: 37px;">
-				<a href="#" class="w3-hover-blue-grey w3-xlarge" onclick="$('#home_hidden_form').submit(); return false;" >Amazon.com</a>
+			<div class="w3-blue-grey w3-padding-8" style="padding-left: 47px;">
+				<h3>Amazon.com</h3>
 			</div>
 		  
 		  	<div class="w3-container" style="padding-top: 20px; font-weight: bold; padding-bottom: 10px;"> M-Shaban </div>
@@ -57,8 +57,8 @@
 
 			<div class="w3-container" style="padding-top: 20px; font-weight: bold; padding-bottom: 5px;"> Admin Controls </div>
 			<a href="#" onclick="$('#manage_books_hidden_form').submit(); return false;">Manage Inventory</a>
-			<a href="#" onclick="$('#manage_publishers_hidden_form').submit(); return false;">Manage Publishers</a>
-			<a href="#" class="w3-blue-grey" >Publisher Orders</a>
+			<a href="#" class="w3-blue-grey">Manage Publishers</a>
+			<a href="#" onclick="$('#publisher_orders_hidden_form').submit(); return false;" >Publisher Orders</a>
 			<a href="#" onclick="$('#user_accounts_hidden_form').submit(); return false;">User Accounts</a>
 		</nav>
 		
@@ -69,8 +69,8 @@
 			
 
 			<div class="w3-container w3-margin" style="padding-right: 0px; padding-left:0px;">
-			<span class="w3-text-blue-grey" style="font-size:28px; font-weight:bold; font-family: arial;">Manage Publisher Orders</span>
-				<button class="w3-btn w3-right w3-blue-grey" onclick="toggle_new_order_modal()">New Order</button>
+			<span class="w3-text-blue-grey" style="font-size:28px; font-weight:bold; font-family: arial;">Publisher Accounts</span>
+				<button class="w3-btn w3-right w3-blue-grey" onclick="toggle_add_publisher_modal()">Add Publisher</button>
 			</div>
 
 			<div class="w3-container">
@@ -78,22 +78,18 @@
 			  	<!-- header -->
 			    <thead>
 			      <tr class="w3-dark-grey">
-			        <th>ISBN</th>
-			        <th>Publisher name</th>
-			        <th>Quantity</th>
-			        <th></th>
+			        <th>Publishing House</th>
+			        <th>Address</th>
+			        <th>Phone</th>
 			      </tr>
 			    </thead>
+
 			    <!-- create rows -->
-			    <c:forEach items="${orders}" var="order">
+			    <c:forEach items="${publishers}" var="publisher">
 				    <tr>
-				        <td><c:out value="${order.isbn}"/></td>
-				        <td><c:out value="${order.publisherName}"/></td>
-				        <td><c:out value="${order.quantity}"/></td>
-				        <td> <button class="w3-right"
-					      onclick="select_order(${order.isbn}); $('#confirm_order_hidden_form').submit(); return false;">
-					      confirm</button>
-					  	</td>
+				        <td><c:out value="${publisher.name}"/></td>
+				        <td><c:out value="${publisher.address}"/></td>
+				        <td><c:out value="${publisher.phone}"/></td>
 				    </tr>
 				</c:forEach>
 			  </table>
@@ -104,56 +100,56 @@
 
 
 		<!-- new order modal -->
-		<div id="new_order_modal" class="w3-modal">
+		<div id="add_publisher_modal" class="w3-modal">
 
 			<div class="w3-modal-content w3-card-12 w3-animate-zoom" style="width:580px; overflow:hidden;">
 			
 				<header class="w3-container w3-blue-grey">
 					<h2 class="w3-xlarge">
 						<i class="fa fa-plus w3-margin-left w3-large" style="margin-right: 10px;"></i>
-						New Order
+						Add Publisher
 					</h2>
 				</header>
 				 
 
-				<form class="sh-form" action="/Library/publiser_orders/add_order" method="POST">
+				<form class="sh-form" action="/Library/manage_publishers/add" method="POST">
 
 					<!-- user name -->
 					<div class="w3-row sh-book-attr">
 						<div class="w3-col sh-label">
-							<label class="w3-label" style="text-align: right;" >ISBN</label>
+							<label class="w3-label" style="text-align: right;" >Name</label>
 						</div>
 
 						<div class="w3-col" style="width: 400px;">
-							<input type="number" name="isbn" class="w3-input w3-border sh-input"  />
+							<input type="text" name="name" class="w3-input w3-border sh-input"  />
 						</div>
 					</div>
 
 					<!-- password -->
 					<div class="w3-row sh-book-attr">
 						<div class="w3-col sh-label">
-							<label class="w3-label">Quantity</label>
+							<label class="w3-label">Phone</label>
 						</div>
 
 						<div class="w3-col" style="width: 400px;">
-							<input type="number" name="quantity" class="w3-input w3-border sh-input"  />
+							<input type="text" name="phone" class="w3-input w3-border sh-input"  />
 						</div>
 					</div>
 
-					<!-- first name -->
 					<div class="w3-row sh-book-attr">
 						<div class="w3-col sh-label">
-							<label class="w3-label">Publisher</label>
+							<label class="w3-label" style="text-align: right;" >address</label>
 						</div>
 
 						<div class="w3-col" style="width: 400px;">
-							<input type="text" name="publisherName" class="w3-input w3-border sh-input"  />
+							<input type="text" name="address" class="w3-input w3-border sh-input"  />
 						</div>
 					</div>
 
+
 					<div class="w3-container" style="padding-top: 10px; padding-bottom: 10px;">
-						<button class="w3-btn w3-green w3-right" style="margin-right: 60px;" type="submit" >Place Order</button>
-						<button id="cancel_order_btn" class="w3-btn w3-teal w3-right" style="margin-right: 10px;" >CANCEL</button>
+						<button class="w3-btn w3-green w3-right" style="margin-right: 60px;" type="submit" >Add</button>
+						<button id="cancel_btn" class="w3-btn w3-teal w3-right" style="margin-right: 10px;" >CANCEL</button>
 					</div>
 				</form>
 
@@ -171,7 +167,7 @@
 		  <input type="hidden" name="myParameterName" value="myParameterValue">
 		</form>
 
-		<form id="cart_hidden_form" action="/Library/cart" method="get" style="display: none">
+		<form id="cart_hidden_form" action="/Library/cart" method="post" style="display: none">
 		  <input type="hidden" name="myParameterName" value="myParameterValue">
 		</form>
 
@@ -183,16 +179,7 @@
 		  <input type="hidden" name="myParameterName" value="myParameterValue">
 		</form>
 
-
-		<form id="confirm_order_hidden_form" action="/Library/publiser_orders/delete_order" method="post" style="display: none">
-		  <input id="selected_order_index" type="hidden" name="order" value="0">
-		</form>
-		
 		<form id="manage_books_hidden_form" action="/Library/manage_inventory" method="get" style="display: none">
-		  <input type="hidden" name="x" value="">
-		</form>
-
-		<form id="manage_publishers_hidden_form" action="/Library/manage_publishers" method="get" style="display: none">
 		  <input type="hidden" name="x" value="">
 		</form>
 
@@ -202,6 +189,11 @@
 
 		<form id="user_accounts_hidden_form" action="/Library/manage_user_accounts" method="get" style="display: none">
 		  <input type="hidden" name="x" value="">
+		</form>
+
+
+		<form id="remove_publisher_hidden_form" action="/Library/manage_user_accounts" method="get" style="display: none">
+		  <input id="selected_publisher_index" type="hidden" name="name" value="0">
 		</form>
 
 
@@ -215,39 +207,40 @@
 	<script>
 
 		/* confirm order */
-		function select_order(selected_index)
+		function select_publisher(selected_index)
 		{
-			document.getElementById('selected_order_index').value = selected_index;
+			document.getElementById('selected_publisher_index').value = selected_index;
 		}
 
 		/* new order modal */
 		/************************************************/
-		var new_order_modal = document.getElementById("new_order_modal");
-		var cancel_order_btn = document.getElementById("cancel_order_btn");
-		new_order_modal.style.display = 'none';
-		var new_order_modal_shown = false;
+		var add_publisher_modal = document.getElementById("add_publisher_modal");
+		var cancel_btn = document.getElementById("cancel_btn");
+
+		add_publisher_modal.style.display = 'none';
+		var add_publisher_modal_shown = false;
 
 		// When the user clicks anywhere outside of the modal, close it
 		window.onclick = function(event) {
-		  if (event.target == new_order_modal) {
-		    new_order_modal.style.display = "none";
+		  if (event.target == add_publisher_modal) {
+		    add_publisher_modal.style.display = "none";
 		  }
 		}
 
-		cancel_order_btn.addEventListener("click", function(event){
+		cancel_btn.addEventListener("click", function(event){
 		    event.preventDefault();
-		    toggle_new_order_modal();
+		    toggle_add_publisher_modal();
 		});
 
-		function toggle_new_order_modal()
+		function toggle_add_publisher_modal()
 		{
-			if(new_order_modal_shown == true)
+			if(add_publisher_modal_shown == true)
 			{
-				new_order_modal.style.display='none';
-				new_order_modal_shown = false;
+				add_publisher_modal.style.display='none';
+				add_publisher_modal_shown = false;
 			}else{
-				new_order_modal.style.display='block';
-				new_order_modal_shown = true;
+				add_publisher_modal.style.display='block';
+				add_publisher_modal_shown = true;
 			}
 		}
 
@@ -265,4 +258,3 @@
 	</script>
 	
 </html>
-

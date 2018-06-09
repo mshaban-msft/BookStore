@@ -20,6 +20,7 @@ import com.library.binding.Book;
 import com.library.binding.Search;
 import com.library.binding.SignUpUser;
 import com.library.mysql.DbController;
+import com.library.parsing.JsonParser;
 
 @Controller
 public class HomeController {
@@ -34,42 +35,63 @@ public class HomeController {
 	public ModelAndView signUp (HttpSession session) {
 		
 		SignUpUser signed = (SignUpUser)session.getAttribute("signed_user") ;
+		
+		// check user info for security
 		if(signed == null) {
 			ModelAndView sign_view = new ModelAndView("signin_window") ;
 			return sign_view ;
 		}
-			
 		
 		ModelAndView home_view = new ModelAndView("home_window") ;
 		DbController db = new DbController() ;
+		
+		//TODO get only trended books 
 		List<Book> books = db.get_books() ;
-		home_view.addObject("bookList", books) ;
+
+		// send json value of book list to front end
+		home_view.addObject("bookList", JsonParser.instance().books_to_json(books)) ;
 		
 		return home_view ;
 	}
 	
 	@RequestMapping(value = "/home/addBook" , method = RequestMethod.POST)
-	public ModelAndView addBook (@ModelAttribute("new_book") Book book , BindingResult result) {
-	    DbController controller = new DbController();
-		controller.insert_book(book);
-
-		ModelAndView home_view = new ModelAndView("home_window") ;
+	public ModelAndView addBook (@ModelAttribute("new_book") Book book , BindingResult result , HttpSession session) {
+	    
 		DbController db = new DbController() ;
+		
+		// already signed user info 
+		SignUpUser signed = (SignUpUser)session.getAttribute("signed_user") ;
+		
+		// add book to user cart in database 
+		db.add_to_cart(book, signed);
+		
+		
+		ModelAndView home_view = new ModelAndView("home_window") ;
+		
+		//TODO get only trended books 
 		List<Book> books = db.get_books() ;
-		home_view.addObject("bookList", books) ;
-
+		
+		// send json value of book list to front end
+		home_view.addObject("bookList", JsonParser.instance().books_to_json(books)) ;
 		
 		return home_view ;
 	}
 	
+	
 	@RequestMapping(value = "/home/search" , method = RequestMethod.POST)
-	public ModelAndView addBook (@ModelAttribute("search") Search search) {
-		search.print();
+	public ModelAndView addBook (@ModelAttribute("search") Search search ) {
+		
 		ModelAndView home_view = new ModelAndView("home_window") ;
+		DbController db = new DbController() ;
+		
+		//TODO get only needed books from search Remain author search 
+		List<Book> books = db.get_search_books(search) ;
+		
+		// send json value of book list to front end
+		home_view.addObject("bookList", JsonParser.instance().books_to_json(books)) ;
+		
 		return home_view ;
 	}
-	
-	
 	
 	
 }
