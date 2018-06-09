@@ -1,11 +1,6 @@
 package com.library.mysql;
 
 import java.util.ArrayList;
-<<<<<<< HEAD
-=======
-import java.util.Arrays;
-import java.util.Collections;
->>>>>>> 37c6f3bd08258e3d59490ef974580c2f065e31df
 import java.util.Date;
 import java.util.List;
 
@@ -18,7 +13,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.library.binding.Book;
 import com.library.binding.Cart;
-<<<<<<< HEAD
 import com.library.binding.CartElem;
 import com.library.binding.Order;
 import com.library.binding.PubOrder;
@@ -27,13 +21,6 @@ import com.library.binding.Search;
 import com.library.binding.SignInUser;
 import com.library.binding.SignUpUser;
 import com.library.encryption.Encyrption;
-=======
-import com.library.binding.Order;
-import com.library.binding.PubOrder;
-import com.library.binding.Search;
-import com.library.binding.SignInUser;
-import com.library.binding.SignUpUser;
->>>>>>> 37c6f3bd08258e3d59490ef974580c2f065e31df
 import com.library.enums.UserAdmin;
 
 
@@ -68,7 +55,6 @@ public class DbController {
 		String threshold = String.valueOf(book.getThershold()) ;
 		String publisher = book.getPublisher() ;
 		String author = book.getAuthor() ;
-<<<<<<< HEAD
 		
 		this.jdbcTemplateObject.update(sql , isbn , title , date , price 
 				, category , quantity , threshold , publisher)  ;
@@ -105,18 +91,6 @@ public class DbController {
     	
     	this.jdbcTemplateObject.update(sql , book.getAuthor() , book.getIsbn() ) ;
     	
-=======
-		
-		this.jdbcTemplateObject.update(sql , isbn , title , date , price 
-				, category , quantity , threshold , publisher)  ;
-		
-		sql = "insert into book "
-				+ "(" + "ISBN ," + "Name " + ") " 
-				+ "values ( ? , ? )" ;
-
-		this.jdbcTemplateObject.update(sql , isbn , author)  ;
-		
->>>>>>> 37c6f3bd08258e3d59490ef974580c2f065e31df
     }
     
     
@@ -175,7 +149,6 @@ public class DbController {
     }
     
     public List<Book> get_books() {
-<<<<<<< HEAD
     	String sql = "select * from book Natural join author" ;
     	return  this.jdbcTemplateObject.query(sql, new BookAuthorMapper());
     }
@@ -184,7 +157,7 @@ public class DbController {
     	String sql = "";
     	
     	if(search.getSearchCriteria().equals("Title") )
-    		sql = "select * from book where title like \'%" + search.getSearchTerm() + "%\'";
+    		sql = "select * from book where title COLLATE UTF8_GENERAL_CI like \'%" + search.getSearchTerm() + "%\'";
     	else if(search.getSearchCriteria().equals("Publisher") )
     		sql = "select * from book where publisher = \'%" + search.getSearchTerm() + "%\'";	
     	//TODO search with authors
@@ -200,38 +173,11 @@ public class DbController {
     			+ "(" + "Email ," + "ISBN ," + " QUANTITY ) "  
     			+ "values ( ? , ? , ?)" ;
     	this.jdbcTemplateObject.update(sql , user.getEmail() , book.getIsbn() , 1 )  ;
-=======
-    	String sql = "select * from book" ;
-    	return  this.jdbcTemplateObject.query(sql, new BookMapper());
-    }
-    
-    public List<Book> get_search_books(Search search) {
-    	String sql = "";
-    	
-    	if(search.getSearchCriteria().equals("Title") )
-    		sql = "select * from book where title = \'" + search.getSearchTerm() + "\'";
-    	else if(search.getSearchCriteria().equals("Publisher") )
-    		sql = "select * from book where publisher = \'" + search.getSearchTerm() + "\'";	
-    	//TODO search with authors
-    	else
-    		return Collections.emptyList() ;
-    	
-    	return  this.jdbcTemplateObject.query(sql, new BookMapper());
-    }
-    
-    
-    public void add_to_cart(Book book , SignUpUser user) {
-    	String sql = "insert into customer_cart "
-    			+ "(" + "Email ," + "ISBN" + " ) "  
-    			+ "values ( ? , ? )" ;
-    	this.jdbcTemplateObject.update(sql , user.getEmail() , book.getIsbn() )  ;
->>>>>>> 37c6f3bd08258e3d59490ef974580c2f065e31df
     }
     
     
     public Cart get_cart(SignUpUser user) {
     	
-<<<<<<< HEAD
     	String sql = "select * from customer_cart where Email = ?" ;
     	List<CartElem> cart_book = (List<CartElem>) this.jdbcTemplateObject.query(sql , new CartElemMapper() , user.getEmail()  );
     	
@@ -243,18 +189,6 @@ public class DbController {
     		Book to_add = this.jdbcTemplateObject.queryForObject(sql, new BookMapper() , s.getIsbn()) ;
     		
     		to_add.setQuantity(s.getQuantity());
-=======
-    	String sql = "select ISBN from customer_cart where Email = ?" ;
-    	List<Integer> cart_book = (List<Integer>) this.jdbcTemplateObject.queryForList(sql , Integer.class , user.getEmail()  );
-    	
-    	ArrayList<Book> result = new ArrayList<Book>() ; 
-    	for(Integer s : cart_book) {
-    		
-    		sql = "select * from book where ISBN = ?" ;
-    		
-    		Book to_add = this.jdbcTemplateObject.queryForObject(sql, new BookMapper() , s) ;
-    		
->>>>>>> 37c6f3bd08258e3d59490ef974580c2f065e31df
     		
     		result.add(to_add) ;
     	}
@@ -262,7 +196,6 @@ public class DbController {
     	return new Cart(result) ;
     		
     }
-<<<<<<< HEAD
 
     public void delete_from_cart(SignUpUser signed , Integer Isbn) {
     	String sql = "Delete from customer_cart where Email = ? and ISBN = ? limit 1" ;
@@ -282,11 +215,6 @@ public class DbController {
     	
     	Cart cart = get_cart(signed) ;
     	
-=======
-    
-    
-    public void checkout (SignUpUser signed , Cart cart) {
->>>>>>> 37c6f3bd08258e3d59490ef974580c2f065e31df
     	for (Book book : cart.getBooks()) {
     		
     		// update total price of each book 
@@ -302,16 +230,11 @@ public class DbController {
     	
     	// empty cart of the user 
     	String sql = "Delete from customer_cart "
-<<<<<<< HEAD
     			+ "where Email = ? " ;
-=======
-    			+ "Email = ? " ;
->>>>>>> 37c6f3bd08258e3d59490ef974580c2f065e31df
     	this.jdbcTemplateObject.update(sql , signed.getEmail() )  ;
     	
     }
     
-<<<<<<< HEAD
     public void promote_user(String email) {
     	String sql = "update customer set Acount_Type = ? where email = ? " ;
     	this.jdbcTemplateObject.update(sql , String.valueOf(UserAdmin.ADMIN) , email )  ;
@@ -327,22 +250,11 @@ public class DbController {
     	 
     	
     	this.jdbcTemplateObject.update(sql , updated.getEmail() , enc.encrypt(updated.getPassword() , "X43V1Y3B") , updated.getUserName() 
-=======
-    
-    
-    public void update_user(SignUpUser signed , SignUpUser updated) {
-    	String sql = "update custiomer "
-    			+ "set Email = ? , Password = ? , User_Name = ?  , Acount_Type = ? ," 
-    			+ "First_Name = ?  , Last_Name = ? , Address = ? , Phone = ? "
-    			+ "where Email = ?" ;
-    	this.jdbcTemplateObject.update(sql , updated.getEmail() , updated.getPassword() , updated.getUserName() , updated.getUserAdmin()
->>>>>>> 37c6f3bd08258e3d59490ef974580c2f065e31df
     									, updated.getFirstName() , updated.getLastName() , updated.getAddress() , updated.getPhone()
     									, signed.getEmail() ) ;	
     }
     
     
-<<<<<<< HEAD
     public SignUpUser get_user_data(SignInUser user) throws Exception {
     	String sql = "select * from customer where Email = \'" + user.getEmail() + "\'" ;
     	
@@ -358,17 +270,6 @@ public class DbController {
     
     public List<Order> get_user_order (SignUpUser signed) {
     	String sql = "select * from (customer_purchases as c join book as b on c.ISBN = b.ISBN) where Email = ? " ;
-    	return this.jdbcTemplateObject.query(sql ,  new OrderMapper() , signed.getEmail() ) ;
-=======
-    public SignUpUser get_user_data(SignInUser user) {
-    	String sql = "select * from customer where Email = \'" + user.getEmail() + "\'" ;
-    	return this.jdbcTemplateObject.queryForObject(sql, new UserMapper());
->>>>>>> 37c6f3bd08258e3d59490ef974580c2f065e31df
-    }
-    
-    
-    public List<Order> get_user_order (SignUpUser signed) {
-    	String sql = "select * from customer_purchases where Email = ? " ;
     	return this.jdbcTemplateObject.query(sql ,  new OrderMapper() , signed.getEmail() ) ;
     }
     
@@ -420,3 +321,4 @@ public class DbController {
 
     
 }
+
