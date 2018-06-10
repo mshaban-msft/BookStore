@@ -2,7 +2,7 @@ package com.library.binding;
 
 public class Search {
 
-	String searchTerm , searchCriteria ;
+	private String searchTerm , searchCriteria ;
 
 	public String getSearchCriteria() {
 		return searchCriteria;

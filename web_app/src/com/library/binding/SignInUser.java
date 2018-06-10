@@ -2,7 +2,13 @@ package com.library.binding;
 
 public class SignInUser {
 	
-	String email , password ;
+	private String email , password ;
+
+	public SignInUser(String email, String password) {
+		super();
+		this.email = email;
+		this.password = password;
+	}
 
 	public String getEmail() {
 		return email;

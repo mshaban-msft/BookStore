@@ -1,3 +1,4 @@
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 	
@@ -12,7 +13,7 @@
 		
 			.sh-form
 			{
-				width: 600px; padding-top: 40px; padding-bottom: 20px; padding-left: 20px;
+				width: 600px; padding-top: 0px; padding-bottom: 20px; padding-left: 20px; margin-top: 25px;
 			}
 
 			.sh-label
@@ -27,37 +28,43 @@
 	<!-- *********************************************** -->
 	<!-- DEFINE BODY -->
 	<!-- *********************************************** -->
-	<body>
-		<!--top nav bar-->
-		<div class="w3-top" id="bar_toggle">
-			<ul class="w3-navbar w3-teal w3-card-2" style="min-width:1100px">
-				<li><a href="#" class="w3-hover-teal" style="padding-top:15px; padding-bottom:15px" onclick="handleSideNav()"><i class="fa fa-bars w3-xlarge"></i></a></li>
-				<li><a href="#" class="w3-padding-16 w3-hover-teal">My Account</a></li>
-			</ul>
-		</div>
+	<body style="background-color: #FFFFF0;">
 		
 		<!-- side tabs -->
-		<nav class="w3-sidenav w3-white w3-card-2 w3-light-grey w3-animate-left" style="width:250px; margin-top:57px; display:none" id="SideNav01">
-			<div class="w3-container">
-				<h3>M-Shaban</h3>
+		<nav class="w3-sidenav w3-card-2 w3-light-grey" style="width:250px">
+			<div class="w3-blue-grey w3-padding-16" style="padding-left: 37px;">
+				<a href="#" class="w3-hover-blue-grey w3-xlarge" onclick="$('#home_hidden_form').submit(); return false;" >Amazon.com</a>
 			</div>
 		  
+		  	<div id="display_user_name" class="w3-container" style="padding-top: 20px; font-weight: bold; padding-bottom: 10px;"> User_Name </div>
 			<a href="#" onclick="$('#home_hidden_form').submit(); return false;">HOME</a>
-			<a href="#" class="w3-green">ACCOUNT</a>
+			<a href="#" class="w3-blue-grey">ACCOUNT</a>
 			<a href="#" onclick="$('#cart_hidden_form').submit(); return false;" >SHOPPING CART</a>
 			<a href="#" onclick="$('#orders_hidden_form').submit(); return false;">MY ORDERS</a>
-			<a href="#" onclick="$('#publisher_orders_hidden_form').submit(); return false;">PUBLISHER ORDERS</a>
 			<a href="#" onclick="$('#signout_hidden_form').submit(); return false;">SIGN OUT</a>
+
+			<div id="admin_rights">
+				<div class="w3-container" style="padding-top: 20px; font-weight: bold; padding-bottom: 5px;"> Admin Controls </div>
+				<a href="#" onclick="$('#manage_books_hidden_form').submit(); return false;">Manage Inventory</a>
+				<a href="#" onclick="$('#manage_publishers_hidden_form').submit(); return false;">Manage Publishers</a>
+				<a href="#" onclick="$('#publisher_orders_hidden_form').submit(); return false;">Publisher Orders</a>
+				<a href="#" onclick="$('#user_accounts_hidden_form').submit(); return false;">User Accounts</a>
+			</div>
 		</nav>
 		
 		<!-- page content -->
-		<div class="w3-container">
-			<div style="height:55px;">
+		<div class="w3-container" style="margin-left: 250px; padding-left: 0px;">
+			<div style="height:20px;">
+			</div>
+
+			<!--search and title-->
+			<div class="w3-container w3-center" style="margin-bottom:10px;">
+				<span class="w3-text-blue-grey" style="font-size:27px; font-weight:bold; font-family: arial;">Account Info</span>
 			</div>
 			
 			<!-- account info -->
-			<form id="form_container" style="padding-left: 25%;" action = "/Library/account/edit" method ="post">
-			<div class="sh-form w3-card-2 w3-margin-top" >
+			<form id="form_container" style="display: table; margin: 0 auto;" action = "/Library/account/edit" method ="post">
+			<div class="sh-form">
 
 				<!-- account info -->
 				<div class="w3-row" style="padding: 10px;">
@@ -66,7 +73,7 @@
 					</div>
 
 					<div class="w3-col" style="width: 400px;">
-						<input type="text" class="w3-input w3-border sh-input" name ="userName" id="userName" >
+						<input type="text" class="w3-input w3-border sh-input" required name ="userName" id="userName" />
 					</div>
 				</div>
 
@@ -77,7 +84,7 @@
 					</div>
 
 					<div class="w3-col" style="width: 400px;">
-						<input type="password" class="w3-input w3-border sh-input" required name = "password" id = "password" >
+						<input type="password" class="w3-input w3-border sh-input" required name = "password" id="password" />
 					</div>
 				</div>
 
@@ -88,7 +95,7 @@
 					</div>
 
 					<div class="w3-col" style="width: 400px;">
-						<input type="text" class="w3-input w3-border sh-input" required name = "firstName" id = "firstName">
+						<input type="text" class="w3-input w3-border sh-input" required name = "firstName" id="firstName" />
 					</div>
 				</div>
 
@@ -99,7 +106,7 @@
 					</div>
 
 					<div class="w3-col" style="width: 400px;">
-						<input type="text" class="w3-input w3-border sh-input" required name = "lastName" id = "lastName" >
+						<input type="text" class="w3-input w3-border sh-input" required name = "lastName" id="lastName" />
 					</div>
 				</div>
 
@@ -110,7 +117,7 @@
 					</div>
 
 					<div class="w3-col" style="width: 400px;">
-						<input type="text" class="w3-input w3-border sh-input" required name = "email" id = "email" >
+						<input type="text" class="w3-input w3-border sh-input" required name = "email" id="email" />
 					</div>
 				</div>
 
@@ -121,7 +128,7 @@
 					</div>
 
 					<div class="w3-col" style="width: 400px;">
-						<input type="text" class="w3-input w3-border sh-input" required name = "phone" id = "phone" >
+						<input type="text" class="w3-input w3-border sh-input" required name = "phone" id="phone" />
 					</div>
 				</div>
 
@@ -132,13 +139,13 @@
 					</div>
 
 					<div class="w3-col" style="width: 400px;">
-						<input type="text" class="w3-input w3-border sh-input" required name ="address" id = "address">
+						<input type="text" class="w3-input w3-border sh-input" required name ="address" id="address" />
 					</div>
 				</div>
 
 				<div class="w3-container" style="margin-top:10px; margin-bottom: 10px; padding-right: 70px;" >
-					<button id="edit_data_btn" class="w3-btn w3-green w3-right" style="width: 80px;" >Edit</button>
-					<button id="update_info_btn" class="w3-btn w3-blue w3-right w3-margin-right" style="width: 80px;" >Update</button>
+					<button id="edit_data_btn" class="w3-btn w3-teal w3-right" style="width: 80px;" >Edit</button>
+					<button id="update_info_btn" class="w3-btn w3-red w3-right w3-margin-right" style="width: 80px;" >Update</button>
 				</div>
 
 			</div>
@@ -157,7 +164,7 @@
 		  <input type="hidden" name="myParameterName" value="myParameterValue">
 		</form>
 
-		<form id="cart_hidden_form" action="/Library/cart" method="post" style="display: none">
+		<form id="cart_hidden_form" action="/Library/cart" method="get" style="display: none">
 		  <input type="hidden" name="myParameterName" value="myParameterValue">
 		</form>
 
@@ -165,12 +172,25 @@
 		  <input type="hidden" name="myParameterName" value="myParameterValue">
 		</form>
 
-		<form id="publisher_orders_hidden_form" action="/Library/publiser_orders" method="get" style="display: none">
+		<form id="signout_hidden_form" action="/Library/signin" method="get" style="display: none">
 		  <input type="hidden" name="myParameterName" value="myParameterValue">
 		</form>
 
-		<form id="signout_hidden_form" action="/Library/signin" method="get" style="display: none">
-		  <input type="hidden" name="myParameterName" value="myParameterValue">
+
+		<form id="manage_books_hidden_form" action="/Library/manage_inventory" method="get" style="display: none">
+		  <input type="hidden" name="x" value="">
+		</form>
+
+		<form id="manage_publishers_hidden_form" action="/Library/manage_publishers" method="get" style="display: none">
+		  <input type="hidden" name="x" value="">
+		</form>
+
+		<form id="publisher_orders_hidden_form" action="/Library/publiser_orders" method="get" style="display: none">
+		  <input type="hidden" name="x" value="">
+		</form>
+
+		<form id="user_accounts_hidden_form" action="/Library/manage_user_accounts" method="get" style="display: none">
+		  <input type="hidden" name="x" value="">
 		</form>
 
 
@@ -183,18 +203,23 @@
 	<!-- *********************************************** -->
 	<script>
 
+		/* show/hide admin controls */
+		/******************************************/
+		var display_user_name = '<c:out value="${user_name}"/>' ;
+		var view_admin_rights = <c:out value="${admin_rights}"/> ;
+
+		if(view_admin_rights == false){
+			$("#admin_rights").remove();
+		}
+
+		$("#display_user_name").text(display_user_name);
+
+
 		document.getElementById("edit_data_btn").addEventListener("click", function(event){
 		    event.preventDefault();
 		    toggle_disabled();
 		});
 		
-		document.getElementById("userName").value = "${signed_user.userName}";
-		document.getElementById("address").value = "${signed_user.address}";
-		document.getElementById("email").value = "${signed_user.email}";
-		document.getElementById("phone").value = "${signed_user.phone}";
-		document.getElementById("lastName").value = "${signed_user.lastName}";
-		document.getElementById("firstName").value = "${signed_user.firstName}";
-		document.getElementById("password").value = "${signed_user.password}";
 
 		/* post-load script */
 		var disabled_flag = true;
@@ -207,7 +232,7 @@
 		document.getElementById('update_info_btn').style.display='none';
 
 		/* DOM manipulation functions */
-		function handleSideNav(){
+		function handle_side_nav(){
 			var x=document.getElementById("SideNav01");
 			if (x.className.indexOf("w3-show") == -1) {
 				x.className += " w3-show";
@@ -233,6 +258,15 @@
 			    x[i].disabled = disabled_flag;
 			}	
 		}
+
+
+		document.getElementById("userName").value = "${signed_user.userName}";
+		document.getElementById("address").value = "${signed_user.address}";
+		document.getElementById("email").value = "${signed_user.email}";
+		document.getElementById("phone").value = "${signed_user.phone}";
+		document.getElementById("lastName").value = "${signed_user.lastName}";
+		document.getElementById("firstName").value = "${signed_user.firstName}";
+		document.getElementById("password").value = "${signed_user.password}";
 
 		
 
