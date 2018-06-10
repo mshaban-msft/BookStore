@@ -114,7 +114,7 @@
 				</header>
 
 				<div class="w3-container w3-margin-top" style="height: 50px;">
-					<input name="searchTerm" type="text" class="w3-input w3-border" required />
+					<input name="searchTerm" id ="searchTerm" type="text" class="w3-input w3-border" required />
 				</div>
 
 				<div class="w3-container w3-padding-8">
@@ -124,10 +124,12 @@
 				<div class="w3-row w3-container" style="padding-bottom: 40px;">
 
 					<div class="w3-col" style="width: 200px; height: 40px;">
-						<select class="w3-select w3-border w3-small" name="searchCriteria" required>
+						<select class="w3-select w3-border w3-small" id="searchCriteria" name="searchCriteria" onchange = "criteria_select() ;" required>
 							<option value="Title" selected >Title</option>
 							<option value="Author">Author</option>
 							<option value="Publisher">Publisher</option>
+							<option value="Category">Category</option>
+							<option value="ISBN">ISBN</option>
 						</select>
 					</div>
 
@@ -455,7 +457,16 @@
 		/******************************************/
 		var display_user_name = '<c:out value="${user_name}"/>' ;
 		var view_admin_rights = <c:out value="${admin_rights}"/> ;
-
+		
+		function criteria_select() {
+			 var x = document.getElementById("searchCriteria").value;
+			 //   document.getElementById("demo").innerHTML = "You selected: " + x;
+			   	if(x=="ISBN")
+			   		document.getElementById("searchTerm").type="number";
+			   	else
+			   		document.getElementById("searchTerm").type="text";
+		}
+		
 		if(view_admin_rights == false){
 			$("#admin_rights").remove();
 		}

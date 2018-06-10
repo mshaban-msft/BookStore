@@ -67,10 +67,10 @@
 			    <!-- create rows -->
 			    <c:forEach items = "${cart.books}" var = "book" varStatus = "status">
 			    	<tr>
-			    	 <td><input name="books[${status.index}].isbn" value="${book.isbn}"/></td>
-			    	 <td><input name="books[${status.index}].title" value="${book.title}"/></td>
-					 <td><input name="books[${status.index}].price" value="${book.price}"/></td>
-					 <td><input name="books[${status.index}].quantity" id="qnt_book_${status.index}" type="numeric" style="width:35px;" value="1"/> </td>
+			    	 <td><input readonly ="readonly" name="books[${status.index}].isbn" value="${book.isbn}"/></td>
+			    	 <td><input readonly ="readonly" name="books[${status.index}].title" value="${book.title}"/></td>
+					 <td><input readonly ="readonly" name="books[${status.index}].price" value="${book.price}"/></td>
+					 <td><input  name="books[${status.index}].quantity" id="qnt_book_${status.index}" type="number" style="width:35px;" value="1"/> </td>
 				       <td> <button class="sh_del_btn w3-right" name="${book.isbn}" >- del</button>
 					   </td>
 				     </tr>	

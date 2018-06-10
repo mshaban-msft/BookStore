@@ -55,7 +55,7 @@
 						</div>
 
 						<div class="w3-col w3-grey" style="width: 300px;">
-							<input type="text" class="w3-input sh-input" value="Mohamed Shaban" style="border: none;" disabled/>
+							<input id="full_name" type="text" class="w3-input sh-input" style="border: none;" disabled/>
 						</div>
 					</div>
 
@@ -66,7 +66,7 @@
 						</div>
 
 						<div class="w3-col" style="width: 300px;">
-							<input type="text" class="w3-input sh-input" value="01129168505" style="border: none;" disabled/>
+							<input id="phone" type="text" class="w3-input sh-input" style="border: none;" disabled/>
 						</div>
 					</div>
 
@@ -77,7 +77,18 @@
 						</div>
 
 						<div class="w3-col" style="width: 300px;">
-							<input type="text" class="w3-input sh-input" value="Alexandria, Egypt" style="border: none;" disabled/>
+							<input id="address" type="text" class="w3-input sh-input" style="border: none;" disabled/>
+						</div>
+					</div>
+
+					<!-- first name -->
+					<div class="w3-row" style="padding-top: 5px; padding-bottom: 5px;">
+						<div class="w3-col sh-label">
+							<label class="w3-label w3-text-grey"><b>Total Price</b></label>
+						</div>
+
+						<div class="w3-col" style="width: 300px;">
+							<input id="total_price" type="text" class="w3-input sh-input" style="border: none;" disabled/>
 						</div>
 					</div>
 
@@ -160,6 +171,20 @@
 	<!-- POST-LOADING SCRIPTS -->
 	<!-- *********************************************** -->
 	<script>
+	
+		var full_name = '<c:out value="${user.firstName}"/>' ;
+		var phone = '<c:out value="${user.phone}"/>' ;
+		var address = '<c:out value="${user.address}"/>' ;
+		var total_price = <c:out value="${total_price}"/> ;
+	
+		$(document).ready(function(){
+
+			$("#full_name").val(full_name);
+			$("#phone").val(phone);
+			$("#address").val(address);
+			$("#total_price").val(total_price);
+
+		});
 
 	</script>
 	

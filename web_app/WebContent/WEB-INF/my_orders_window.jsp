@@ -64,7 +64,7 @@
 			    <c:forEach items = "${orders}" var = "order" varStatus = "status">
 			    	<tr>
 			    	 <td>"${order.isbn}"</td>
-			    	 <td></td>
+			    	 <td>"${order.title}"</td>
 					 <td>"${order.quantity}"</td>
 					 <td>"${order.date}"</td>
 				    </tr>	

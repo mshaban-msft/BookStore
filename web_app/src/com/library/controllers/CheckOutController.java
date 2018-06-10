@@ -45,14 +45,14 @@ public class CheckOutController {
 		
 		DbController db = new DbController() ;
 		
-		db.update_cart_quatities(cart, signed);
+		int total_price = db.update_cart_quatities(cart, signed);
 				
 		ModelAndView view = new ModelAndView("checkout_window") ;
 		
 		// add cart info to ceckout window 
-		view.addObject("cart", cart) ;
-		view.addObject("admin_rights", signed.getUserAdmin().equals(UserAdmin.ADMIN) ? 1 : 0 ) ;
-		view.addObject("user_name", signed.getFirstName()) ;
+		view.addObject("user", signed) ;
+		view.addObject("total_price", total_price) ;
+		
 		
 		return view ;
 	}

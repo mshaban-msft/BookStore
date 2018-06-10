@@ -27,6 +27,12 @@ public class Cart {
 		this.books = books;
 	}
 	
-	
+	public int total_price() {
+		int cost = 0 ; 
+		for(Book book : books) {
+			cost += book.getPrice() * book.getQuantity() ;
+		}
+		return cost ;
+	}
 	
 }
