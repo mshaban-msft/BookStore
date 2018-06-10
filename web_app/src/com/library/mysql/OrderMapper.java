@@ -17,6 +17,7 @@ public class OrderMapper implements RowMapper<Order> {
 		order.setIsbn(rs.getInt("ISBN"));
 		order.setQuantity(rs.getInt("Quantity"));
 		order.setTotalPrice(rs.getFloat("Total_Price"));
+		order.setTitle(rs.getString("Title"));
 		return order;
 	}
 	
