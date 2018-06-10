@@ -14,6 +14,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.library.binding.SignInUser;
 import com.library.binding.SignUpUser;
 import com.library.checkers.EmailChecker;
+import com.library.enums.UserAdmin;
 import com.library.mysql.DbController;
 
 @Controller
@@ -51,8 +52,15 @@ public class SignUpController {
 			return sign_up_view;			
 		}
 		else {
-			session.setAttribute("signed_user", db.get_user_data(new SignInUser(user.getEmail(), user.getPassword())));
-			return new ModelAndView(new RedirectView("/Library/home"));			
+			SignUpUser signed = db.get_user_data(new SignInUser(user.getEmail(), user.getPassword())) ;
+			
+			ModelAndView view = new ModelAndView(new RedirectView("/Library/home")) ;
+			
+			view.addObject("admin_rights", signed.getUserAdmin().equals(UserAdmin.ADMIN) ? 1 : 0 ) ;
+			view.addObject("user_name", signed.getFirstName()) ;
+			session.setAttribute("signed_user", signed);
+			
+			return view ;			
 		}
 		
 	}

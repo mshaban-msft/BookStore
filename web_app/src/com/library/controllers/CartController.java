@@ -11,6 +11,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.library.binding.Cart;
 import com.library.binding.SignUpUser;
+import com.library.enums.UserAdmin;
 import com.library.mysql.DbController;
 
 @Controller
@@ -37,6 +38,8 @@ public class CartController {
 				
 		// send books in cart to front end 
 		view.addObject("cart", cart) ;
+		view.addObject("admin_rights", signed.getUserAdmin().equals(UserAdmin.ADMIN) ? 1 : 0 ) ;
+		view.addObject("user_name", signed.getFirstName()) ;
 				
 		return view ;
 	}
@@ -60,6 +63,9 @@ public class CartController {
 		db.delete_from_cart(signed, isbn);
 		
 		ModelAndView view = new ModelAndView(new RedirectView("/Library/cart")) ;
+		
+		view.addObject("admin_rights", signed.getUserAdmin().equals(UserAdmin.ADMIN) ? 1 : 0 ) ;
+		view.addObject("user_name", signed.getFirstName()) ;
 		
 		return view ;
 	}

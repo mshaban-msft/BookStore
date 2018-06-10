@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.library.binding.SignUpUser;
+import com.library.enums.UserAdmin;
 import com.library.mysql.DbController;
 
 @Controller
@@ -26,6 +27,9 @@ public class AccountController {
 		
 		// send user info to front end 
 		view.addObject("signed_user", signed_user) ;
+		view.addObject("admin_rights", signed_user.getUserAdmin().equals(UserAdmin.ADMIN) ? 1 : 0 ) ;
+		view.addObject("user_name", signed_user.getFirstName()) ;
+
 		
 		return view ;
 	}
@@ -44,6 +48,9 @@ public class AccountController {
 		
 		// change user session info to updated info
 		session.setAttribute("signed_user", user);
+		view.addObject("admin_rights", signed_user.getUserAdmin().equals(UserAdmin.ADMIN) ? 1 : 0 ) ;
+		view.addObject("user_name", signed_user.getFirstName()) ;
+
 		
 		// return new view with updated info 
 		return view ;

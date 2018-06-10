@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.library.binding.CardInfo;
 import com.library.binding.Cart;
 import com.library.binding.SignUpUser;
+import com.library.enums.UserAdmin;
 import com.library.mysql.DbController;
 import com.library.parsing.JsonParser;
 
@@ -51,6 +51,8 @@ public class CheckOutController {
 		
 		// add cart info to ceckout window 
 		view.addObject("cart", cart) ;
+		view.addObject("admin_rights", signed.getUserAdmin().equals(UserAdmin.ADMIN) ? 1 : 0 ) ;
+		view.addObject("user_name", signed.getFirstName()) ;
 		
 		return view ;
 	}
@@ -81,6 +83,8 @@ public class CheckOutController {
 				
 		// send books in cart to front end 
 		view.addObject("cart", JsonParser.instance().cart_to_json(cart)) ;
+		view.addObject("admin_rights", signed.getUserAdmin().equals(UserAdmin.ADMIN) ? 1 : 0 ) ;
+		view.addObject("user_name", signed.getFirstName()) ;
 		
 		return view ;
 	}

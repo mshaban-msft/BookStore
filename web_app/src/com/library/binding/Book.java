@@ -1,8 +1,5 @@
 package com.library.binding;
 
-import java.util.Date;
-
-
 public class Book {
 
 	private Integer isbn , price  , quantity , thershold ;

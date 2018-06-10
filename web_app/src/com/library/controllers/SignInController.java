@@ -12,6 +12,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.library.binding.SignInUser;
 import com.library.binding.SignUpUser;
 import com.library.checkers.EmailChecker;
+import com.library.enums.UserAdmin;
 import com.library.mysql.DbController;
 
 
@@ -27,6 +28,7 @@ public class SignInController {
 		
 		ModelAndView sign_view = new ModelAndView("signin_window") ;
 		sign_view.addObject("error", "#");
+		
 		return sign_view ;
 	}
 
@@ -49,8 +51,14 @@ public class SignInController {
 			return sign_view;			
 		}
 		else {
+			SignUpUser signed = db.get_user_data(user) ;
 			session.setAttribute("signed_user", db.get_user_data(user));
-			return new ModelAndView(new RedirectView("/Library/home"));			
+			
+			ModelAndView view = new ModelAndView(new RedirectView("/Library/home")) ;  
+			view.addObject("admin_rights", signed.getUserAdmin().equals(UserAdmin.ADMIN) ? 1 : 0 ) ;
+			view.addObject("user_name", signed.getFirstName()) ;
+			
+			return view ;			
 		}
 	}
 	

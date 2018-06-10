@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.library.binding.SignUpUser;
+import com.library.enums.UserAdmin;
 import com.library.mysql.DbController;
 
 @Controller
@@ -37,6 +38,8 @@ public class AdminAccountController {
 		ModelAndView view = new ModelAndView("user_accounts_window") ;
 		
 		view.addObject("users", users) ;
+		view.addObject("admin_rights", signed.getUserAdmin().equals(UserAdmin.ADMIN) ? 1 : 0 ) ;
+		view.addObject("user_name", signed.getFirstName()) ;
 		
 		return view ;
 		

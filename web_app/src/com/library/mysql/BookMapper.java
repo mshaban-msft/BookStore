@@ -2,15 +2,10 @@ package com.library.mysql;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import org.springframework.jdbc.core.RowMapper;
 
 import com.library.binding.Book;
-
-import javafx.scene.input.DataFormat;
 
 public class BookMapper implements RowMapper<Book>{
 
@@ -20,8 +15,6 @@ public class BookMapper implements RowMapper<Book>{
 		Book book = new Book() ;
 		book.setIsbn(rs.getInt("ISBN"));
 		book.setCategory(rs.getString("Category"));
-		
-		
 		book.setdate(rs.getString("Publication_Year"));
 		book.setPrice(rs.getInt("Price"));
 		book.setPublisher(rs.getString("Publisher"));

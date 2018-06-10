@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.library.binding.Book;
 import com.library.binding.Search;
 import com.library.binding.SignUpUser;
+import com.library.enums.UserAdmin;
 import com.library.mysql.DbController;
 import com.library.parsing.JsonParser;
 
@@ -49,6 +50,8 @@ public class HomeController {
 
 		// send json value of book list to front end
 		home_view.addObject("bookList", JsonParser.instance().books_to_json(books)) ;
+		home_view.addObject("admin_rights", signed.getUserAdmin().equals(UserAdmin.ADMIN) ? 1 : 0 ) ;
+		home_view.addObject("user_name", signed.getFirstName()) ;
 		
 		return home_view ;
 	}
@@ -78,6 +81,9 @@ public class HomeController {
 		
 		// send json value of book list to front end
 		home_view.addObject("bookList", JsonParser.instance().books_to_json(books)) ;
+		home_view.addObject("admin_rights", signed.getUserAdmin().equals(UserAdmin.ADMIN) ? 1 : 0 ) ;
+		home_view.addObject("user_name", signed.getFirstName()) ;
+		
 		
 		return home_view ;
 	}

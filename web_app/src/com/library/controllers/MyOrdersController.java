@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.library.binding.Order;
 import com.library.binding.SignUpUser;
+import com.library.enums.UserAdmin;
 import com.library.mysql.DbController;
 
 @Controller
@@ -37,6 +38,8 @@ public class MyOrdersController {
 		
 		// send orders to front end 
 		orders_view.addObject("orders", orders) ;
+		orders_view.addObject("admin_rights", signed.getUserAdmin().equals(UserAdmin.ADMIN) ? 1 : 0 ) ;
+		orders_view.addObject("user_name", signed.getFirstName()) ;
 		
 		return orders_view;
 	}

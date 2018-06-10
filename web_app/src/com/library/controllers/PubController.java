@@ -1,6 +1,5 @@
 package com.library.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -14,6 +13,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.library.binding.Publisher;
 import com.library.binding.SignUpUser;
+import com.library.enums.UserAdmin;
 import com.library.mysql.DbController;
 
 @Controller
@@ -36,6 +36,8 @@ public class PubController {
 		List<Publisher> publishers = db.get_publishers() ;
 		
 		view.addObject("publishers", publishers) ;
+		view.addObject("admin_rights", signed.getUserAdmin().equals(UserAdmin.ADMIN) ? 1 : 0 ) ;
+		view.addObject("user_name", signed.getFirstName()) ;
 		
 		return view ;
 	}
