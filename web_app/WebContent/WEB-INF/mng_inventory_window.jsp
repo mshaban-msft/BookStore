@@ -1,3 +1,4 @@
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -158,7 +159,7 @@
 						</div>
 
 						<div class="w3-col" style="width: 400px;">
-							<input id="book_isbn" type="number" class="w3-input w3-border sh-input sh-view-input" readonly name = "isbn"/>
+							<input id="book_isbn" type="number" class="w3-input w3-border sh-input sh-view-input" readonly="readonly" name = "isbn"/>
 						</div>
 					</div>
 
@@ -169,7 +170,7 @@
 						</div>
 
 						<div class="w3-col" style="width: 400px;">
-							<input id="book_title" type="text" class="w3-input w3-border sh-input sh-view-input" readonly name = "title"/>
+							<input id="book_title" type="text" class="w3-input w3-border sh-input sh-view-input" name = "title"/>
 						</div>
 					</div>
 
@@ -180,7 +181,7 @@
 						</div>
 
 						<div class="w3-col" style="width: 400px;">
-							<input id="book_author" type="text" class="w3-input w3-border sh-input sh-view-input" readonly name = "author"/>
+							<input id="book_author" type="text" class="w3-input w3-border sh-input sh-view-input" name = "author"/>
 						</div>
 					</div>
 
@@ -191,7 +192,7 @@
 						</div>
 
 						<div class="w3-col" style="width: 400px;">
-							<input id="book_publisher" type="text" class="w3-input w3-border sh-input sh-view-input" readonly name = "publisher"/>
+							<input id="book_publisher" type="text" class="w3-input w3-border sh-input sh-view-input" name = "publisher"/>
 						</div>
 					</div>
 
@@ -203,7 +204,7 @@
 						</div>
 
 						<div class="w3-col" style="width: 400px;">
-							<input id="book_category" type="text" class="w3-input w3-border sh-input sh-view-input" readonly name = "category" />
+							<input id="book_category" type="text" class="w3-input w3-border sh-input sh-view-input" name = "category" />
 						</div>
 					</div>
 
@@ -214,7 +215,7 @@
 						</div>
 
 						<div class="w3-col" style="width: 400px;">
-							<input id="book_price" type="number" class="w3-input sh-input w3-border sh-view-input" readonly name = "price" />
+							<input id="book_price" type="number" class="w3-input sh-input w3-border sh-view-input" name = "price" />
 						</div>
 					</div>
 
@@ -225,7 +226,7 @@
 						</div>
 
 						<div class="w3-col" style="width: 400px;">
-							<input id="book_year" type="text" class="w3-input sh-input w3-border sh-view-input"  readonly name="date" />
+							<input id="book_year" type="text" class="w3-input sh-input w3-border sh-view-input" name="date" />
 						</div>
 					</div>
 
@@ -515,6 +516,12 @@
 		    new_book_modal.style.display = 'none';
 		});
 
+		var x = document.getElementsByClassName("sh-view-input");
+		var i;
+		for (i = 0; i < x.length; i++) {
+			x[i].disabled = true;
+		}	
+
 		function toggle_disabled()
 		{
 			if(disabled_flag == true){
@@ -534,6 +541,10 @@
 			
 			for (i = 0; i < view_book_fields.length; i++) {
 			    view_book_fields[i].readonly = disabled_flag;
+			}	
+
+			for (i = 0; i < x.length; i++) {
+			    x[i].disabled = disabled_flag;
 			}	
 		}
 	
