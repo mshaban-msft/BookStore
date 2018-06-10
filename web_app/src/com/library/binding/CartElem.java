@@ -1,33 +1,29 @@
 package com.library.binding;
 
-public class PubOrder {
+public class CartElem {
 	
+	private String email ;
 	private Integer isbn , quantity ;
-	private String publisherName ;
 	
-	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public Integer getIsbn() {
 		return isbn;
 	}
-	
 	public void setIsbn(Integer isbn) {
 		this.isbn = isbn;
 	}
-	
 	public Integer getQuantity() {
 		return quantity;
 	}
-	
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
-	}
-	
-	public String getPublisherName() {
-		return publisherName;
-	}
-	
-	public void setPublisherName(String publisherName) {
-		this.publisherName = publisherName;
-	}
+	} 
 
+	
+	
 }
