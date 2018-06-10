@@ -76,6 +76,8 @@
 				<span class="w3-text-blue-grey" style="font-size:28px; font-weight:bold; font-family: arial;">Manage Inventory</span>
 				<button class="w3-btn w3-teal w3-right" style="margin-top:5px;" onclick="show_search_modal()">Search</button>
 				<button class="w3-btn w3-teal w3-right" style="margin-top:5px; margin-right: 10px;" onclick="new_book_modal.style.display = 'block'">Add Book</button>
+				<button class="w3-btn w3-teal w3-right" style="margin-top:5px; margin-right: 10px;" onclick="create_new_report()">Create Report</button>
+			
 			</div>
 
 			<!--book table-->
@@ -218,6 +220,16 @@
 							<input id="book_price" type="number" class="w3-input sh-input w3-border sh-view-input" name = "price" />
 						</div>
 					</div>
+
+					<div class="w3-row sh-book-attr">
+						<div class="w3-col sh-label">
+							<label class="w3-label">Quantity</label>
+						</div>
+
+						<div class="w3-col" style="width: 400px;">
+							<input id="book_quantity" type="number" class="w3-input sh-input w3-border sh-view-input" name = "quantity" />
+						</div>
+					</div>	
 
 					<!-- shipping address -->
 					<div class="w3-row sh-book-attr">
@@ -587,6 +599,7 @@
 			document.getElementById('book_category').value = book_list[book_index]["category"];
 			document.getElementById('book_price').value = book_list[book_index]["price"];
 			document.getElementById('book_year').value = book_list[book_index]["date"];
+			document.getElementById('book_quantity').value = book_list[book_index]["quantity"];
 			document.getElementById('view_book_modal').style.display='block';
 		}
 
@@ -595,7 +608,11 @@
 		{
 			document.getElementById('search_modal').style.display='block';
 		}
-
+		//create report and show report
+		function create_new_report()
+		{
+			window.open('localhost:8080/Library/getpdf');
+		}
 		function handle_side_nav()
 		{
 			if (side_nav.className.indexOf("w3-show") == -1) {
