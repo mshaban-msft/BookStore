@@ -13,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.library.jasper.report;
+
 @Controller
 public class PdfController {
 
@@ -20,16 +22,18 @@ public class PdfController {
 	public ResponseEntity<byte[]> getPDF() throws IOException {
 
 	    // generate the file
-
-		 // retrieve contents of "C:/tmp/report.pdf" that were written in showHelp
-		Path path = Paths.get("/mnt/DE3E99B43E9985E5/projects and models/Library/src/report/rep.pdf");
+		report generator = new report() ;
+		generator.createReport();
+		
+		// retrieve contents of "C:/tmp/report.pdf" that were written in showHelp
+		Path path = Paths.get("C:/Users/Saed Hamdy/workspace/book_2/src/report/rep.pdf");
 		byte[] contents = Files.readAllBytes(path);
 		
 		
 		HttpHeaders headers = new HttpHeaders();
 	    headers.setContentType(MediaType.parseMediaType("application/pdf"));
 	    String filename = "output.pdf";
-	    headers.setContentDispositionFormData(filename, filename);
+	 //   headers.setContentDispositionFormData(filename, filename);
 	    headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
 	    ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(contents, headers, HttpStatus.OK);
 	    return response;

@@ -41,11 +41,11 @@ public class report {
 	          
 	           // JRResultSetDataSource rsdt=new JRResultSetDataSource(rs);
 	            
-	            FileInputStream inputFile = new FileInputStream("src/report/Users_report.jrxml");
+	            FileInputStream inputFile = new FileInputStream("C:/Users/Saed Hamdy/workspace/book_2/src/report/Users_report.jrxml");
 	            JasperDesign jd= JRXmlLoader.load(inputFile);
 	            JasperReport jr=JasperCompileManager.compileReport(jd);
 	            JasperPrint jp = JasperFillManager.fillReport(jr,null,con);
-	            File f= new File("src/report/rep.pdf");
+	            File f= new File("C:/Users/Saed Hamdy/workspace/book_2/src/report/rep.pdf");
 	            f.createNewFile();
 	            
 	            OutputStream os = new FileOutputStream(f);
@@ -53,7 +53,7 @@ public class report {
 	            JasperExportManager.exportReportToPdfStream(jp, os);
 //	            
 //	            JasperPrint jp;
-//	            jp = JasperFillManager.fillReport("report/report1.jrxml", new HashMap(), rsdt);
+//	            jp = JasperFillManager.fillReport("C:/Users/Saed Hamdy/workspace/book_2/src/report/report1.jrxml", new HashMap(), rsdt);
 //	            JasperViewer jv = new JasperViewer(jp);
 //	            jv.setVisible(true);
 	            System.out.println("report printed");

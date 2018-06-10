@@ -1,10 +1,9 @@
-package com.library.encryption ;
+package com.library.encryption;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
-public class Encyrption {
-
+public class Encryption {
 	private String strKey = "hashash";
 
 	public String encrypt(String strClearText) {
@@ -38,7 +37,7 @@ public class Encyrption {
 	}
 	
 	public static void main(String[] args) {
-		Encyrption en =new Encyrption();
+		Encryption en =new Encryption();
 		String ss =en.encrypt("telio");
 		System.out.println(ss);
 		System.out.println(en.decrypt(ss));
