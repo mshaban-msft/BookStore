@@ -31,6 +31,31 @@
 			{
 				padding: 2px;
 			}
+			
+			a {
+			    text-decoration: none;
+			    display: inline-block;
+			    padding: 8px 16px;
+			}
+			
+			a:hover {
+			    background-color: #ddd;
+			    color: black;
+			}
+			
+			.previous {
+			    background-color: #f1f1f1;
+			    color: black;
+			}
+			
+			.next {
+			    background-color: #4CAF50;
+			    color: white;
+			}
+			
+			.round {
+			    border-radius: 50%;
+			}
 
 		</style>
 
@@ -91,7 +116,12 @@
 				    
 				  </table>
 			</div>
-
+			
+			<div class="w3-container" style="margin-top:10px;margin-left:30%;margin-right:30%;">	
+				<a href="#" onclick="$('#previous_hidden_form').submit(); return false;" class="previous" id = "next_pointer" >&laquo; Previous</a>
+				<a>${page}</a>
+				<a href="#" onclick="$('#next_hidden_form').submit(); return false;" class="next" id = "previous_pointer" >Next &raquo;</a>	
+			</div>
 			
 		</div>
 
@@ -279,8 +309,17 @@
 		  <input type="hidden" name="x" value="">
 		</form>
 
+		<form id="next_hidden_form" action="/Library/home/search/next" method="post" style="display: none">
+		  <input type="hidden" name="searchTerm" value="${search.searchTerm}">
+		  <input type="hidden" name="searchCriteria" value="${search.searchCriteria}">
+		  <input type="hidden" name="page" value="${page}">
+		</form>
 
-
+		<form id="previous_hidden_form" action="/Library/home/search/previous" method="post" style="display: none">
+		  <input type="hidden" name="searchTerm" value="${search.searchTerm}">
+		  <input type="hidden" name="searchCriteria" value="${search.searchCriteria}">
+		  <input type="hidden" name="page" value="${page}">
+		</form>
 		
 	</body>
 	
@@ -295,6 +334,11 @@
 		var view_admin_rights = <c:out value="${admin_rights}"/> ;
 
 		
+		var search = '<c:out value="${search.searchTerm}"/>' ;
+		if(search == ''){
+			document.getElementById("next_pointer").remove() ;
+			document.getElementById("previous_pointer").remove() ;
+		}
 		
 		
 		function criteria_select() {

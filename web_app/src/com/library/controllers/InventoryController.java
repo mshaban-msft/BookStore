@@ -72,15 +72,76 @@ public class InventoryController {
 		DbController db = new DbController() ;
 		
 		//TODO get only needed books from search Remain author search 
-		List<Book> books = db.get_search_books(search) ;
+		List<Book> books = db.get_search_books(search,0) ;
 		
 		// send json value of book list to front end
 		inve_view.addObject("bookList", JsonParser.instance().books_to_json(books)) ;
 		inve_view.addObject("admin_rights", signed.getUserAdmin().equals(UserAdmin.ADMIN) ? 1 : 0 ) ;
 		inve_view.addObject("user_name", signed.getFirstName()) ;
-		
+		inve_view.addObject("page", 0);
+		inve_view.addObject("search", search);
+
 		return inve_view ;
 	}
+
+	@RequestMapping(value = "/manage_inventory/search/next", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView next(@ModelAttribute("search") Search search  , @RequestParam("page") Integer page , HttpSession session) {
+
+		SignUpUser signed = (SignUpUser) session.getAttribute("signed_user");
+		// check user info for security
+		if (signed == null) {
+			ModelAndView sign_view = new ModelAndView("signin_window");
+			return sign_view;
+		}
+
+		ModelAndView home_view = new ModelAndView("mng_inventory_window");
+		DbController db = new DbController();
+
+		// TODO get only trended books
+		List<Book> books = db.get_search_books(search , page+1);
+
+		if(books.isEmpty()) {
+			books = db.get_search_books(search , 0);
+			page = -1 ;
+		}
+		
+		// send json value of book list to front end
+		home_view.addObject("bookList", JsonParser.instance().books_to_json(books));
+		home_view.addObject("admin_rights", signed.getUserAdmin().equals(UserAdmin.ADMIN) ? 1 : 0);
+		home_view.addObject("user_name", signed.getFirstName());
+		home_view.addObject("page", page+1);
+		home_view.addObject("search", search);
+		
+		return home_view;
+	}
+	
+	@RequestMapping(value = "/manage_inventory/search/previous", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView previous(@ModelAttribute("search") Search search  , @RequestParam("page") Integer page , HttpSession session) {
+
+		SignUpUser signed = (SignUpUser) session.getAttribute("signed_user");
+		// check user info for security
+		if (signed == null) {
+			ModelAndView sign_view = new ModelAndView("signin_window");
+			return sign_view;
+		}
+
+		ModelAndView home_view = new ModelAndView("mng_inventory_window");
+		DbController db = new DbController();
+
+		// TODO get only trended books
+		if(page.equals(0))page=1;
+		List<Book> books = db.get_search_books(search,page-1);
+
+		// send json value of book list to front end
+		home_view.addObject("bookList", JsonParser.instance().books_to_json(books));
+		home_view.addObject("admin_rights", signed.getUserAdmin().equals(UserAdmin.ADMIN) ? 1 : 0);
+		home_view.addObject("user_name", signed.getFirstName());
+		home_view.addObject("page", page-1);
+		home_view.addObject("search", search);
+		
+		return home_view;
+	}
+
 	
 	@RequestMapping(value = "/manage_inventory/addBook" , method = {RequestMethod.POST , RequestMethod.GET})
 	public ModelAndView addBook (@ModelAttribute("new_book") Book book , HttpSession session) {

@@ -149,16 +149,14 @@ public class DbController {
 	}
 
 	public List<Book> get_books() {
-//		String sql ="select * from book  NATURAL LEFT  join author where isbn in"
-//				+ "(select bb.isbn from "
-//				+ "(Select c.ISBN ,Title,count(c.quantity) as total_purchases "
-//				+ "from customer_purchases as c , book as b "
-//				+ " where days(Order_Date)<90 and  c.ISBN =b.ISBN"
-//				+ " group by ISBN "
-//				+ " order by total_purchases desc"
-//				+ "	limit 100)as bb)";
-		String sql = "select * from book NATURAL LEFT  join author";
-		// List<Book> ret = new ArrayList<Book>() ;
+		String sql ="select * from book  NATURAL LEFT  join author where isbn in"
+				+ "(select bb.isbn from "
+				+ "(Select c.ISBN ,Title,count(c.quantity) as total_purchases "
+				+ "from customer_purchases as c , book as b "
+				+ " where days(Order_Date)<90 and  c.ISBN =b.ISBN"
+				+ " group by ISBN "
+				+ " order by total_purchases desc"
+				+ "	limit 100)as bb) limit 1000 ";
 		HashMap<Integer, Book> coun = new HashMap<Integer, Book>();
 		for (Book book : this.jdbcTemplateObject.query(sql, new BookAuthorMapper())) {
 			if (coun.containsKey(book.getIsbn())) {
@@ -180,27 +178,29 @@ public class DbController {
 		return this.jdbcTemplateObject.query(sql, new BookAuthorMapper());
 	}
 
-	public List<Book> get_search_books(Search search) {
+	public List<Book> get_search_books(Search search , int start) {
 		String sql = "";
+		
+		start *= 1000 ;
 
 		if (search.getSearchCriteria().equals("Title"))
-			sql = "select * from book NATURAL LEFT  join author where title COLLATE UTF8_GENERAL_CI like \'%" + search.getSearchTerm() + "%\'";
+			sql = "select * from book NATURAL LEFT  join author where title COLLATE UTF8_GENERAL_CI like \'%" + search.getSearchTerm() + "%\' limit ?,?";
 		else if (search.getSearchCriteria().equals("Publisher"))
-			sql = "select * from book NATURAL LEFT  join author where publisher COLLATE UTF8_GENERAL_CI like \'%" + search.getSearchTerm() + "%\'";
+			sql = "select * from book NATURAL LEFT  join author where publisher COLLATE UTF8_GENERAL_CI like \'%" + search.getSearchTerm() + "%\' limit ?,?";
 		// TODO search with authors
 		else if (search.getSearchCriteria().equals("Author"))
-			sql = "select * from book NATURAL LEFT  join author where name COLLATE UTF8_GENERAL_CI like \'%" + search.getSearchTerm() + "%\'";
+			sql = "select * from book NATURAL LEFT  join author where name COLLATE UTF8_GENERAL_CI like \'%" + search.getSearchTerm() + "%\' limit ?,?";
 		else if (search.getSearchCriteria().equals("Category"))
-			sql = "select * from book NATURAL LEFT  join author where Category COLLATE UTF8_GENERAL_CI like \'%" + search.getSearchTerm() + "%\'";
+			sql = "select * from book NATURAL LEFT  join author where Category COLLATE UTF8_GENERAL_CI like \'%" + search.getSearchTerm() + "%\' limit ?,?";
 		else if (search.getSearchCriteria().equals("ISBN")){
 			
-			sql = "select * from book NATURAL LEFT  join author where Isbn = " + search.getSearchTerm() ;
+			sql = "select * from book NATURAL LEFT  join author where Isbn = " + search.getSearchTerm() + " limit ?,?";
 		
 		}else
 			return new ArrayList<Book>();
 		
 		HashMap<Integer, Book> coun = new HashMap<Integer, Book>();
-		for (Book book : this.jdbcTemplateObject.query(sql, new BookAuthorMapper())) {
+		for (Book book : this.jdbcTemplateObject.query(sql, new BookAuthorMapper() , start , start+1000 )) {
 			if (coun.containsKey(book.getIsbn())) {
 				//system.out.println("found");
 				Book temp = coun.get(book.getIsbn());

@@ -26,7 +26,7 @@ public class PdfController {
 		generator.createReport();
 		
 		// retrieve contents of "C:/tmp/report.pdf" that were written in showHelp
-		Path path = Paths.get("C:/Users/Saed Hamdy/workspace/book_2/src/report/rep.pdf");
+		Path path = Paths.get("/mnt/DE3E99B43E9985E5/projects and models/Library/src/report/rep.pdf");
 		byte[] contents = Files.readAllBytes(path);
 		
 		

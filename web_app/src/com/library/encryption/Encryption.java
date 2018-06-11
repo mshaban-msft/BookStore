@@ -1,44 +1,56 @@
 package com.library.encryption;
 
 import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
+import org.apache.tomcat.util.codec.binary.Base64;
+
 public class Encryption {
-	private String strKey = "hashash";
+	private String strKey = "Bar12345Bar12345";
+	private String initVector = "RandomInitVector";
+	
 
 	public String encrypt(String strClearText) {
-		String strData = "";
-		try {
-			SecretKeySpec skeyspec = new SecretKeySpec(strKey.getBytes(), "Blowfish");
-			Cipher cipher = Cipher.getInstance("Blowfish");
-			cipher.init(Cipher.ENCRYPT_MODE, skeyspec);
-			byte[] encrypted = cipher.doFinal(strClearText.getBytes());
-			strData = new String(encrypted);
-		} catch (Exception e) {
-			e.printStackTrace();
-			//throw new Exception(e);
-		}
-		return strData;
+	    try {
+            IvParameterSpec iv = new IvParameterSpec(initVector.getBytes("UTF-8"));
+            SecretKeySpec skeySpec = new SecretKeySpec(strKey.getBytes("UTF-8"), "AES");
+
+            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
+            cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
+
+            byte[] encrypted = cipher.doFinal(strClearText.getBytes());
+            System.out.println("encrypted string: "
+                    + Base64.encodeBase64String(encrypted));
+
+            return Base64.encodeBase64String(encrypted);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+		return null ;
 	}
 
 	public String decrypt(String strEncrypted) {
-		String strData = "";
-		try {
-			SecretKeySpec skeyspec = new SecretKeySpec(strKey.getBytes(), "Blowfish");
-			Cipher cipher = Cipher.getInstance("Blowfish");
-			cipher.init(Cipher.DECRYPT_MODE, skeyspec);
-			byte[] decrypted = cipher.doFinal(strEncrypted.getBytes());
-			strData = new String(decrypted);
-		} catch (Exception e) {
-			e.printStackTrace();
-		//	throw new Exception(e);
-		}
-		return strData;
+	   try {
+            IvParameterSpec iv = new IvParameterSpec(initVector.getBytes("UTF-8"));
+            SecretKeySpec skeySpec = new SecretKeySpec(strKey.getBytes("UTF-8"), "AES");
+
+            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
+            cipher.init(Cipher.DECRYPT_MODE, skeySpec, iv);
+
+            byte[] original = cipher.doFinal(Base64.decodeBase64(strEncrypted));
+
+            return new String(original);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+		return null ;
 	}
 	
 	public static void main(String[] args) {
 		Encryption en =new Encryption();
-		String ss =en.encrypt("telio");
+		String ss =en.encrypt("1234");
 		System.out.println(ss);
 		System.out.println(en.decrypt(ss));
 	}
